@@ -1,0 +1,27 @@
+{
+  "name": "acid23m/yii2-admin",
+  "description": "Admin module for my dockerized Yii2 application.",
+  "type": "yii2-extension",
+  "keywords": [
+    "yii2",
+    "extension",
+    "admin",
+    "user"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Sergey P",
+      "email": "webmaster.cipa@gmail.com"
+    }
+  ],
+  "require": {
+    "yiisoft/yii2": "~2.0.0",
+    "yiister/yii2-gentelella": "~1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "acid23m\\admin\\": "src"
+    }
+  }
+}
