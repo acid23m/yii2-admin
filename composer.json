@@ -23,5 +23,17 @@
     "psr-4": {
       "acid23m\\admin\\": "src"
     }
-  }
+  },
+  "config": {
+    "process-timeout": 1800,
+    "fxp-asset": {
+      "enabled": false
+    }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
 }
