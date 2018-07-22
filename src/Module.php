@@ -18,13 +18,6 @@ use yii\base\BootstrapInterface;
  */
 final class Module extends \yii\base\Module implements BootstrapInterface
 {
-    public const MODULE_ID = 'dashboard';
-
-    /**
-     * @inheritdoc
-     */
-    public $id = self::MODULE_ID;
-
     /**
      * @inheritdoc
      */
@@ -45,9 +38,7 @@ final class Module extends \yii\base\Module implements BootstrapInterface
      */
     public function bootstrap($app): void
     {
-        if ($app->id === 'app-backend') {
-            $app->setModule(self::MODULE_ID, ['class' => self::class]);
-        }
+
     }
 
 }
