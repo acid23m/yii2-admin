@@ -24,9 +24,6 @@
       "acid23m\\dashboard\\": "src"
     }
   },
-  "extra": {
-    "bootstrap": "acid23m\\dashboard\\Module"
-  },
   "config": {
     "process-timeout": 1800,
     "fxp-asset": {
