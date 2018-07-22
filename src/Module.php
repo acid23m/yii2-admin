@@ -23,6 +23,11 @@ final class Module extends \yii\base\Module implements BootstrapInterface
     /**
      * @inheritdoc
      */
+    public $id = self::MODULE_ID;
+
+    /**
+     * @inheritdoc
+     */
     public $controllerNamespace = 'acid23m\dashboard\controllers';
 
     /**
