@@ -30,7 +30,7 @@ final class Module extends \yii\base\Module implements BootstrapInterface
     {
         parent::init();
 
-
+        $this->defaultRoute = 'home/index';
     }
 
     /**
