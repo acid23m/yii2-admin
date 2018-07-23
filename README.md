@@ -52,3 +52,10 @@ Once the extension is installed, do next:
 ```
 
 - every controller in backend must be extended from *\dashboard\controllers\BaseController*.
+- add rule to UrlManager config
+
+```php
+'rules' => [
+    '/' => '/dashboard/home/index'
+]
+``
