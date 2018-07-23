@@ -6,7 +6,7 @@
  * Time: 1:46
  */
 
-namespace acid23m\dashboard\controllers;
+namespace dashboard\controllers;
 
 use yii\web\View;
 

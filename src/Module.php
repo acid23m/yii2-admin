@@ -6,9 +6,10 @@
  * Time: 17:35
  */
 
-namespace acid23m\dashboard;
+namespace dashboard;
 
 use yii\base\BootstrapInterface;
+use yii\i18n\PhpMessageSource;
 
 /**
  * Class Module.
@@ -31,6 +32,11 @@ final class Module extends \yii\base\Module implements BootstrapInterface
         parent::init();
 
         $this->defaultRoute = 'home/index';
+
+        \Yii::$app->i18n->translations['dashboard'] = [
+            'class' => PhpMessageSource::class,
+            'basePath' => '@vendor/acid23m/yii2-admin/src/messages'
+        ];
     }
 
     /**

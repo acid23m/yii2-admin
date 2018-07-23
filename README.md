@@ -25,8 +25,21 @@ to the require section of your `composer.json` file.
 Usage
 -----
 
-Once the extension is installed, simply use it in your code by  :
+Once the extension is installed, do next:
+
+- add module in *backend/config/main.php*.
 
 ```php
-<?= 'hello' ?>
+'bootstrap' => [
+    'log',
+    'dashboard'
+],
+
+'modules' => [
+    'dashboard' => [
+        'class' => \dashboard\Module::class
+    ]
+],
 ```
+
+- every controller in backend must be extended from *\dashboard\controllers\BaseController*.

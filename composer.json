@@ -21,7 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "acid23m\\dashboard\\": "src"
+      "dashboard\\": "src"
     }
   },
   "config": {

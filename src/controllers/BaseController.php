@@ -6,7 +6,7 @@
  * Time: 1:22
  */
 
-namespace acid23m\dashboard\controllers;
+namespace dashboard\controllers;
 
 use yii\filters\HttpCache;
 use yii\filters\VerbFilter;
@@ -25,7 +25,7 @@ class BaseController extends Controller
     /**
      * @inheritdoc
      */
-    public $layout = '@vendor/acid23m/yii2-admin/src/views/layouts/main';
+    public $layout = 'main';
 
     /**
      * @inheritdoc
