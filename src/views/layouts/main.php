@@ -92,9 +92,9 @@ $this->params['title'] = $this->title;
                                 ]
                             ]
                         ]) ?>
-
-                        <?= LeftMenu::widget() ?>
                     </div>
+
+                    <?= LeftMenu::widget() ?>
 
                 </div>
                 <!-- /sidebar menu -->
