@@ -8,6 +8,7 @@
 
 namespace dashboard;
 
+use dashboard\widgets\LeftMenu;
 use yii\base\BootstrapInterface;
 use yii\i18n\PhpMessageSource;
 
@@ -19,6 +20,15 @@ use yii\i18n\PhpMessageSource;
  */
 final class Module extends \yii\base\Module implements BootstrapInterface
 {
+    /**
+     * @var array Left menu configuration
+     */
+    public $left_menu = [];
+    /**
+     * @var array Top menu configuration
+     */
+    public $top_menu = [];
+
     /**
      * @inheritdoc
      */
@@ -44,7 +54,9 @@ final class Module extends \yii\base\Module implements BootstrapInterface
      */
     public function bootstrap($app): void
     {
-
+        \Yii::$container->set(LeftMenu::class, [
+            'items' => $this->left_menu
+        ]);
     }
 
 }

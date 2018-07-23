@@ -6,6 +6,7 @@
     "yii2",
     "extension",
     "admin",
+    "dashboard",
     "user"
   ],
   "license": "MIT",

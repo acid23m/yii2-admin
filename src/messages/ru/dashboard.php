@@ -3,5 +3,7 @@
 return [
     'panel' => 'Административная панель',
     'razrabotano na' => 'Разработано на',
-    'razrabotchik' => 'Разработчик'
+    'razrabotchik' => 'Разработчик',
+    'osnovnoe' => 'Основное',
+    'glavnaya' => 'Главная'
 ];

@@ -37,7 +37,16 @@ Once the extension is installed, do next:
 
 'modules' => [
     'dashboard' => [
-        'class' => \dashboard\Module::class
+        'class' => \dashboard\Module::class,
+        'left_menu' => [
+            'section' => [ // section header
+                [
+                    'label' => 'Menu Item', // menu item label
+                    'url' => '#', // url compatible with Url::to()
+                    'icon' => 'th' // fontawesome icon id
+                ]
+            ]
+        ]
     ]
 ],
 ```
