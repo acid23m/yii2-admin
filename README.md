@@ -38,12 +38,37 @@ Once the extension is installed, do next:
 'modules' => [
     'dashboard' => [
         'class' => \dashboard\Module::class,
-        'left_menu' => [
+        'left_menu' => [ // move it to separate file and include here
             'section' => [ // section header
                 [
                     'label' => 'Menu Item', // menu item label
                     'url' => '#', // url compatible with Url::to()
-                    'icon' => 'th' // fontawesome icon id
+                    'icon' => 'th', // fontawesome icon id
+                    'badge' => '123', // badge text
+                    'badgeOptions' => ['class' => 'label-success'] // badge config
+                ]
+            ]
+        ],
+        'top_menu' => [ // move it to separate file and include here
+            [
+                'label' => 'Menu Item',
+                'url' => '#',
+                'icon' => 'th',
+                'badge' => '123',
+                'badgeOptions' => ['class' => 'bg-green']
+            ],
+            [
+                'icon' => 'circle-o',
+                'items' => [
+                    [
+                        'label' => 'Subitem',
+                        'badge' => 'str',
+                        'badgeOptions' => 'bg-red'
+                    ],
+                    [
+                        'label' => 'Site',
+                        'url' => '/'
+                    ]
                 ]
             ]
         ]

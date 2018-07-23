@@ -7,6 +7,7 @@
  */
 
 use dashboard\widgets\LeftMenu;
+use dashboard\widgets\TopMenu;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
@@ -128,7 +129,7 @@ $this->params['title'] = $this->title;
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="">
+                        <li>
                             <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <img src="https://placehold.it/128x128" alt="">John Doe
                                 <span class=" fa fa-angle-down"></span>
@@ -152,7 +153,7 @@ $this->params['title'] = $this->title;
                             </ul>
                         </li>
 
-                        <li role="presentation" class="dropdown">
+                        <!--<li role="presentation" class="dropdown">
                             <a href="#" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-envelope-o"></i>
                                 <span class="badge bg-green">6</span>
@@ -211,6 +212,30 @@ $this->params['title'] = $this->title;
                             </ul>
                         </li>
 
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
+                                <i class="fa fa-cog"></i>
+                            </a>
+                            <ul class="dropdown-menu list-unstyled" role="menu">
+                                <li>
+                                    <a href="#">Profile</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="badge bg-red pull-right">50%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li>
+                            <a class="info-number" href="#">
+                                <i class="fa fa-circle-o"></i>
+                                <span class="badge bg-green">6</span>
+                            </a>
+                        </li>-->
+                        <?= TopMenu::widget() ?>
                     </ul>
                 </nav>
             </div>
