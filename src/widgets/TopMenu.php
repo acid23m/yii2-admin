@@ -8,9 +8,11 @@
 
 namespace dashboard\widgets;
 
+use yii\base\InvalidArgumentException;
 use yii\base\Widget;
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\web\View;
 
 /**
  * Class TopMenu.

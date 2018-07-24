@@ -17,7 +17,7 @@ use yii\web\ErrorAction;
 /**
  * Class BaseController.
  *
- * @package acid23m\dashoard
+ * @package dashboard\controllers
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
  */
 class BaseController extends Controller

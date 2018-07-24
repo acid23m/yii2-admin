@@ -13,7 +13,7 @@ use yii\web\View;
 /**
  * Class HomeController.
  *
- * @package acid23m\dashboard\controllers
+ * @package dashboard\controllers
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
  */
 final class HomeController extends BaseController

@@ -83,4 +83,4 @@ Once the extension is installed, do next:
 'rules' => [
     '/' => '/dashboard/home/index'
 ]
-``
+```

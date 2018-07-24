@@ -16,7 +16,7 @@ use yii\i18n\PhpMessageSource;
 /**
  * Class Module.
  *
- * @package acid23m\admin
+ * @package dashboard
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
  */
 final class Module extends \yii\base\Module implements BootstrapInterface
