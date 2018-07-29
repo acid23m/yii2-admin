@@ -37,6 +37,11 @@ final class TopMenu extends Widget
         return $this->render('top_menu', ['items' => $this->renderItems()]);
     }
 
+    /**
+     * Get menu markup.
+     * @return string HTML
+     * @throws InvalidArgumentException
+     */
     private function renderItems(): string
     {
         $items = '';
@@ -74,7 +79,9 @@ final class TopMenu extends Widget
 
                 $items .= '<ul class="dropdown-menu list-unstyled" role="menu">';
 
-                foreach ($item['items'] as &$subitem) {
+                /** @var array $subitems */
+                $subitems = $item['items'];
+                foreach ($subitems as &$subitem) {
                     $subicon = isset($subitem['icon'])
                         ? '<i class="fa fa-' . Html::encode($subitem['icon']) . '"></i>'
                         : '';
@@ -102,6 +109,7 @@ final class TopMenu extends Widget
                     $items .= $sublink;
                     $items .= '</li>';
                 }
+                unset($subitem);
 
                 $items .= '</ul>';
 

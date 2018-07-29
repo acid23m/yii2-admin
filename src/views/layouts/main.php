@@ -15,12 +15,10 @@ use yiister\gentelella\widgets\Menu as GMenu;
 
 /** @var \yii\web\View $this */
 /** @var string $content */
-
-\yiister\gentelella\assets\Asset::register($this);
-\dashboard\assets\BootboxAsset::overrideSystemConfirm();
-
-/** @var \dashboard\controllers\BaseController $controller */
+/** @var \dashboard\controllers\web\BaseController $controller */
 $controller = $this->context;
+/** @var \dashboard\models\user\UserIdentity $user */
+$user = \Yii::$app->getUser()->getIdentity();
 
 $this->title = Html::encode(\Yii::t('dashboard', 'panel'));
 $this->params['title'] = $this->title;
@@ -70,8 +68,8 @@ $this->params['title'] = $this->title;
                         <img src="https://placehold.it/128x128" alt="John Doe" class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>John Doe</h2>
+                        <span><?= \Yii::t('dashboard', 'privet') ?>,</span>
+                        <h2><?= $user->username ?></h2>
                     </div>
                 </div>
                 <div class="clearfix"></div>
@@ -130,8 +128,10 @@ $this->params['title'] = $this->title;
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="https://placehold.it/128x128" alt="">John Doe
+                            <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown"
+                               aria-expanded="false">
+                                <img src="https://placehold.it/128x128" alt="">
+                                <?= $user->username ?>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
@@ -145,10 +145,13 @@ $this->params['title'] = $this->title;
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#">Help</a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                                    <a href="<?= Url::to(["/{$controller->module->id}/auth/logout"]) ?>"
+                                       title="<?= \Yii::t('dashboard', 'viyti') ?>"
+                                       data-method="post"
+                                       data-confirm="<?= \Yii::t('dashboard', 'vi tochno hotite viyti?') ?>">
+                                        <i class="fa fa-sign-out pull-right"></i>
+                                        <?= \Yii::t('dashboard', 'viyti') ?>
+                                    </a>
                                 </li>
                             </ul>
                         </li>
@@ -280,7 +283,9 @@ $this->params['title'] = $this->title;
                 <a href="https://www.yiiframework.com" rel="nofollow" target="_blank">Yii 2 framework</a>
                 &nbsp;|&nbsp;
                 <?= \Yii::t('dashboard', 'razrabotchik') ?>
-                <a href="http://cipastudiya.ru" target="_blank">Cipa</a>
+                <a href="<?= \dashboard\Module::getInstance()->params['author.url'] ?>" target="_blank">
+                    <?= \dashboard\Module::getInstance()->params['author.name'] ?>
+                </a>
             </div>
             <div class="clearfix"></div>
         </footer>

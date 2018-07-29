@@ -58,5 +58,5 @@ JS;
 
         \Yii::$app->view->registerJs($confirm);
     }
-    
+
 }

@@ -38,6 +38,7 @@ Once the extension is installed, do next:
 'modules' => [
     'dashboard' => [
         'class' => \dashboard\Module::class,
+        'controllerNamespace' => 'dashboard\controllers\web',
         'left_menu' => [ // move it to separate file and include here
             'section' => [ // section header
                 [
@@ -71,12 +72,70 @@ Once the extension is installed, do next:
                     ]
                 ]
             ]
+        ],
+        'user_roles' => [
+            // additional user roles here
+            // default roles are demonstration, author, moderator, administrator, root
+            'agent'
         ]
     ]
 ],
 ```
 
-- every controller in backend must be extended from *\dashboard\controllers\BaseController*.
+- add module in *console/config/main.php*
+
+```php
+'bootstrap' => [
+    'log',
+    'dashboard'
+],
+
+'modules' => [
+    'dashboard' => [
+        'class' => dashboard\Module::class,
+        'controllerNamespace' => 'dashboard\commands',
+        'user_roles' => [
+            // additional user roles here
+            // default roles are demonstration, author, moderator, administrator, root
+            'agent'
+        ],
+        'user_rules' => function (\yii\rbac\ManagerInterface $auth, array $default_permissions, array $default_roles) {
+            // additional user rules
+            // default permissions are showData, addData, updateData, delData, isOwner (rule)
+            $moderator = $default_roles[\dashboard\models\user\web\User::ROLE_MODER];
+
+            $receivePayment = $auth->createPermission('receivePayment');
+            $receivePayment->description = 'Receive payment';
+            $auth->add($receivePayment);
+
+            $agent = $auth->createRole('agent');
+            $moderator->description = 'Agent';
+            $auth->add($agent);
+            $auth->addChild($agent, $moderator);
+            $auth->addChild($agent, $default_permissions['isOwner']);
+            $auth->addChild($agent, $receivePayment);
+        }
+    ]
+],
+```
+
+- add module in *remote/config/main.php*
+
+```php
+'bootstrap' => [
+    'log',
+    'dashboard'
+],
+
+'modules' => [
+    'dashboard' => [
+        'class' => dashboard\Module::class,
+        'controllerNamespace' => 'dashboard\controllers\rest'
+    ]
+],
+```
+
+- every controller in backend must be extended from *\dashboard\controllers\web\BaseController*.
 - add rule to UrlManager config
 
 ```php

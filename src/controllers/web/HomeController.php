@@ -6,14 +6,14 @@
  * Time: 1:46
  */
 
-namespace dashboard\controllers;
+namespace dashboard\controllers\web;
 
 use yii\web\View;
 
 /**
  * Class HomeController.
  *
- * @package dashboard\controllers
+ * @package dashboard\controllers\web
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
  */
 final class HomeController extends BaseController
