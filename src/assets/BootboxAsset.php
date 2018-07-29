@@ -13,7 +13,7 @@ use yii\web\AssetBundle;
 /**
  * Bootbox as confirm dialog.
  *
- * @package backend\assets
+ * @package dashboard\assets
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
  * @see http://bootboxjs.com/
  */
@@ -39,24 +39,26 @@ final class BootboxAsset extends AssetBundle
         $confirm = <<<JS
             yii.confirm = function (message, ok, cancel) {
                 bootbox.setDefaults({
-                    locale: "$lang";
+                    locale: '$lang'
                 });
 
                 bootbox.confirm(message, result => {
                     if (result) {
-                        let loadingBlock = jQuery("#loading-block");
-                        loadingBlock.fadeIn("fast");
-                        setTimeout(() => loadingBlock.fadeOut("fast"), 5000);
+                        const loadingBlock = jQuery('#loading-block');
+                        if (loadingBlock) {
+                            loadingBlock.fadeIn('fast');
+                            setTimeout(() => loadingBlock.fadeOut('fast'), 5000);
+                        }
 
                         !ok || ok();
                     } else {
                         !cancel || cancel();
                     }
                 });
-            }
+            };
 JS;
 
-        \Yii::$app->view->registerJs($confirm);
+        \Yii::$app->getView()->registerJs($confirm);
     }
 
 }

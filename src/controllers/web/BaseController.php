@@ -127,7 +127,8 @@ class BaseController extends Controller
     {
         parent::init();
 
-        GentelellaAsset::register($this->view);
+        GentelellaAsset::register($this->getView());
+        BootboxAsset::register($this->getView());
         BootboxAsset::overrideSystemConfirm();
     }
 
