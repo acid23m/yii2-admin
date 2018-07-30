@@ -69,5 +69,5 @@ return [
     'status' => 'Статус',
     'dobavit' => 'Добавить',
     'obnovit' => 'Обновить',
-    'otpravit' => 'Отправить',
+    'otpravit' => 'Отправить'
 ];

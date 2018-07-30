@@ -6,6 +6,7 @@
  * Time: 21:33
  */
 
+use dashboard\widgets\Growl;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
@@ -49,7 +50,7 @@ $this->title = Html::encode(\Yii::t('dashboard', 'panel'));
     <div class="row">
         <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
 
-            <?php //= Growl::widget() ?>
+            <?= Growl::widget() ?>
 
             <?= $content ?>
 

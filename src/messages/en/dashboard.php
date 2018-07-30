@@ -69,5 +69,5 @@ return [
     'status' => 'Status',
     'dobavit' => 'Add',
     'obnovit' => 'Update',
-    'otpravit' => 'Send',
+    'otpravit' => 'Send'
 ];

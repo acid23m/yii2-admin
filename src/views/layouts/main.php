@@ -6,7 +6,9 @@
  * Time: 1:31
  */
 
+use dashboard\widgets\Growl;
 use dashboard\widgets\LeftMenu;
+use dashboard\widgets\Push;
 use dashboard\widgets\TopMenu;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -132,7 +134,10 @@ $user = \Yii::$app->getUser()->getIdentity();
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li>
-                                    <a href="<?= Url::to(["/{$controller->module->id}/user/view", 'id' => $user->id]) ?>">
+                                    <a href="<?= Url::to([
+                                        "/{$controller->module->id}/user/view",
+                                        'id' => $user->id
+                                    ]) ?>">
                                         <i class="fa fa-user pull-right"></i>
                                         <?= \Yii::t('dashboard', 'profil') ?>
                                     </a>
@@ -252,6 +257,8 @@ $user = \Yii::$app->getUser()->getIdentity();
 
         <!-- page content -->
         <div class="right_col" role="main">
+            <?= Growl::widget() ?>
+
             <?php if (isset($this->params['title'])): ?>
                 <div class="page-title">
                     <div class="title_left">
@@ -271,11 +278,11 @@ $user = \Yii::$app->getUser()->getIdentity();
             <?php endif ?>
             <div class="clearfix"></div>
 
-            <!-- breadcrumb -->
             <?= Breadcrumbs::widget([
                 'links' => $this->params['breadcrumbs'] ?? [],
             ]) ?>
-            <!-- /breadcrumb -->
+
+            <?= Push::widget() ?>
 
             <?= $content ?>
         </div>
