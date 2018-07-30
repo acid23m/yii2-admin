@@ -128,7 +128,7 @@ final class LoginForm extends Model
 
         if ($user !== null) {
             /** @var Mailer $mailer */
-            $mailer = \Yii::$app->mailer;
+            $mailer = \Yii::$app->getMailer();
             $mailer->viewPath = '@vendor/acid23m/yii2-admin/src/mail';
             $mailer->htmlLayout = '@vendor/acid23m/yii2-admin/src/mail/layouts/html';
             $mailer->textLayout = '@vendor/acid23m/yii2-admin/src/mail/layouts/text';

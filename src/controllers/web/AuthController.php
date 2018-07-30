@@ -9,12 +9,15 @@
 namespace dashboard\controllers\web;
 
 use dashboard\models\user\web\LoginForm;
+use dashboard\models\user\web\PasswordResetRequestForm;
+use dashboard\models\user\web\ResetPasswordForm;
 use dashboard\models\user\web\TfaCodeForm;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
+use yii\web\BadRequestHttpException;
 use yii\web\Response;
 use yii\web\View;
 
@@ -43,6 +46,13 @@ final class AuthController extends BaseController
         return ArrayHelper::merge(parent::behaviors(), $behaviors);
     }
 
+    public function init(): void
+    {
+        parent::init();
+
+        $this->layout = 'enter';
+    }
+
     /**
      * Render authorization form.
      * @return string|View|Response
@@ -51,13 +61,11 @@ final class AuthController extends BaseController
      */
     public function actionLogin()
     {
-        $this->layout = 'enter';
-
         if (!\Yii::$app->getUser()->getIsGuest()) {
             return $this->goHome();
         }
 
-        $model = new LoginForm();
+        $model = new LoginForm;
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->validate()) {
             $user = $model->getUser();
@@ -86,8 +94,6 @@ final class AuthController extends BaseController
      */
     public function actionTfaCode($ci)
     {
-        $this->layout = 'enter';
-
         if (!\Yii::$app->getUser()->isGuest) {
             return $this->goHome();
         }
@@ -99,8 +105,7 @@ final class AuthController extends BaseController
             return $this->redirect(['login']);
         }
 
-        $model = new TfaCodeForm();
-        $model->ci = $ci;
+        $model = new TfaCodeForm(compact('ci'));
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->validate()) {
             return $model->login()
@@ -120,6 +125,60 @@ final class AuthController extends BaseController
         \Yii::$app->getUser()->logout();
 
         return $this->goHome();
+    }
+
+    /**
+     * Render request password reset form.
+     * @return string|View|Response
+     * @throws Exception
+     * @throws InvalidArgumentException
+     */
+    public function actionRequestPasswordReset()
+    {
+        $model = new PasswordResetRequestForm;
+
+        if ($model->load(\Yii::$app->getRequest()->post()) && $model->validate()) {
+            if ($model->send()) {
+                \Yii::$app->getSession()->setFlash(
+                    'success',
+                    \Yii::t('dashboard', 'proverte pochtu i sleduyte instrukcii')
+                );
+
+                return $this->redirect(['login']);
+            }
+
+            \Yii::$app->session->setFlash(
+                'error',
+                \Yii::t('dashboard', 'nevozmozhno otpravit soobshenie')
+            );
+        }
+
+        return $this->render('request-reset', compact('model'));
+    }
+
+    /**
+     * Render password reset form.
+     * @param string $token Secret token
+     * @return string|View|Response
+     * @throws BadRequestHttpException
+     * @throws InvalidArgumentException
+     * @throws Exception
+     */
+    public function actionResetPassword($token)
+    {
+        try {
+            $model = new ResetPasswordForm($token);
+        } catch (InvalidArgumentException $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+
+        if ($model->load(\Yii::$app->getRequest()->post()) && $model->validate() && $model->resetPassword()) {
+            \Yii::$app->session->setFlash('success', \Yii::t('dashboard', 'noviy parol sohranen'));
+
+            return $this->redirect(['login']);
+        }
+
+        return $this->render('reset', compact('model'));
     }
 
 }

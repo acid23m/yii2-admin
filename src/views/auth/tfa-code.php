@@ -46,6 +46,7 @@ use yii\helpers\Html;
                 ['class' => 'btn btn-default']
             ) ?>
         </div>
+        <div class="clearfix"></div>
     </div>
 
     <div class="panel-footer">
