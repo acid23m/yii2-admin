@@ -87,8 +87,8 @@ final class UserController extends BaseController
     {
         $model = new User();
 
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            \Yii::$app->session->setFlash('success', \Yii::t('dashboard', 'polzovatel dobavlen'));
+        if ($model->load(\Yii::$app->getRequest()->post()) && $model->save()) {
+            \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'polzovatel dobavlen'));
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -110,8 +110,8 @@ final class UserController extends BaseController
     {
         $model = $this->findModel($id);
 
-        if ($model->load(\Yii::$app->request->post()) && $model->save()) {
-            \Yii::$app->session->setFlash('success', \Yii::t('dashboard', 'polzovatel obnovlen'));
+        if ($model->load(\Yii::$app->getRequest()->post()) && $model->save()) {
+            \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'polzovatel obnovlen'));
 
             return $this->redirect(['view', 'id' => $model->id]);
         }
@@ -135,9 +135,9 @@ final class UserController extends BaseController
         $model->generateAccessToken();
 
         if ($model->save()) {
-            \Yii::$app->session->setFlash('success', \Yii::t('dashboard', 'polzovatel obnovlen'));
+            \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'polzovatel obnovlen'));
         } else {
-            \Yii::$app->session->setFlash('error', \Yii::t('yii', 'Error'));
+            \Yii::$app->getSession()->setFlash('error', \Yii::t('yii', 'Error'));
         }
 
         return $this->redirect(['view', 'id' => $model->id]);
@@ -156,7 +156,7 @@ final class UserController extends BaseController
     public function actionDelete($id): Response
     {
         $this->findModel($id)->delete();
-        \Yii::$app->session->setFlash('success', \Yii::t('dashboard', 'polzovatel udalen'));
+        \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'polzovatel udalen'));
 
         return $this->redirect(['index']);
     }

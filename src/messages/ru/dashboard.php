@@ -26,6 +26,7 @@ return [
 
     'polzovatel' => 'Пользователь',
     'polzovateli' => 'Пользователи',
+    'profil' => 'Профиль',
     'neaktiven' => 'Неактивен',
     'aktiven' => 'Активен',
 
@@ -49,13 +50,24 @@ return [
     'voyti' => 'Войти',
     'viyti' => 'Выйти',
     'vernutsa na sayt' => 'Вернуться на сайт',
+    'vernutsa' => 'Вернуться',
+    'na stranicu vhoda' => 'на страницу входа',
+    'na glavnuyu sayta' => 'на главную сайта',
     'esli zabili parol' => 'Если забыли пароль, то вы можете его {sbrosit}.',
     'sbrosit' => 'сбросить',
     'vi tochno hotite viyti?' => 'Вы действительно хотите выйти?',
+
+    'odnorazoviy parol' => 'Одноразовый пароль',
+    'neverniy kod' => 'Неверный код',
+    'dvuh faktornaya' => 'Двух-факторная аутентификация',
+    'proverte pochtu s kodom' => 'На почту отправлен одноразовый пароль.',
     
     // common
     'zapis ne sushestvuet' => 'Запись не существует.',
     'vremya sozdaniya' => 'Время создания',
     'vremya obnovleniya' => 'Время обновления',
-    'status' => 'Статус'
+    'status' => 'Статус',
+    'dobavit' => 'Добавить',
+    'obnovit' => 'Обновить',
+    'otpravit' => 'Отправить',
 ];

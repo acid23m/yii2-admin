@@ -73,7 +73,7 @@ class UserController extends Controller
      * @throws \Exception
      * @throws Exception
      */
-    public function actionRbac()
+    public function actionRbac(): int
     {
         /** @var ManagerInterface $auth */
         $auth = \Yii::$app->get('authManagerBackend');
@@ -161,6 +161,48 @@ class UserController extends Controller
         }
 
         $this->stdout("Done.\n", Console::FG_GREEN);
+
+        return ExitCode::OK;
+    }
+
+    /**
+     * Show permissions and roles.
+     * @return int
+     * @throws \Exception
+     * @throws InvalidConfigException
+     */
+    public function actionAuthInfo(): int
+    {
+        /** @var ManagerInterface $auth */
+        $auth = \Yii::$app->get('authManagerBackend');
+
+        $permissions = $auth->getPermissions();
+        $roles = $auth->getRoles();
+
+        $rows = [];
+        $data = [];
+
+        $permissions_str = '';
+        foreach ($permissions as &$permission) {
+            $permissions_str .= $permission->description . ', ';
+        }
+        unset($permission);
+        $data[0] = trim($permissions_str, ', ');
+
+        $roles_str = '';
+        foreach ($roles as &$role) {
+            $roles_str .= $role->description . ', ';
+        }
+        unset($role);
+        $data[1] = trim($roles_str, ', ');
+
+        $rows[] = $data;
+        $table = Table::widget([
+            'headers' => ['permissions', 'roles'],
+            'rows' => $rows
+        ]);
+
+        $this->stdout($table, Console::FG_GREEN);
 
         return ExitCode::OK;
     }
@@ -369,7 +411,6 @@ class UserController extends Controller
         /**
          * @param User $user User model.
          * @return array Single row of user info in the table
-         * @throws InvalidArgumentException
          */
         function user_info(User $user): array
         {
@@ -390,6 +431,7 @@ class UserController extends Controller
         foreach ($models as &$model) {
             $rows[] = user_info($model);
         }
+        unset($model);
 
         $table = Table::widget([
             'headers' => ['id', 'name', 'email', 'role', 'status'],

@@ -10,6 +10,7 @@ use yiister\gentelella\widgets\grid\GridView;
 /** @var \yii\data\ActiveDataProvider $dataProvider */
 
 $this->title = \Yii::t('dashboard', 'polzovateli');
+$this->params['title'] = $this->title;
 $this->params['breadcrumbs'][] = $this->title;
 
 $status_list = $searchModel->getList('statuses');
@@ -22,7 +23,6 @@ $status_list = $searchModel->getList('statuses');
         'filterModel' => $searchModel,
         'columns' => [
             'id',
-            'username',
             [
                 'attribute' => 'username',
                 'value' => function ($model, $key, $index) {

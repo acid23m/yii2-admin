@@ -107,7 +107,7 @@ final class LoginForm extends Model
      */
     public function login(): bool
     {
-        return \Yii::$app->user->login(
+        return \Yii::$app->getUser()->login(
             $this->getUser(),
             $this->rememberMe ? self::REMEMBER_ME_TIME : 1
         );
@@ -118,44 +118,38 @@ final class LoginForm extends Model
      * @return string
      * @throws Exception
      */
-//    public function send(): string
-//    {
-//        $user = $this->getUser();
-//        $code = \Yii::$app->security->generateRandomString(8);
-//
-//        $cache_id = \Yii::$app->security->generateRandomString(10);
-//        \Yii::$app->cache->set($cache_id, ['code' => hash('md4', $code), 'loginForm' => $this], self::CODE_CACHE_TIME);
-//
-//        if ($user !== null) {
-//            /** @var Mailer $mailer */
-//            $mailer = \Yii::$app->mailer;
-//            $mailer->htmlLayout = 'layouts/system_inline';
-//
-//            $body = '<p>';
-//            $body .= Html::tag('strong', $user->username) . ', ';
-//            $body .= \Yii::t('access/auth', 'odnorazoviy parol') . ':<br/>';
-//            $body .= $code;
-//            $body .= '</p>';
-//
-//            try {
-//                $mailer
-//                    ->compose(
-//                        'main',
-//                        [
-//                            'header' => '2fa',
-//                            'body' => $body
-//                        ]
-//                    )
+    public function send(): string
+    {
+        $user = $this->getUser();
+        $code = \Yii::$app->getSecurity()->generateRandomString(8);
+
+        $cache_id = \Yii::$app->getSecurity()->generateRandomString(10);
+        \Yii::$app->getCache()->set($cache_id, ['code' => hash('md4', $code), 'loginForm' => $this], self::CODE_CACHE_TIME);
+
+        if ($user !== null) {
+            /** @var Mailer $mailer */
+            $mailer = \Yii::$app->mailer;
+            $mailer->viewPath = '@vendor/acid23m/yii2-admin/src/mail';
+            $mailer->htmlLayout = '@vendor/acid23m/yii2-admin/src/mail/layouts/html';
+            $mailer->textLayout = '@vendor/acid23m/yii2-admin/src/mail/layouts/text';
+
+            try {
+                $mailer
+                    ->compose(
+                        ['html' => 'tfaCode-html', 'text' => 'tfaCode-text'],
+                        compact('user', 'code')
+                    )
 //                    ->setFrom([\Yii::$app->get('option')->get('mail_gate_login') => \Yii::$app->name])
-//                    ->setTo($user->email)
-//                    ->setSubject(\Yii::t('access/auth', 'odnorazoviy parol') . ' - ' . \Yii::$app->name)
-//                    ->send();
-//            } catch (\Throwable $e) {
-//                \Yii::error($e->getMessage());
-//            }
-//        }
-//
-//        return $cache_id;
-//    }
+                    ->setFrom(['noreply@site.com' => \Yii::$app->name])
+                    ->setTo($user->email)
+                    ->setSubject(\Yii::t('dashboard', 'odnorazoviy parol') . ' - ' . \Yii::$app->name)
+                    ->send();
+            } catch (\Throwable $e) {
+                \Yii::error($e->getMessage());
+            }
+        }
+
+        return $cache_id;
+    }
 
 }

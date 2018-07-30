@@ -26,6 +26,7 @@ return [
 
     'polzovatel' => 'User',
     'polzovateli' => 'Users',
+    'profil' => 'Profile',
     'neaktiven' => 'Not active',
     'aktiven' => 'Active',
 
@@ -49,13 +50,24 @@ return [
     'voyti' => 'Log in',
     'viyti' => 'Log out',
     'vernutsa na sayt' => 'Back to the Site',
+    'vernutsa' => 'Back',
+    'na stranicu vhoda' => 'to the login form',
+    'na glavnuyu sayta' => 'to the site homepage',
     'esli zabili parol' => 'If you forgot your Password, you can {sbrosit} it.',
     'sbrosit' => 'reset',
     'vi tochno hotite viyti?' => 'Do really want to quit?',
+
+    'odnorazoviy parol' => 'One-time password',
+    'neverniy kod' => 'Wrong Code',
+    'dvuh faktornaya' => 'Two-factor Authentication',
+    'proverte pochtu s kodom' => 'A one-time password has been sent to the mail.',
 
     // common
     'zapis ne sushestvuet' => 'Record is not exist.',
     'vremya sozdaniya' => 'Created At',
     'vremya obnovleniya' => 'Last Modified',
-    'status' => 'Status'
+    'status' => 'Status',
+    'dobavit' => 'Add',
+    'obnovit' => 'Update',
+    'otpravit' => 'Send',
 ];

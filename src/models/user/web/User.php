@@ -9,7 +9,6 @@
 namespace dashboard\models\user\web;
 
 use dashboard\models\user\UserRecord;
-use dashboard\Module;
 use dashboard\traits\Model;
 use yii\base\InvalidArgumentException;
 use yii\helpers\ArrayHelper;
@@ -58,8 +57,8 @@ class User extends UserRecord
             self::ROLE_SUPER => \Yii::t('dashboard', 'superpolzovatel')
         ];
 
-        $module = Module::getInstance();
-        if ($module !== null && ArrayHelper::isIndexed($module->user_roles)) {
+        $module = \dashboard\Module::getInstance();
+        if ($module !== null && ArrayHelper::isAssociative($module->user_roles)) {
             $this->roles = ArrayHelper::merge($module->user_roles, $this->roles);
         }
     }

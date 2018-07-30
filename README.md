@@ -76,7 +76,7 @@ Once the extension is installed, do next:
         'user_roles' => [
             // additional user roles here
             // default roles are demonstration, author, moderator, administrator, root
-            'agent'
+            'agent' => 'Agent'
         ]
     ]
 ],
@@ -97,21 +97,19 @@ Once the extension is installed, do next:
         'user_roles' => [
             // additional user roles here
             // default roles are demonstration, author, moderator, administrator, root
-            'agent'
+            'agent' => 'Agent'
         ],
-        'user_rules' => function (\yii\rbac\ManagerInterface $auth, array $default_permissions, array $default_roles) {
+        'user_rules' => function (\yii\rbac\ManagerInterface &$auth, array $default_permissions, array $default_roles) {
             // additional user rules
             // default permissions are showData, addData, updateData, delData, isOwner (rule)
-            $moderator = $default_roles[\dashboard\models\user\web\User::ROLE_MODER];
-
             $receivePayment = $auth->createPermission('receivePayment');
             $receivePayment->description = 'Receive payment';
             $auth->add($receivePayment);
 
             $agent = $auth->createRole('agent');
-            $moderator->description = 'Agent';
+            $agent->description = 'Agent';
             $auth->add($agent);
-            $auth->addChild($agent, $moderator);
+            $auth->addChild($agent, $default_roles[\dashboard\models\user\web\User::ROLE_MODER]);
             $auth->addChild($agent, $default_permissions['isOwner']);
             $auth->addChild($agent, $receivePayment);
         }

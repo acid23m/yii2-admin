@@ -9,9 +9,12 @@
 namespace dashboard\controllers\web;
 
 use dashboard\models\user\web\LoginForm;
+use dashboard\models\user\web\TfaCodeForm;
+use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
 use yii\web\Response;
 use yii\web\View;
 
@@ -44,6 +47,7 @@ final class AuthController extends BaseController
      * Render authorization form.
      * @return string|View|Response
      * @throws InvalidArgumentException
+     * @throws Exception
      */
     public function actionLogin()
     {
@@ -55,16 +59,16 @@ final class AuthController extends BaseController
 
         $model = new LoginForm();
 
-        if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
+        if ($model->load(\Yii::$app->getRequest()->post()) && $model->validate()) {
             $user = $model->getUser();
             if ($user === null) {
                 return $this->render('login', compact('model'));
             }
 
             // use two-factor authentication
-//            if ($user->tfa) {
-//                return $this->redirect(['tfa-code', 'ci' => $model->send()]);
-//            }
+            if ($user->tfa) {
+                return $this->redirect(['tfa-code', 'ci' => $model->send()]);
+            }
 
             return $model->login()
                 ? $this->goBack()
@@ -72,6 +76,39 @@ final class AuthController extends BaseController
         }
 
         return $this->render('login', compact('model'));
+    }
+
+    /**
+     * Check 2fa code and login user if the code is correct.
+     * @param string $ci Cache ID
+     * @return string|View|Response
+     * @throws InvalidArgumentException
+     */
+    public function actionTfaCode($ci)
+    {
+        $this->layout = 'enter';
+
+        if (!\Yii::$app->getUser()->isGuest) {
+            return $this->goHome();
+        }
+
+        $ci = Html::encode($ci);
+
+        $data = \Yii::$app->getCache()->get($ci);
+        if ($data === false) {
+            return $this->redirect(['login']);
+        }
+
+        $model = new TfaCodeForm();
+        $model->ci = $ci;
+
+        if ($model->load(\Yii::$app->getRequest()->post()) && $model->validate()) {
+            return $model->login()
+                ? $this->goHome()
+                : $this->redirect(['login']);
+        }
+
+        return $this->render('tfa-code', compact('model'));
     }
 
     /**

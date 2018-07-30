@@ -8,7 +8,6 @@
 
 namespace dashboard\models\user;
 
-use dashboard\Module;
 use dashboard\traits\DateTime;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
@@ -72,7 +71,7 @@ class UserRecord extends ActiveRecord
      */
     public static function getDb(): Connection
     {
-        return \Yii::$app->get(Module::DB_USER);
+        return \Yii::$app->get(\dashboard\Module::DB_USER);
     }
 
     /**
@@ -119,10 +118,11 @@ class UserRecord extends ActiveRecord
             [
                 ['password'],
                 'required',
-                'when' => function ($model) {
+                'when' => function ($model, $attribute) {
                     /** @var UserRecord $model */
                     return $model->isNewRecord;
-                }
+                },
+                'enableClientValidation' => false
             ],
             [['password'], 'string', 'min' => 5, 'max' => STRING_LENGTH_SHORT],
             [
@@ -156,13 +156,14 @@ class UserRecord extends ActiveRecord
     }
 
     /**
-     * @return array All user roles
+     * All user roles as indexed list.
+     * @return array
      */
     public static function getAllRoles(): array
     {
-        $module = Module::getInstance();
+        $module = \dashboard\Module::getInstance();
 
-        $base_roles = [
+        $list = [
             self::ROLE_DEMO,
             self::ROLE_AUTHOR,
             self::ROLE_MODER,
@@ -170,11 +171,11 @@ class UserRecord extends ActiveRecord
             self::ROLE_SUPER
         ];
 
-        if ($module !== null && ArrayHelper::isIndexed($module->user_roles)) {
-            return ArrayHelper::merge($module->user_roles, $base_roles);
+        if ($module !== null && ArrayHelper::isAssociative($module->user_roles)) {
+            $list = ArrayHelper::merge(array_keys($module->user_roles), $list);
         }
 
-        return $base_roles;
+        return $list;
     }
 
     /**
@@ -185,7 +186,7 @@ class UserRecord extends ActiveRecord
      */
     public function generatePassword(string $password): string
     {
-        return \Yii::$app->security->generatePasswordHash($password);
+        return \Yii::$app->getSecurity()->generatePasswordHash($password);
     }
 
     /**
@@ -196,7 +197,7 @@ class UserRecord extends ActiveRecord
      */
     public function validatePassword(string $password): bool
     {
-        return \Yii::$app->security->validatePassword($password, $this->password_hash);
+        return \Yii::$app->getSecurity()->validatePassword($password, $this->password_hash);
     }
 
     /**
@@ -205,7 +206,7 @@ class UserRecord extends ActiveRecord
      */
     public function generatePasswordResetToken(): void
     {
-        $this->password_reset_token = \Yii::$app->security->generateRandomString() . '_' . time();
+        $this->password_reset_token = \Yii::$app->getSecurity()->generateRandomString() . '_' . time();
     }
 
     /**
@@ -221,7 +222,7 @@ class UserRecord extends ActiveRecord
         }
 
         $timestamp = (int) substr($token, strrpos($token, '_') + 1);
-        $expire = Module::getInstance()->params['user.passwordResetTokenExpire'];
+        $expire = \dashboard\Module::getInstance()->params['user.passwordResetTokenExpire'];
 
         return $timestamp + $expire >= time();
     }
@@ -240,7 +241,7 @@ class UserRecord extends ActiveRecord
      */
     public function generateAuthKey(): void
     {
-        $this->auth_key = \Yii::$app->security->generateRandomString();
+        $this->auth_key = \Yii::$app->getSecurity()->generateRandomString();
     }
 
     /**
@@ -249,7 +250,7 @@ class UserRecord extends ActiveRecord
      */
     public function generateAccessToken(): void
     {
-        $this->access_token = \Yii::$app->security->generateRandomString();
+        $this->access_token = \Yii::$app->getSecurity()->generateRandomString();
     }
 
     /**

@@ -7,6 +7,9 @@
  */
 
 /** @var \yii\web\View $this */
+
+$this->title = \Yii::t('dashboard', 'panel');
+$this->params['title'] = $this->title;
 ?>
 
 home index

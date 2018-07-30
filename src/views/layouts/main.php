@@ -19,9 +19,6 @@ use yiister\gentelella\widgets\Menu as GMenu;
 $controller = $this->context;
 /** @var \dashboard\models\user\UserIdentity $user */
 $user = \Yii::$app->getUser()->getIdentity();
-
-$this->title = Html::encode(\Yii::t('dashboard', 'panel'));
-$this->params['title'] = $this->title;
 ?>
 
 <?php $this->beginPage() ?>
@@ -128,25 +125,32 @@ $this->params['title'] = $this->title;
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown"
-                               aria-expanded="false">
+                            <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <img src="https://placehold.it/128x128" alt="">
                                 <?= $user->username ?>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
                                 <li>
-                                    <a href="#">Profile</a>
+                                    <a href="<?= Url::to(["/{$controller->module->id}/user/view", 'id' => $user->id]) ?>">
+                                        <i class="fa fa-user pull-right"></i>
+                                        <?= \Yii::t('dashboard', 'profil') ?>
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="#">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>Settings</span>
+                                    <a href="<?= Url::to(["/{$controller->module->id}/user/index"]) ?>">
+                                        <i class="fa fa-users pull-right"></i>
+                                        <?= \Yii::t('dashboard', 'polzovateli') ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= Url::to(["/{$controller->module->id}/user/create"]) ?>">
+                                        <i class="fa fa-plus-circle pull-right"></i>
+                                        <?= \Yii::t('dashboard', 'dobavit polzovatelya') ?>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="<?= Url::to(["/{$controller->module->id}/auth/logout"]) ?>"
-                                       title="<?= \Yii::t('dashboard', 'viyti') ?>"
                                        data-method="post"
                                        data-confirm="<?= \Yii::t('dashboard', 'vi tochno hotite viyti?') ?>">
                                         <i class="fa fa-sign-out pull-right"></i>
