@@ -126,6 +126,7 @@ $user = \Yii::$app->getUser()->getIdentity();
                     </div>
 
                     <ul class="nav navbar-nav navbar-right">
+                        <!-- users -->
                         <li>
                             <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 <img src="https://placehold.it/128x128" alt="">
@@ -164,6 +165,16 @@ $user = \Yii::$app->getUser()->getIdentity();
                                 </li>
                             </ul>
                         </li>
+                        <!-- /users -->
+
+                        <!-- options -->
+                        <li>
+                            <a href="<?= Url::to(["/{$controller->module->id}/option-main/index"]) ?>">
+                                <i class="fa fa-cog"></i>
+                            </a>
+                        </li>
+                        <!-- /options -->
+
 
                         <!--<li role="presentation" class="dropdown">
                             <a href="#" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">

@@ -72,6 +72,28 @@ return [
     'neverniy kod' => 'Неверный код',
     'dvuh faktornaya' => 'Двух-факторная аутентификация',
     'proverte pochtu s kodom' => 'На почту отправлен одноразовый пароль.',
+
+    // options
+    'yazik adminki' => 'Язык админ.панели',
+    'imya prilozheniya' => 'Имя приложения',
+    'logo' => 'Логотип',
+    'vremennaya zona' => 'Временная зона сервера',
+    'dostup k saytu' => 'Доступ к сайту',
+    'belie ip' => 'Белый список IP адресов',
+    'chernie ip' => 'Черный список IP адресов',
+    'teh pochta' => 'Техническая почта',
+    'imya polzovatelya' => 'Имя пользователя (Email)',
+    'imya servera' => 'Имя сервера',
+    'parol polzovatelya' => 'Пароль пользователя',
+    'port' => 'Порт',
+    'zashita soedineniya' => 'Защита соединения',
+
+    'osnovnie nastroyki' => 'Основные настройки',
+    'nastroyki obnovleni' => 'Настройки обновлены.',
+    'pochtoviy shluz' => 'Почтовый smtp шлюз для отправки писем',
+
+    'v doverennie ip' => 'Перед отключением необходимо внести доверенные IP в белый список',
+    'spisok ip' => 'Список ip-адресов, разделенные запятой (и пробелом)',
     
     // common
     'zapis ne sushestvuet' => 'Запись не существует.',

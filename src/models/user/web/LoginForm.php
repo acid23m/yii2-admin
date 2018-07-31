@@ -139,8 +139,7 @@ final class LoginForm extends Model
                         ['html' => 'tfaCode-html', 'text' => 'tfaCode-text'],
                         compact('user', 'code')
                     )
-//                    ->setFrom([\Yii::$app->get('option')->get('mail_gate_login') => \Yii::$app->name])
-                    ->setFrom(['noreply@site.com' => \Yii::$app->name])
+                    ->setFrom([\Yii::$app->get('option')->get('mail_gate_login') => \Yii::$app->name])
                     ->setTo($user->email)
                     ->setSubject(\Yii::t('dashboard', 'odnorazoviy parol') . ' - ' . \Yii::$app->name)
                     ->send();

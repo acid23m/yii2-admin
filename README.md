@@ -77,7 +77,10 @@ Once the extension is installed, do next:
             // additional user roles here
             // default roles are demonstration, author, moderator, administrator, root
             'agent' => 'Agent'
-        ]
+        ],
+        // extend options
+        'option_model' => \backend\modules\option\models\Option::class, // must be extended from \dashboard\models\option\Main
+        'option_view' => '@backend/modules/option/views/option'
     ]
 ],
 ```
@@ -128,7 +131,9 @@ Once the extension is installed, do next:
 'modules' => [
     'dashboard' => [
         'class' => dashboard\Module::class,
-        'controllerNamespace' => 'dashboard\controllers\rest'
+        'controllerNamespace' => 'dashboard\controllers\rest',
+        // extend options
+        'option_model' => \remote\modules\v1\modules\option\models\Option::class // must be extended from \dashboard\models\option\Main
     ]
 ],
 ```

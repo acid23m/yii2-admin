@@ -94,8 +94,7 @@ final class PasswordResetRequestForm extends Model
                     ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
                     compact('user', 'resetLink')
                 )
-//                ->setFrom([\Yii::$app->get('option')->get('mail_gate_login') => \Yii::$app->name])
-                ->setFrom(['noreply@site.com' => \Yii::$app->name])
+                ->setFrom([\Yii::$app->get('option')->get('mail_gate_login') => \Yii::$app->name])
                 ->setTo($this->email)
                 ->setSubject(\Yii::t('dashboard', 'sbros parolya') . ' - ' . \Yii::$app->name)
                 ->send();

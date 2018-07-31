@@ -73,6 +73,28 @@ return [
     'dvuh faktornaya' => 'Two-factor Authentication',
     'proverte pochtu s kodom' => 'A one-time password has been sent to the mail.',
 
+    // options
+    'yazik adminki' => 'Language of Administrative panel',
+    'imya prilozheniya' => 'Application Name',
+    'logo' => 'Logotype',
+    'vremennaya zona' => 'Server Time Zone',
+    'dostup k saytu' => 'Access to the Site',
+    'belie ip' => 'The white list of IP addresses',
+    'chernie ip' => 'The black list of IP addresses',
+    'teh pochta' => 'Technical Mail',
+    'imya polzovatelya' => 'User Name (Email)',
+    'imya servera' => 'Server Name',
+    'parol polzovatelya' => 'User Password',
+    'port' => 'Port',
+    'zashita soedineniya' => 'Encryption',
+
+    'osnovnie nastroyki' => 'Main Options',
+    'nastroyki obnovleni' => 'Settings updated.',
+    'pochtoviy shluz' => 'Email smtp gate for sending messages',
+
+    'v doverennie ip' => 'Before disconnecting you need to add trusted IPs to the white list',
+    'spisok ip' => 'List of IP addresses, separated by a comma (and space)',
+
     // common
     'zapis ne sushestvuet' => 'Record is not exist.',
     'vremya sozdaniya' => 'Created At',

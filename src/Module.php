@@ -8,17 +8,21 @@
 
 namespace dashboard;
 
+use dashboard\models\option\Main as MainOption;
 use dashboard\models\user\UserIdentity;
 use dashboard\widgets\LeftMenu;
 use dashboard\widgets\TopMenu;
 use yii\base\BootstrapInterface;
 use yii\base\Exception;
+use yii\base\ExitException;
 use yii\base\InvalidArgumentException;
+use yii\base\InvalidConfigException;
 use yii\db\Connection;
 use yii\helpers\FileHelper;
 use yii\i18n\I18N;
 use yii\i18n\PhpMessageSource;
 use yii\rbac\DbManager;
+use yii\swiftmailer\Mailer;
 use yii\web\User;
 
 /**
@@ -30,6 +34,7 @@ use yii\web\User;
 final class Module extends \yii\base\Module implements BootstrapInterface
 {
     public const DB_USER = 'dbAdminUser';
+    public const OPTION_EXAMPLE = '@vendor/acid23m/yii2-admin/src/.app.ini.example';
 
     /**
      * @var array Left menu configuration
@@ -47,6 +52,18 @@ final class Module extends \yii\base\Module implements BootstrapInterface
      * @var null|callable User rules (RBAC)
      */
     public $user_rules;
+    /**
+     * @var string Path alias to file with options (INI)
+     */
+    public $option_file = '@common/data/.app.ini';
+    /**
+     * @var string Option model classname
+     */
+    public $option_model;
+    /**
+     * @var string Option view
+     */
+    public $option_view = 'index';
 
     /**
      * @inheritdoc
@@ -73,6 +90,9 @@ final class Module extends \yii\base\Module implements BootstrapInterface
                             'basePath' => '@vendor/acid23m/yii2-admin/src/messages'
                         ]
                     ]
+                ],
+                'option' => [
+                    'class' => MainOption::class
                 ]
             ]
         ]);
@@ -136,6 +156,7 @@ final class Module extends \yii\base\Module implements BootstrapInterface
             ]);
         }
 
+        // parameters
         $this->params['user.passwordResetTokenExpire'] = 3600; // 1 hour
         $this->params['user.accessTokenExpire'] = 86400; // 1 day
 
@@ -145,9 +166,11 @@ final class Module extends \yii\base\Module implements BootstrapInterface
 
     /**
      * @inheritdoc
-     * @param $app
+     * @param \yii\web\Application|\yii\console\Application $app
      * @throws Exception
      * @throws InvalidArgumentException
+     * @throws ExitException
+     * @throws InvalidConfigException
      */
     public function bootstrap($app): void
     {
@@ -167,6 +190,22 @@ final class Module extends \yii\base\Module implements BootstrapInterface
         \defined('PERM_FILE') or \define('PERM_FILE', 0664);
 
 
+        // env settings
+        $dotenv = new \Dotenv\Dotenv(\Yii::getAlias('@root'));
+        $dotenv->load();
+
+
+        // options
+        $options_file_path = \Yii::getAlias($this->option_file);
+        if (!file_exists($options_file_path)) {
+            // create file from example
+            $example_options_file_path = \Yii::getAlias(self::OPTION_EXAMPLE);
+            copy($example_options_file_path, $options_file_path);
+        }
+        /** @var MainOption $option */
+        $option = \Yii::createObject(MainOption::class);
+
+
         if ($app instanceof \yii\web\Application) {
             // configure left menu
             \Yii::$container->set(LeftMenu::class, [
@@ -175,6 +214,57 @@ final class Module extends \yii\base\Module implements BootstrapInterface
             // configure top menu
             \Yii::$container->set(TopMenu::class, [
                 'items' => $this->top_menu
+            ]);
+
+            // access by white and black lists
+            $white_ips = self::ipListAsArray($option->get('white_ips', '127.0.0.1'));
+            $black_ips = self::ipListAsArray($option->get('black_ips'));
+            $ip = \Yii::$app->getRequest()->getUserIP();
+
+            if (\in_array($ip, $black_ips, true)) {
+                echo 'Blocked!';
+                $app->end();
+            } elseif ((bool) $option->get('site_status', 1) === false) {
+                if (!\in_array($ip, $white_ips, true)) {
+                    echo 'Blocked!';
+                    $app->end();
+                }
+            }
+        } elseif ($app instanceof \yii\console\Application) {
+            // default host info for console commands
+            $domain = getenv('SITE_DOMAIN');
+            \Yii::$app->get('urlManager')->setHostInfo('http://' . $domain);
+            \Yii::$app->get('urlManagerFrontend')->setHostInfo('http://' . $domain);
+            \Yii::$app->get('urlManagerBackend')->setHostInfo('http://' . $domain);
+            \Yii::$app->get('urlManagerRemote')->setHostInfo('http://' . $domain);
+        }
+
+
+        // application name
+        $app->name = $option->get('app_name');
+        // application time zone
+        $app->timeZone = $option->get('time_zone', 'UTC');
+        $app->getFormatter()->defaultTimeZone = $app->timeZone;
+        // backend language
+        if ($app->id === 'app-backend') {
+            $app->language = $option->get('admin_lang', 'ru');
+            $app->getFormatter()->locale = $option->get('admin_lang', 'ru');
+        }
+        $app->getFormatter()->booleanFormat = [
+            \Yii::t('yii', 'No'),
+            \Yii::t('yii', 'Yes')
+        ];
+        // mailer
+        /** @var Mailer $mailer */
+        $mailer = $app->getMailer();
+        if (!empty($option->get('mail_gate_host')) && !empty($option->get('mail_gate_port'))) {
+            $mailer->setTransport([
+                'class' => 'Swift_SmtpTransport',
+                'host' => $option->get('mail_gate_host'),
+                'username' => $option->get('mail_gate_login'),
+                'password' => $option->get('mail_gate_password'),
+                'port' => $option->get('mail_gate_port'),
+                'encryption' => $option->get('mail_gate_encryption')
             ]);
         }
 
@@ -256,6 +346,18 @@ SQL
 
             chmod($user_db_file, PERM_FILE);
         }
+    }
+
+    /**
+     * @static
+     * @param string $list
+     * @return array
+     */
+    protected static function ipListAsArray(string $list): array
+    {
+        return ($list !== '')
+            ? array_map('trim', explode(',', $list))
+            : [];
     }
 
 }
