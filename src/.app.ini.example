@@ -1,0 +1,13 @@
+[options]
+admin_lang = "ru"
+app_name = "Мой сайт"
+app_logo = "/userdata/logo.png"
+time_zone = "UTC"
+mail_gate_host = "smtp.site.com"
+mail_gate_login = "tech@site.com"
+mail_gate_password = "12345"
+mail_gate_port = "465"
+mail_gate_encryption = "ssl"
+white_ips = "127.0.0.1"
+black_ips = ""
+site_status = "1"
