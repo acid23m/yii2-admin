@@ -9,7 +9,7 @@ The preferred way to install this extension is through [composer](http://getcomp
 
 Either run
 
-```
+```bash
 php composer.phar require --prefer-dist acid23m/yii2-admin "dev-master"
 ```
 
@@ -27,7 +27,7 @@ Usage
 
 Once the extension is installed, do next:
 
-- add module in *backend/config/main.php*.
+- Add module in *backend/config/main.php*.
 
 ```php
 'bootstrap' => [
@@ -85,7 +85,7 @@ Once the extension is installed, do next:
 ],
 ```
 
-- add module in *console/config/main.php*
+- Add module in *console/config/main.php*.
 
 ```php
 'bootstrap' => [
@@ -120,7 +120,7 @@ Once the extension is installed, do next:
 ],
 ```
 
-- add module in *remote/config/main.php*
+- Add module in *remote/config/main.php*.
 
 ```php
 'bootstrap' => [
@@ -138,8 +138,9 @@ Once the extension is installed, do next:
 ],
 ```
 
-- every controller in backend must be extended from *\dashboard\controllers\web\BaseController*.
-- add rule to UrlManager config
+- Every controller in backend must be extended from *\dashboard\controllers\web\BaseController*.
+
+- Add rule to UrlManager config.
 
 ```php
 'rules' => [

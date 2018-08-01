@@ -8,6 +8,9 @@
 
 namespace dashboard\models\option\web;
 
+use imagetool\components\Image;
+use Intervention\Image\AbstractFont;
+use Intervention\Image\ImageManager;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
 use yii\web\UploadedFile;
@@ -114,15 +117,53 @@ class Main extends \dashboard\models\option\Main
      */
     public function afterValidate(): void
     {
-        /*$logo = UploadedFile::getInstance($this, 'app_logo');
+        $logo = UploadedFile::getInstance($this, 'app_logo');
+        $logo_width = 256;
+        $logo_height = 256;
 
-        if ($logo === null) {
+        if ($logo !== null) {
+            $old_logo_filename = \Yii::$app->get('option')->app_logo;
+            if ($old_logo_filename !== '') {
+                $old_logo_file = rtrim(\Yii::getAlias(\imagetool\Module::STORAGE_PATH), '/')
+                    . '/' . Image::defineDir($old_logo_filename)
+                    . '/' . $old_logo_filename;
+                try {
+                    unlink($old_logo_file);
+                } catch (\Throwable $e) {
+                }
+            }
+
+            $imagetool = new Image($logo->tempName);
+            $imagetool->resizeProportional($logo_width, null);
+            $logo_filename = $imagetool->save('png');
+
+            $this->set('app_logo', $logo_filename);
+        }
+
+        if ($logo === null && \Yii::$app->get('option')->app_logo === '') {
+            $image_manager = new ImageManager(['driver' => 'imagick']);
+            $str = mb_strtoupper(mb_substr(\Yii::$app->name, 0, 2));
+            $_logo = $image_manager
+                ->canvas($logo_width, $logo_height, '#666666')
+                ->text($str, 70, 160, function (AbstractFont $font) {
+                    $font->file(\Yii::getAlias(Image::FONT_FILE));
+                    $font->size(112);
+                    $font->color('#ffffff');
+//                        $font->align('center');
+//                        $font->valign('middle');
+                })
+                ->encode(Image::FORMAT_JPG);
+
+            $imagetool = new Image($_logo);
+            $imagetool->resizeProportional($logo_width, null);
+            $logo_filename = $imagetool->save('jpg');
+
+            $this->set('app_logo', $logo_filename);
+        }
+
+        if ($logo === null && \Yii::$app->get('option')->app_logo !== '') {
             $this->set('app_logo', \Yii::$app->get('option')->app_logo);
-        } else {
-            $file = "logo.{$logo->extension}";
-            $this->set('app_logo', "/userdata/$file");
-            $logo->saveAs(\Yii::getAlias("@userdata/$file"));
-        }*/
+        }
 
         parent::afterValidate();
     }

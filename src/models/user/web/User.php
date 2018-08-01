@@ -10,6 +10,9 @@ namespace dashboard\models\user\web;
 
 use dashboard\models\user\UserRecord;
 use dashboard\traits\Model;
+use imagetool\components\Image;
+use Intervention\Image\AbstractFont;
+use Intervention\Image\ImageManager;
 use yii\base\InvalidArgumentException;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
@@ -122,12 +125,33 @@ class User extends UserRecord
     public function beforeSave($insert): bool
     {
         if (parent::beforeSave($insert)) {
-            /*if ($this->scenario === self::SCENARIO_CREATE || $this->scenario === self::SCENARIO_UPDATE) {
-                $image = UploadedFile::getInstance($this, 'avatar_file');
-                if ($image !== null) {
-                    $this->avatar = Base64Img::encode($image->tempName, Base64Img::INPUT_AS_PATH);
-                }
-            }*/
+            // save avatar
+            $image = UploadedFile::getInstance($this, 'avatar_file');
+            $avatar_width = 128;
+            $avatar_height = 128;
+            // save uploaded as new
+            if ($image !== null) {
+                $imagetool = new Image($image->tempName, [
+                    'quality' => 75
+                ]);
+                $imagetool->resizeProportional($avatar_width, $avatar_height);
+                $this->avatar = $imagetool->encode(Image::FORMAT_DATA_URI);
+            }
+            // create avatar
+            if ($insert && $image === null) {
+                $image_manager = new ImageManager(['driver' => 'imagick']);
+                $str = mb_strtoupper(mb_substr($this->username, 0, 2));
+                $this->avatar = (string) $image_manager
+                    ->canvas($avatar_width, $avatar_height, '#666666')
+                    ->text($str, 35, 80, function (AbstractFont $font) {
+                        $font->file(\Yii::getAlias(Image::FONT_FILE));
+                        $font->size(56);
+                        $font->color('#ffffff');
+//                        $font->align('center');
+//                        $font->valign('middle');
+                    })
+                    ->encode(Image::FORMAT_DATA_URI);
+            }
 
             return true;
         }

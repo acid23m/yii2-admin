@@ -47,6 +47,9 @@ $enctype_list = $model->getList('mail_gate_encryptions');
                     <?= $form->field($model, 'app_name')->textInput(['maxlength' => true]) ?>
 
 
+                    <?php if (\Yii::$app->get('option')->app_logo !== ''): ?>
+<!--                        <img src="" alt="">-->
+                    <?php endif ?>
                     <?= $form->field($model, 'app_logo')->fileInput() ?>
 
 

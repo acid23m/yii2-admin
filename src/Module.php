@@ -74,6 +74,13 @@ final class Module extends \yii\base\Module implements BootstrapInterface
 
         $this->defaultRoute = 'home/index';
 
+        $this->modules = [
+            'imagetool' => [
+                'class' => \imagetool\Module::class,
+                'controllerNamespace' => 'imagetool\controllers\web'
+            ]
+        ];
+
         // common configuration
         \Yii::configure(\Yii::$app, [
             'components' => [

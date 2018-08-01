@@ -64,7 +64,7 @@ $user = \Yii::$app->getUser()->getIdentity();
                 <!-- menu prile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="https://placehold.it/128x128" alt="John Doe" class="img-circle profile_img">
+                        <img class="img-circle profile_img" src="<?= $user->avatar ?>" alt="<?= $user->username ?>">
                     </div>
                     <div class="profile_info">
                         <span><?= \Yii::t('dashboard', 'privet') ?>,</span>
@@ -129,7 +129,7 @@ $user = \Yii::$app->getUser()->getIdentity();
                         <!-- users -->
                         <li>
                             <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="https://placehold.it/128x128" alt="">
+                                <img src="<?= $user->avatar ?>" alt="<?= $user->username ?>">
                                 <?= $user->username ?>
                                 <span class=" fa fa-angle-down"></span>
                             </a>

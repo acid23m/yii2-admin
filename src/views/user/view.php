@@ -36,11 +36,7 @@ $status_list = $model->getList('statuses');
         'model' => $model,
         'attributes' => [
             'id',
-//            [
-//                'attribute' => 'avatar',
-//                'format' => 'raw',
-//                'value' => Html::img(Base64Img::thumb($model->avatar, 200, 0, Base64Img::OUTPUT_AS_DATA_URI))
-//            ],
+            'avatar:image',
             [
                 'attribute' => 'username',
                 'format' => 'html',
