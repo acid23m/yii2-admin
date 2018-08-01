@@ -53,7 +53,7 @@ class Main extends \dashboard\models\option\Main
             'site_status' => \Yii::t('dashboard', 'dostup k saytu'),
             'white_ips' => \Yii::t('dashboard', 'belie ip'),
             'black_ips' => \Yii::t('dashboard', 'chernie ip'),
-            'mail_gate_login' => \Yii::t('dashboard', 'imya polzovatelya'),
+            'mail_gate_login' => \Yii::t('dashboard', 'imya polzovatelya pochta'),
             'mail_gate_host' => \Yii::t('dashboard', 'imya servera'),
             'mail_gate_password' => \Yii::t('dashboard', 'parol polzovatelya'),
             'mail_gate_port' => \Yii::t('dashboard', 'port'),

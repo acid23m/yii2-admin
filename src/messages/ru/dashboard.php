@@ -82,7 +82,7 @@ return [
     'belie ip' => 'Белый список IP адресов',
     'chernie ip' => 'Черный список IP адресов',
     'teh pochta' => 'Техническая почта',
-    'imya polzovatelya' => 'Имя пользователя (Email)',
+    'imya polzovatelya pochta' => 'Имя пользователя (Email)',
     'imya servera' => 'Имя сервера',
     'parol polzovatelya' => 'Пароль пользователя',
     'port' => 'Порт',

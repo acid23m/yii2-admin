@@ -82,7 +82,7 @@ return [
     'belie ip' => 'The white list of IP addresses',
     'chernie ip' => 'The black list of IP addresses',
     'teh pochta' => 'Technical Mail',
-    'imya polzovatelya' => 'User Name (Email)',
+    'imya polzovatelya pochta' => 'User Name (Email)',
     'imya servera' => 'Server Name',
     'parol polzovatelya' => 'User Password',
     'port' => 'Port',
