@@ -1,5 +1,6 @@
 <?php
 
+use kartik\file\FileInput;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
@@ -47,7 +48,20 @@ $status_list = $model->getList('statuses');
 
 
                         <div class="col-xs-12 col-md-6">
-                            <?= $form->field($model, 'avatar_file')->fileInput() ?>
+                            <?= $form->field($model, 'avatar_file')->widget(FileInput::class, [
+                                'options' => [
+                                    'accept' => 'image/*'
+                                ],
+                                'pluginOptions' => [
+                                    'previewFileType' => 'image',
+                                    'showUpload' => false,
+                                    'browseClass' => 'btn btn-default',
+                                    'initialPreview' => empty($model->avatar) ? [] : [$model->avatar],
+                                    'initialPreviewAsData' => true,
+                                    'initialCaption' => 'Avatar',
+                                    'overwriteInitial' => false
+                                ]
+                            ]) ?>
 
 
                             <?php $model->status = (int) $model->status ?>

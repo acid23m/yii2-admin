@@ -74,13 +74,6 @@ final class Module extends \yii\base\Module implements BootstrapInterface
 
         $this->defaultRoute = 'home/index';
 
-        $this->modules = [
-            'imagetool' => [
-                'class' => \imagetool\Module::class,
-                'controllerNamespace' => 'imagetool\controllers\web'
-            ]
-        ];
-
         // common configuration
         \Yii::configure(\Yii::$app, [
             'components' => [
@@ -104,64 +97,14 @@ final class Module extends \yii\base\Module implements BootstrapInterface
             ]
         ]);
 
-        if (\Yii::$app instanceof \yii\web\Application) {
-            // web configuration
-            \Yii::configure(\Yii::$app, [
-                'components' => [
-                    'authManager' => [
-                        'class' => DbManager::class,
-                        'db' => self::DB_USER
-                    ]
-                ]
-            ]);
-            // configure user in backend
-            if ($this->controllerNamespace === 'dashboard\controllers\web') {
-                \Yii::configure(\Yii::$app, [
-                    'components' => [
-                        'user' => [
-                            'class' => User::class,
-                            'identityClass' => UserIdentity::class,
-                            'enableAutoLogin' => true,
-                            'identityCookie' => [
-                                'name' => '_backendUser',
-                                'path' => '/admin',
-                                'httpOnly' => true
-                            ],
-                            'loginUrl' => ["/{$this->id}/auth/login"]
-                        ]
-                    ]
-                ]);
-            }
-            // configure user in rest
-            if ($this->controllerNamespace === 'dashboard\controllers\rest') {
-                \Yii::configure(\Yii::$app, [
-                    'components' => [
-                        'user' => [
-                            'class' => User::class,
-                            'identityClass' => UserIdentity::class,
-                            'enableAutoLogin' => false,
-                            'enableSession' => false,
-                            'identityCookie' => [
-                                'name' => '_apiUser',
-                                'path' => '/api',
-                                'httpOnly' => true
-                            ],
-                            'loginUrl' => null
-                        ]
-                    ]
-                ]);
-            }
-        } else {
-            // console configuration
-            \Yii::configure(\Yii::$app, [
-                'components' => [
-                    'authManagerBackend' => [
-                        'class' => DbManager::class,
-                        'db' => self::DB_USER
-                    ]
-                ]
-            ]);
-        }
+        // web configuration
+        $this->initWeb();
+        // backend configuration
+        $this->initBackFront();
+        // rest configuration
+        $this->initRest();
+        // console configuration
+        $this->initConsole();
 
         // parameters
         $this->params['user.passwordResetTokenExpire'] = 3600; // 1 hour
@@ -360,11 +303,101 @@ SQL
      * @param string $list
      * @return array
      */
-    protected static function ipListAsArray(string $list): array
+    private static function ipListAsArray(string $list): array
     {
         return ($list !== '')
             ? array_map('trim', explode(',', $list))
             : [];
+    }
+
+    /**
+     * Function for web.
+     */
+    private function initWeb(): void
+    {
+        if (\Yii::$app instanceof \yii\web\Application) {
+            \Yii::configure(\Yii::$app, [
+                'components' => [
+                    'authManager' => [
+                        'class' => DbManager::class,
+                        'db' => self::DB_USER
+                    ]
+                ]
+            ]);
+        }
+        // nested modules
+        $this->modules = [
+            'imagetool' => [
+                'class' => \imagetool\Module::class,
+                'controllerNamespace' => 'imagetool\controllers\web'
+            ]
+        ];
+    }
+
+    /**
+     * Function for backend/frontend.
+     */
+    private function initBackFront(): void
+    {
+        if (\Yii::$app instanceof \yii\web\Application && $this->controllerNamespace === 'dashboard\controllers\web') {
+            \Yii::configure(\Yii::$app, [
+                'components' => [
+                    'user' => [
+                        'class' => User::class,
+                        'identityClass' => UserIdentity::class,
+                        'enableAutoLogin' => true,
+                        'identityCookie' => [
+                            'name' => '_backendUser',
+                            'path' => '/admin',
+                            'httpOnly' => true
+                        ],
+                        'loginUrl' => ["/{$this->id}/auth/login"]
+                    ]
+                ]
+            ]);
+        }
+    }
+
+    /**
+     * Function for rest api.
+     */
+    private function initRest(): void
+    {
+        if (\Yii::$app instanceof \yii\web\Application && $this->controllerNamespace === 'dashboard\controllers\rest') {
+            \Yii::configure(\Yii::$app, [
+                'components' => [
+                    'user' => [
+                        'class' => User::class,
+                        'identityClass' => UserIdentity::class,
+                        'enableAutoLogin' => false,
+                        'enableSession' => false,
+                        'identityCookie' => [
+                            'name' => '_apiUser',
+                            'path' => '/api',
+                            'httpOnly' => true
+                        ],
+                        'loginUrl' => null
+                    ]
+                ]
+            ]);
+        }
+    }
+
+    /**
+     * Function for console.
+     */
+    private function initConsole(): void
+    {
+        if (\Yii::$app instanceof \yii\console\Application) {
+            \Yii::configure(\Yii::$app, [
+                'components' => [
+                    'authManagerBackend' => [
+                        'class' => DbManager::class,
+                        'db' => self::DB_USER
+                    ]
+                ]
+            ]);
+        }
     }
 
 }

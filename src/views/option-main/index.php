@@ -7,6 +7,8 @@
  */
 
 use dashboard\models\user\web\User;
+use imagetool\helpers\File;
+use kartik\file\FileInput;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yiidreamteam\widgets\timezone\Picker;
@@ -48,9 +50,23 @@ $enctype_list = $model->getList('mail_gate_encryptions');
 
 
                     <?php if (\Yii::$app->get('option')->app_logo !== ''): ?>
-<!--                        <img src="" alt="">-->
+                        <!--                        <img src="" alt="">-->
                     <?php endif ?>
-                    <?= $form->field($model, 'app_logo')->fileInput() ?>
+                    <?php //= $form->field($model, 'app_logo')->fileInput() ?>
+                    <?= $form->field($model, 'app_logo')->widget(FileInput::class, [
+                        'options' => ['accept' => 'image/*'],
+                        'pluginOptions' => [
+                            'previewFileType' => 'image',
+                            'showUpload' => false,
+                            'browseClass' => 'btn btn-default',
+                            'initialPreview' => empty($model->get('app_logo')) || is_null($model->get('app_logo'))
+                                ? []
+                                : [File::getUrl($model->get('app_logo'))],
+                            'initialPreviewAsData' => true,
+                            'initialCaption' => 'Logo',
+                            'overwriteInitial' => false
+                        ]
+                    ]) ?>
 
 
                     <div class="row">

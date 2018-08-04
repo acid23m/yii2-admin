@@ -9,6 +9,7 @@
 namespace dashboard\models\option\web;
 
 use imagetool\components\Image;
+use imagetool\helpers\File;
 use Intervention\Image\AbstractFont;
 use Intervention\Image\ImageManager;
 use yii\base\InvalidArgumentException;
@@ -124,9 +125,7 @@ class Main extends \dashboard\models\option\Main
         if ($logo !== null) {
             $old_logo_filename = \Yii::$app->get('option')->app_logo;
             if ($old_logo_filename !== '') {
-                $old_logo_file = rtrim(\Yii::getAlias(\imagetool\Module::STORAGE_PATH), '/')
-                    . '/' . Image::defineDir($old_logo_filename)
-                    . '/' . $old_logo_filename;
+                $old_logo_file = File::getPath($old_logo_filename);
                 try {
                     unlink($old_logo_file);
                 } catch (\Throwable $e) {
