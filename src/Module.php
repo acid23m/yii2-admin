@@ -18,6 +18,7 @@ use yii\base\ExitException;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
 use yii\db\Connection;
+use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use yii\i18n\I18N;
 use yii\i18n\PhpMessageSource;
@@ -325,13 +326,13 @@ SQL
                 ]
             ]);
         }
-        // nested modules
-        $this->modules = [
+        
+        \Yii::$app->modules = ArrayHelper::merge(\Yii::$app->modules, [
             'imagetool' => [
                 'class' => \imagetool\Module::class,
                 'controllerNamespace' => 'imagetool\controllers\web'
             ]
-        ];
+        ]);
     }
 
     /**
