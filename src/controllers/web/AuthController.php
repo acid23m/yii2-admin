@@ -46,6 +46,9 @@ final class AuthController extends BaseController
         return ArrayHelper::merge(parent::behaviors(), $behaviors);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function init(): void
     {
         parent::init();

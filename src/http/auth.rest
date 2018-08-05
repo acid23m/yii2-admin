@@ -1,0 +1,11 @@
+# login - get token by username and password
+POST https://base2.local/api/dashboard/auth/login
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+Accept-Language: ru
+Accept-Encoding: gzip,deflate
+# Authorization : Basic base64(user:password)
+Authorization: Basic Y2lwYToxMjM0NQ==
+
+###

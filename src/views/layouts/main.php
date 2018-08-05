@@ -55,7 +55,7 @@ $user = \Yii::$app->getUser()->getIdentity();
 
                 <div class="navbar nav_title" style="border: 0 none">
                     <a href="/" class="site_title">
-                        <i class="fa fa-paw"></i>
+<!--                        <i class="fa fa-paw"></i>-->
                         <span><?= Html::encode(\Yii::$app->name) ?></span>
                     </a>
                 </div>

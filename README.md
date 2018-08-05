@@ -147,3 +147,5 @@ Once the extension is installed, do next:
     '/' => '/dashboard/home/index'
 ]
 ```
+
+Rest Api examples in *html* directory.

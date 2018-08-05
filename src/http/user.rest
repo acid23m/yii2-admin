@@ -1,0 +1,84 @@
+# record list
+GET https://base2.local/api/dashboard/user
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+Accept-Language: ru
+Accept-Encoding: gzip,deflate
+# sureadmin
+Authorization: Bearer O5F_hYhEwLnd_eWkeMMu0ZbJMGmXJgVq
+
+###
+GET https://base2.local/api/dashboard/user?
+    sort=username,-updated_at
+    &per-page=1&page=1
+    &id=1&tfa=1&status=1
+    &username=user&email=user@mail.com&role=administrator&ip=0.0.0.0&note=text
+    &created_at=2018-02-25%2015:23:21&updated_at=2018-02-23,2018-02-27&last_access=2018-02-25%2015:23:21
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+Accept-Language: ru
+Accept-Encoding: gzip,deflate
+# sureadmin
+Authorization: Bearer O5F_hYhEwLnd_eWkeMMu0ZbJMGmXJgVq
+
+###
+# view record
+GET https://base2.local/api/dashboard/user/1
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+Accept-Language: ru
+Accept-Encoding: gzip,deflate
+# sureadmin
+Authorization: Bearer O5F_hYhEwLnd_eWkeMMu0ZbJMGmXJgVq
+
+###
+# update record
+PUT https://base2.local/api/dashboard/user/1
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+Accept-Language: ru
+Accept-Encoding: gzip,deflate
+# sureadmin
+Authorization: Bearer O5F_hYhEwLnd_eWkeMMu0ZbJMGmXJgVq
+
+{
+  "password": "12345",
+  "note": "abc"
+}
+
+###
+# create record
+POST https://base2.local/api/dashboard/user
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+Accept-Language: ru
+Accept-Encoding: gzip,deflate
+# sureadmin
+Authorization: Bearer O5F_hYhEwLnd_eWkeMMu0ZbJMGmXJgVq
+
+{
+  "avatar": "data:image/png;base64,",
+  "username": "temp_user",
+  "password": "123456",
+  "email": "tmp@email.com",
+  "role": "moderator",
+  "status": false
+}
+
+###
+# delete record
+DELETE https://base2.local/api/dashboard/user/5
+Cache-Control: no-cache
+Accept: application/json
+Content-Type: application/json
+Accept-Language: ru
+Accept-Encoding: gzip,deflate
+# sureadmin
+Authorization: Bearer O5F_hYhEwLnd_eWkeMMu0ZbJMGmXJgVq
+
+###

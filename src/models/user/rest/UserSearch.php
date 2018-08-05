@@ -1,6 +1,6 @@
 <?php
 
-namespace dashboard\models\user\web;
+namespace dashboard\models\user\rest;
 
 use yii\base\InvalidArgumentException;
 use yii\base\Model;
@@ -9,7 +9,7 @@ use yii\data\ActiveDataProvider;
 /**
  * Class UserSearch.
  *
- * @package dashboard\models\user\web
+ * @package dashboard\models\user\rest
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
  */
 final class UserSearch extends User
@@ -29,8 +29,8 @@ final class UserSearch extends User
     {
         return [
             [['id'], 'integer'],
-            [['username', 'email', 'role', 'ip', 'last_access', 'created_at', 'updated_at'], 'safe'],
-            [['status'], 'boolean']
+            [['username', 'email', 'role', 'note', 'ip', 'last_access', 'created_at', 'updated_at'], 'safe'],
+            [['tfa', 'status'], 'boolean']
         ];
     }
 
@@ -64,6 +64,7 @@ final class UserSearch extends User
                     'email',
                     'role',
                     'ip',
+                    'tfa',
                     'status',
                     'last_access',
                     'created_at',
@@ -110,11 +111,13 @@ final class UserSearch extends User
         $query->andFilterWhere([
             'user.id' => $this->id,
             'user.role' => $this->role,
+            'user.tfa' => $this->tfa,
             'user.status' => $this->status
         ]);
 
         $query->andFilterWhere(['like', 'user.username', $this->username])
             ->andFilterWhere(['like', 'user.email', $this->email])
+            ->andFilterWhere(['like', 'user.note', $this->note])
             ->andFilterWhere(['like', 'user.ip', $this->ip]);
 
         return $dataProvider;

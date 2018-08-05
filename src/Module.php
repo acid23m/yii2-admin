@@ -23,6 +23,7 @@ use yii\helpers\FileHelper;
 use yii\i18n\I18N;
 use yii\i18n\PhpMessageSource;
 use yii\rbac\DbManager;
+use yii\rest\UrlRule;
 use yii\swiftmailer\Mailer;
 use yii\web\User;
 
@@ -181,6 +182,21 @@ final class Module extends \yii\base\Module implements BootstrapInterface
                     $app->end();
                 }
             }
+
+            // rest api
+            if ($this->controllerNamespace === 'dashboard\controllers\rest') {
+                \Yii::$app->getUrlManager()->addRules([
+                    "GET,POST,HEAD /{$this->id}/auth/<_a:[\w\d\-_]+>" => "/{$this->id}/auth/<_a>",
+                    "OPTIONS /{$this->id}/auth/<_a:[\w\d\-_]+>" => "/{$this->id}/auth/options",
+                    [
+                        'class' => UrlRule::class,
+                        'controller' => [
+                            "{$this->id}/user"
+                        ],
+                        'pluralize' => false
+                    ]
+                ], false);
+            }
         } elseif ($app instanceof \yii\console\Application) {
             // default host info for console commands
             $domain = getenv('SITE_DOMAIN');
@@ -326,7 +342,7 @@ SQL
                 ]
             ]);
         }
-        
+
         \Yii::$app->modules = ArrayHelper::merge(\Yii::$app->modules, [
             'imagetool' => [
                 'class' => \imagetool\Module::class,
