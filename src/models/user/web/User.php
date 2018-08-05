@@ -13,7 +13,6 @@ use dashboard\traits\Model;
 use imagetool\components\Image;
 use Intervention\Image\AbstractFont;
 use Intervention\Image\ImageManager;
-use yii\base\InvalidArgumentException;
 use yii\helpers\ArrayHelper;
 use yii\web\UploadedFile;
 
@@ -120,21 +119,23 @@ class User extends UserRecord
 
     /**
      * @inheritdoc
-     * @throws InvalidArgumentException
+     * @param $insert
+     * @return bool
+     * @throws \ImageOptimizer\Exception\Exception
+     * @throws \Intervention\Image\Exception\NotWritableException
+     * @throws \yii\base\Exception
      */
     public function beforeSave($insert): bool
     {
         if (parent::beforeSave($insert)) {
             // save avatar
             $image = UploadedFile::getInstance($this, 'avatar_file');
-            $avatar_width = 128;
-            $avatar_height = 128;
             // save uploaded as new
             if ($image !== null) {
                 $imagetool = new Image($image->tempName, [
                     'quality' => 75
                 ]);
-                $imagetool->resizeProportional($avatar_width, $avatar_height);
+                $imagetool->resizeProportional(self::AVATAR_WIDTH, self::AVATAR_HEIGHT);
                 $this->avatar = $imagetool->encode(Image::FORMAT_DATA_URI);
             }
             // create avatar
@@ -142,7 +143,7 @@ class User extends UserRecord
                 $image_manager = new ImageManager(['driver' => 'imagick']);
                 $str = mb_strtoupper(mb_substr($this->username, 0, 2));
                 $this->avatar = (string) $image_manager
-                    ->canvas($avatar_width, $avatar_height, '#666666')
+                    ->canvas(self::AVATAR_WIDTH, self::AVATAR_HEIGHT, '#666666')
                     ->text($str, 35, 80, function (AbstractFont $font) {
                         $font->file(\Yii::getAlias(Image::FONT_FILE));
                         $font->size(56);

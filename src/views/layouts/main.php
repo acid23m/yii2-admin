@@ -85,7 +85,7 @@ $user = \Yii::$app->getUser()->getIdentity();
                             'items' => [
                                 [
                                     'label' => \Yii::t('dashboard', 'glavnaya'),
-                                    'url' => '/',
+                                    'url' => \Yii::$app->getHomeUrl(),
                                     'icon' => 'home'
                                 ]
                             ]

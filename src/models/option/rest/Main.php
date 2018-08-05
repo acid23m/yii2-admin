@@ -2,12 +2,13 @@
 /**
  * Created by PhpStorm.
  * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 31.07.18
- * Time: 23:29
+ * Date: 05.08.18
+ * Time: 16:48
  */
 
-namespace dashboard\models\option\web;
+namespace dashboard\models\option\rest;
 
+use dashboard\models\user\rest\User;
 use imagetool\components\Image;
 use imagetool\helpers\File;
 use Intervention\Image\AbstractFont;
@@ -15,12 +16,12 @@ use Intervention\Image\ImageManager;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
 use yii\helpers\ArrayHelper;
-use yii\web\UploadedFile;
+use yii\helpers\StringHelper;
 
 /**
- * Main settings.
+ * Class Main.
  *
- * @package dashboard\models\option\web
+ * @package dashboard\models\option\rest
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
  */
 class Main extends \dashboard\models\option\Main
@@ -28,10 +29,29 @@ class Main extends \dashboard\models\option\Main
     /**
      * @inheritdoc
      */
+    public function formName(): string
+    {
+        return '';
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function rules(): array
     {
         $rules = [
-            [['app_logo'], 'image', 'extensions' => ['jpg', 'jpeg', 'png']]
+            [
+                ['app_logo'],
+                function ($attribute, $params) {
+                    if (
+                        $this->$attribute !== ''
+                        && $this->$attribute !== null
+                        && !StringHelper::startsWith($this->$attribute, 'data:image/')
+                    ) {
+                        $this->addError($attribute, \Yii::t('dashboard', 'kartinka kak data uri'));
+                    }
+                }
+            ]
         ];
 
         return ArrayHelper::merge(parent::rules(), $rules);
@@ -40,35 +60,32 @@ class Main extends \dashboard\models\option\Main
     /**
      * @inheritdoc
      */
-    public function attributeLabels(): array
+    public function fields(): array
     {
-        return [
-            'admin_lang' => \Yii::t('dashboard', 'yazik adminki'),
-            'app_name' => \Yii::t('dashboard', 'imya prilozheniya'),
-            'app_logo' => \Yii::t('dashboard', 'logo'),
-            'time_zone' => \Yii::t('dashboard', 'vremennaya zona'),
-            'site_status' => \Yii::t('dashboard', 'dostup k saytu'),
-            'white_ips' => \Yii::t('dashboard', 'belie ip'),
-            'black_ips' => \Yii::t('dashboard', 'chernie ip'),
-            'mail_gate_login' => \Yii::t('dashboard', 'imya polzovatelya pochta'),
-            'mail_gate_host' => \Yii::t('dashboard', 'imya servera'),
-            'mail_gate_password' => \Yii::t('dashboard', 'parol polzovatelya'),
-            'mail_gate_port' => \Yii::t('dashboard', 'port'),
-            'mail_gate_encryption' => \Yii::t('dashboard', 'zashita soedineniya')
-        ];
+        $fields = parent::fields();
+
+        if (!\Yii::$app->getUser()->can(User::ROLE_SUPER)) {
+            unset(
+                $fields['site_status'],
+                $fields['white_ips'],
+                $fields['black_ips']
+            );
+        }
+
+        return $fields;
     }
 
     /**
      * @inheritdoc
-     * @throws InvalidArgumentException
-     * @throws InvalidConfigException
      * @throws \ImageOptimizer\Exception\Exception
      * @throws \Intervention\Image\Exception\NotWritableException
      * @throws \yii\base\Exception
+     * @throws InvalidArgumentException
+     * @throws InvalidConfigException
      */
     public function afterValidate(): void
     {
-        $logo = UploadedFile::getInstance($this, 'app_logo');
+        $logo = $this->app_logo === '' || $this->app_logo === null ? null : $this->app_logo;
 
         if ($logo !== null) {
             $old_logo_filename = \Yii::$app->get('option')->app_logo;
@@ -80,9 +97,10 @@ class Main extends \dashboard\models\option\Main
                 }
             }
 
-            $imagetool = new Image($logo->tempName);
+            $imagetool = new Image($logo);
+            $ext = File::getExtensionOfDataUri($logo);
             $imagetool->resizeProportional(self::LOGO_WIDTH, null);
-            $logo_filename = $imagetool->save($logo->extension);
+            $logo_filename = $imagetool->save($ext);
 
             $this->set('app_logo', $logo_filename);
         }

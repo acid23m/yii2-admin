@@ -95,6 +95,8 @@ return [
     'v doverennie ip' => 'Before disconnecting you need to add trusted IPs to the white list',
     'spisok ip' => 'List of IP addresses, separated by a comma (and space)',
 
+    'kartinka kak data uri' => 'Image format is data-uri (data:image/png;base64,)',
+
     // common
     'zapis ne sushestvuet' => 'Record is not exist.',
     'vremya sozdaniya' => 'Created At',

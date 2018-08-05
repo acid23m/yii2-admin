@@ -54,6 +54,9 @@ class UserRecord extends ActiveRecord
     public const TFA_ENABLED = 1;
     public const TFA_DISABLED = 0;
 
+    public const AVATAR_WIDTH = 128;
+    public const AVATAR_HEIGHT = 128;
+
     public const ROLE_AUTHOR = 'author';
     public const ROLE_MODER = 'moderator';
     public const ROLE_ADMIN = 'administrator';

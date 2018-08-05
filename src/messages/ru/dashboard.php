@@ -94,6 +94,8 @@ return [
 
     'v doverennie ip' => 'Перед отключением необходимо внести доверенные IP в белый список',
     'spisok ip' => 'Список ip-адресов, разделенные запятой (и пробелом)',
+
+    'kartinka kak data uri' => 'Формат изображения - data-uri (data:image/png;base64,)',
     
     // common
     'zapis ne sushestvuet' => 'Запись не существует.',

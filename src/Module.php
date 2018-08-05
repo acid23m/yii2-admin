@@ -194,7 +194,9 @@ final class Module extends \yii\base\Module implements BootstrapInterface
                             "{$this->id}/user"
                         ],
                         'pluralize' => false
-                    ]
+                    ],
+                    "GET,HEAD /{$this->id}/option-main" => "/{$this->id}/option-main/view",
+                    "POST /{$this->id}/option-main" => "/{$this->id}/option-main/update"
                 ], false);
             }
         } elseif ($app instanceof \yii\console\Application) {

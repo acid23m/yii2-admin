@@ -21,7 +21,7 @@ class User extends UserRecord
     /**
      * @inheritdoc
      */
-    public function fields()
+    public function fields(): array
     {
         $fields = parent::fields();
 
@@ -33,7 +33,7 @@ class User extends UserRecord
 
         if (
             !\Yii::$app->getUser()->can('isOwner', ['id' => $this->id])
-            && !\Yii::$app->getUser()->can(self::ROLE_ADMIN)
+            && !\Yii::$app->getUser()->can(User::ROLE_ADMIN)
         ) {
             unset(
                 $fields['note'],
