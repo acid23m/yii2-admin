@@ -107,6 +107,19 @@ return [
     'log ochishen' => 'Лог очищен.',
     'zapisi loga udaleni' => 'Записи лога удалены',
     'skachat log' => 'Скачать лог',
+
+    // server
+    'tehnicheskie dannie' => 'Технические данные',
+    'server' => 'Сервер',
+    'host' => 'Хост',
+    'os' => 'ОС',
+    'processor' => 'Процессор',
+    'yadra proc' => 'Ядра ЦПУ',
+    'pamyat' => 'Память',
+    'vsego' => 'Всего',
+    'zanyato' => 'Занято',
+    'svobodno' => 'Свободно',
+    'disk' => 'Диск',
     
     // common
     'zapis ne sushestvuet' => 'Запись не существует.',
@@ -118,5 +131,6 @@ return [
     'otpravit' => 'Отправить',
     'udalit vse' => 'Удалить все',
     'udalit otmechennie' => 'Удалить отмеченные',
-    'sbrosit tablicu' => 'Сбросить таблицу'
+    'sbrosit tablicu' => 'Сбросить таблицу',
+    'vipolnaetsya' => 'Выполняется..'
 ];

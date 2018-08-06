@@ -108,6 +108,19 @@ return [
     'zapisi loga udaleni' => 'Log records deleted.',
     'skachat log' => 'Download Log',
 
+    // server
+    'tehnicheskie dannie' => 'Technical Details',
+    'server' => 'Server',
+    'host' => 'Host',
+    'os' => 'OS',
+    'processor' => 'Процессор',
+    'yadra proc' => 'Ядра ЦПУ',
+    'pamyat' => 'Memory',
+    'vsego' => 'Total',
+    'zanyato' => 'Used',
+    'svobodno' => 'Available',
+    'disk' => 'Disk',
+
     // common
     'zapis ne sushestvuet' => 'Record is not exist.',
     'vremya sozdaniya' => 'Created At',
@@ -118,5 +131,6 @@ return [
     'otpravit' => 'Send',
     'udalit vse' => 'Delete All',
     'udalit otmechennie' => 'Delete selected',
-    'sbrosit tablicu' => 'Reload Table'
+    'sbrosit tablicu' => 'Reload Table',
+    'vipolnaetsya' => 'In progress..'
 ];

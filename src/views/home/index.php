@@ -21,6 +21,12 @@ $this->params['title'] = $this->title;
         <!--User-->
         <?= $this->render('_user', compact('user')) ?>
         <!--/User-->
+
+        <!--Server-->
+        <?php if (\Yii::$app->getUser()->can($user::ROLE_ADMIN)): ?>
+            <?= $this->render('_server') ?>
+        <?php endif ?>
+        <!--/Server-->
     </div>
 
     <div class="col-xs-12 col-md-6"></div>
