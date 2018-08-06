@@ -104,6 +104,9 @@ return [
     'vremya' => 'Time',
     'prefiks' => 'Prefix',
     'soobshenie' => 'Message',
+    'log ochishen' => 'Log cleared.',
+    'zapisi loga udaleni' => 'Log records deleted.',
+    'skachat log' => 'Download Log',
 
     // common
     'zapis ne sushestvuet' => 'Record is not exist.',
@@ -112,5 +115,8 @@ return [
     'status' => 'Status',
     'dobavit' => 'Add',
     'obnovit' => 'Update',
-    'otpravit' => 'Send'
+    'otpravit' => 'Send',
+    'udalit vse' => 'Delete All',
+    'udalit otmechennie' => 'Delete selected',
+    'sbrosit tablicu' => 'Reload Table'
 ];

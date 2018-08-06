@@ -101,8 +101,8 @@ class BaseController extends Controller
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'delete' => ['post'],
-                    'delete-multiple' => ['post']
+                    'delete' => ['POST'],
+                    'delete-multiple' => ['POST']
                 ]
             ]
         ];

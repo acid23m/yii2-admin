@@ -6,12 +6,33 @@
  * Time: 0:54
  */
 
+use kartik\daterange\DateRangePicker;
 use yii\grid\CheckboxColumn;
+use yii\helpers\Html;
+use yii\helpers\Url;
 use yiister\gentelella\widgets\grid\GridView;
 
 /** @var yii\web\View $this */
 /** @var \dashboard\models\log\LogSearch $logSearchModel */
 /** @var \yii\data\ActiveDataProvider $logDataProvider */
+
+$this->registerJs('
+    (function ($) {
+        const $grid = $("#log-grid"),
+            $delBtn = $("#del-log-btn");
+
+        $grid.on("change", "input[name^=selection]", function () {
+            let keys = $grid.yiiGridView("getSelectedRows");
+            if (keys.length > 0) {
+                $delBtn
+                    .removeAttr("disabled")
+                    .attr("href", "' . Url::to(['delete-log']) . '?ids=" + JSON.stringify(keys));
+            } else {
+                $delBtn.attr("disabled", "disabled");
+            }
+        });
+    })(jQuery);
+', $this::POS_END);
 
 $level_list = $logSearchModel->getList('levels');
 ?>
@@ -33,8 +54,12 @@ $level_list = $logSearchModel->getList('levels');
                             <i class="fa fa-wrench"></i>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Settings 1</a></li>
-                            <li><a href="#">Settings 2</a></li>
+                            <li>
+                                <?= Html::a(\Yii::t('dashboard', 'sbrosit tablicu'), ['index']) ?>
+                            </li>
+                            <li>
+                                <?= Html::a(\Yii::t('dashboard', 'skachat log'), ['download-log']) ?>
+                            </li>
                         </ul>
                     </li>
                     <li>
@@ -44,13 +69,33 @@ $level_list = $logSearchModel->getList('levels');
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
+                <p>
+                    <?= Html::a(\Yii::t('dashboard', 'udalit vse'), ['home/clear-log'], [
+                        'class' => 'btn btn-danger',
+                        'data' => [
+                            'confirm' => \Yii::t('yii', 'Are you sure you want to delete this item?'),
+                            'method' => 'post'
+                        ]
+                    ]) ?>
+                    <?= Html::a(\Yii::t('dashboard', 'udalit otmechennie'), ['delete-log'], [
+                        'id' => 'del-log-btn',
+                        'class' => 'btn btn-danger',
+                        'disabled' => 'disabled',
+                        'data' => [
+                            'confirm' => \Yii::t('yii', 'Are you sure you want to delete this item?'),
+                            'method' => 'post'
+                        ]
+                    ]) ?>
+                </p>
+
                 <?= GridView::widget([
                     'id' => 'log-grid',
                     'dataProvider' => $logDataProvider,
                     'filterModel' => $logSearchModel,
+                    'condensed' => true,
                     'columns' => [
                         ['class' => CheckboxColumn::class],
-                        'id:integer',
+//                        'id:integer',
                         [
                             'attribute' => 'level',
                             'value' => function ($model, $key, $index) use ($level_list) {
@@ -61,7 +106,21 @@ $level_list = $logSearchModel->getList('levels');
                         ],
                         'category',
 //                        'prefix',
-                        'log_time:datetime',
+                        [
+                            'attribute' => 'log_time',
+                            'format' => 'datetime',
+                            'filter' => DateRangePicker::widget([
+                                'model' => $logSearchModel,
+                                'attribute' => 'log_time',
+                                'convertFormat' => true,
+                                'pluginOptions' => [
+                                    'locale' => [
+                                        'format' => 'Y-m-d',
+                                        'separator' => ','
+                                    ]
+                                ]
+                            ])
+                        ],
                         'message:ntext'
                     ]
                 ]) ?>

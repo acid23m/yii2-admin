@@ -104,6 +104,9 @@ return [
     'vremya' => 'Время',
     'prefiks' => 'Префикс',
     'soobshenie' => 'Сообщение',
+    'log ochishen' => 'Лог очищен.',
+    'zapisi loga udaleni' => 'Записи лога удалены',
+    'skachat log' => 'Скачать лог',
     
     // common
     'zapis ne sushestvuet' => 'Запись не существует.',
@@ -112,5 +115,8 @@ return [
     'status' => 'Статус',
     'dobavit' => 'Добавить',
     'obnovit' => 'Обновить',
-    'otpravit' => 'Отправить'
+    'otpravit' => 'Отправить',
+    'udalit vse' => 'Удалить все',
+    'udalit otmechennie' => 'Удалить отмеченные',
+    'sbrosit tablicu' => 'Сбросить таблицу'
 ];
