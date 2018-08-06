@@ -96,6 +96,14 @@ return [
     'spisok ip' => 'Список ip-адресов, разделенные запятой (и пробелом)',
 
     'kartinka kak data uri' => 'Формат изображения - data-uri (data:image/png;base64,)',
+
+    // log
+    'log oshibok' => 'Лог ошибок',
+    'uroven' => 'Уровень',
+    'kategoria' => 'Категория',
+    'vremya' => 'Время',
+    'prefiks' => 'Префикс',
+    'soobshenie' => 'Сообщение',
     
     // common
     'zapis ne sushestvuet' => 'Запись не существует.',

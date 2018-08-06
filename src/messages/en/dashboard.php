@@ -97,6 +97,14 @@ return [
 
     'kartinka kak data uri' => 'Image format is data-uri (data:image/png;base64,)',
 
+    // log
+    'log oshibok' => 'Errors Log',
+    'uroven' => 'Level',
+    'kategoria' => 'Category',
+    'vremya' => 'Time',
+    'prefiks' => 'Prefix',
+    'soobshenie' => 'Message',
+
     // common
     'zapis ne sushestvuet' => 'Record is not exist.',
     'vremya sozdaniya' => 'Created At',

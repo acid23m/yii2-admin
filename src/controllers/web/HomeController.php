@@ -9,6 +9,7 @@
 namespace dashboard\controllers\web;
 
 use yii\web\View;
+use dashboard\models\log\LogSearch;
 
 /**
  * Class HomeController.
@@ -25,7 +26,13 @@ final class HomeController extends BaseController
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        // Log
+        $logSearchModel = new LogSearch;
+        $logDataProvider = $logSearchModel->search(
+            \Yii::$app->getRequest()->getQueryParams()
+        );
+
+        return $this->render('index', compact('logSearchModel', 'logDataProvider'));
     }
 
 }

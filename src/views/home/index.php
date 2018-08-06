@@ -7,9 +7,17 @@
  */
 
 /** @var \yii\web\View $this */
+/** @var \dashboard\models\log\LogSearch $logSearchModel */
+/** @var \yii\data\ActiveDataProvider $logDataProvider */
+/** @var \dashboard\models\user\UserIdentity $user */
+$user = \Yii::$app->getUser()->getIdentity();
 
 $this->title = \Yii::t('dashboard', 'panel');
 $this->params['title'] = $this->title;
 ?>
 
-home index
+<!-- Log -->
+<?php if (\Yii::$app->getUser()->can($user::ROLE_SUPER)): ?>
+    <?= $this->render('_log', compact('logSearchModel', 'logDataProvider')) ?>
+<?php endif ?>
+<!-- /Log -->
