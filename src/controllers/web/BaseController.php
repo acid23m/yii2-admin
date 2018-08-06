@@ -8,6 +8,7 @@
 
 namespace dashboard\controllers\web;
 
+use dashboard\assets\AppAsset;
 use dashboard\assets\BootboxAsset;
 use dashboard\models\user\web\User;
 use yii\filters\AccessControl;
@@ -16,7 +17,6 @@ use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\ErrorAction;
-use yiister\gentelella\assets\Asset as GentelellaAsset;
 
 /**
  * Class BaseController.
@@ -71,7 +71,8 @@ class BaseController extends Controller
                         'matchCallback' => function ($rule, $action) {
                             return (
                                     \Yii::$app->getUser()->can('addData')
-                                    && \Yii::$app->getUser()->can('isOwner', ['id' => \Yii::$app->getRequest()->get('id')])
+                                    && \Yii::$app->getUser()->can('isOwner',
+                                        ['id' => \Yii::$app->getRequest()->get('id')])
                                 )
                                 || \Yii::$app->getUser()->can(User::ROLE_ADMIN);
                         }
@@ -82,7 +83,8 @@ class BaseController extends Controller
                         'matchCallback' => function ($rule, $action) {
                             return (
                                     \Yii::$app->getUser()->can('delData')
-                                    && \Yii::$app->getUser()->can('isOwner', ['id' => \Yii::$app->getRequest()->get('id')])
+                                    && \Yii::$app->getUser()->can('isOwner',
+                                        ['id' => \Yii::$app->getRequest()->get('id')])
                                 )
                                 || \Yii::$app->getUser()->can(User::ROLE_ADMIN);
                         }
@@ -127,8 +129,7 @@ class BaseController extends Controller
     {
         parent::init();
 
-        GentelellaAsset::register($this->getView());
-        BootboxAsset::register($this->getView());
+        AppAsset::register($this->getView());
         BootboxAsset::overrideSystemConfirm();
     }
 

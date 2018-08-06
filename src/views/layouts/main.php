@@ -46,6 +46,13 @@ $user = \Yii::$app->getUser()->getIdentity();
 <body class="nav-<?= !empty($_COOKIE['menuIsCollapsed']) && $_COOKIE['menuIsCollapsed'] === 'true' ? 'sm' : 'md' ?>">
 <?php $this->beginBody() ?>
 
+<div id="loading-block">
+    <p>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <span><?= \Yii::t('dashboard', 'vipolnaetsya') ?></span>
+    </p>
+</div>
+
 <div class="container body">
 
     <div class="main_container">
