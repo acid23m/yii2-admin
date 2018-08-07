@@ -6,6 +6,7 @@
  * Time: 1:09
  */
 
+use dashboard\models\user\web\User;
 use yii\helpers\Html;
 use yii\helpers\StringHelper;
 use yii\helpers\Url;
@@ -66,6 +67,11 @@ use yii\helpers\Url;
                         <li>
                             <strong>PHP</strong>:
                             <?= PHP_VERSION ?>
+                            <?php if (\Yii::$app->getUser()->can(User::ROLE_ADMIN)): ?>
+                                <a href="<?= Url::to(['phpinfo']) ?>">
+                                    <span class="label label-default">php info</span>
+                                </a>
+                            <?php endif ?>
                         </li>
                         <li>
                             <?php
@@ -185,14 +191,16 @@ use yii\helpers\Url;
                                     <?= \Yii::t('dashboard', 'svobodno') ?>:
                                     <?= \Yii::$app->getFormatter()->asShortSize($mem_free) ?>
                                     <div class="progress progress-micro">
-                                        <div class="progress-bar bg-color-greenLight" style="width:<?= $mem_free_percent ?>%;"></div>
+                                        <div class="progress-bar progress-bar-success"
+                                             style="width:<?= $mem_free_percent ?>%;"></div>
                                     </div>
                                 </li>
                                 <li>
                                     <?= \Yii::t('dashboard', 'zanyato') ?>:
                                     <?= \Yii::$app->getFormatter()->asShortSize($mem_used) ?>
                                     <div class="progress progress-micro">
-                                        <div class="progress-bar bg-color-redLight" style="width:<?= $mem_used_percent ?>%;"></div>
+                                        <div class="progress-bar progress-bar-danger"
+                                             style="width:<?= $mem_used_percent ?>%;"></div>
                                     </div>
                                 </li>
                                 <li>
@@ -232,14 +240,16 @@ use yii\helpers\Url;
                                     <?= \Yii::t('dashboard', 'svobodno') ?>:
                                     <?= \Yii::$app->getFormatter()->asShortSize($disk_free) ?>
                                     <div class="progress progress-micro">
-                                        <div class="progress-bar bg-color-greenLight" style="width:<?= $disk_free_percent ?>%;"></div>
+                                        <div class="progress-bar progress-bar-success"
+                                             style="width:<?= $disk_free_percent ?>%;"></div>
                                     </div>
                                 </li>
                                 <li>
                                     <?= \Yii::t('dashboard', 'zanyato') ?>:
                                     <?= \Yii::$app->getFormatter()->asShortSize($disk_used) ?>
                                     <div class="progress progress-micro">
-                                        <div class="progress-bar bg-color-redLight" style="width:<?= $disk_used_percent ?>%;"></div>
+                                        <div class="progress-bar progress-bar-danger"
+                                             style="width:<?= $disk_used_percent ?>%;"></div>
                                     </div>
                                 </li>
                                 <li>

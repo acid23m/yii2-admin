@@ -33,3 +33,7 @@ textarea {
 #loading-block p i {
     margin-right: 7px;
 }
+
+.progress-micro {
+    height: 8px;
+}

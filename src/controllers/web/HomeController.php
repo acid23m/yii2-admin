@@ -168,4 +168,14 @@ final class HomeController extends BaseController
         FileHelper::removeDirectory($tmp_dir);
     }
 
+    /**
+     * Php info.
+     * @return string|View
+     * @throws InvalidArgumentException
+     */
+    public function actionPhpinfo()
+    {
+        return $this->renderPartial('phpinfo');
+    }
+
 }
