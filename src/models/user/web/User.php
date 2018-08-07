@@ -93,11 +93,11 @@ class User extends UserRecord
             'ip' => 'Ip',
             'access_token' => 'API ID',
             'note' => \Yii::t('dashboard', 'zapisi'),
+            'tfa' => \Yii::t('dashboard', 'vkl 2fa'),
+            'status' => \Yii::t('dashboard', 'status'),
             'created_at' => \Yii::t('dashboard', 'vremya sozdaniya'),
             'updated_at' => \Yii::t('dashboard', 'vremya obnovleniya'),
-            'last_access' => \Yii::t('dashboard', 'posledniy vhod'),
-            'status' => \Yii::t('dashboard', 'status'),
-            'tfa' => \Yii::t('dashboard', 'vkl 2fa')
+            'last_access' => \Yii::t('dashboard', 'posledniy vhod')
         ];
     }
 

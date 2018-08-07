@@ -129,8 +129,10 @@ return [
     'dobavit' => 'Добавить',
     'obnovit' => 'Обновить',
     'otpravit' => 'Отправить',
+    'sohranit' => 'Сохранить',
     'udalit vse' => 'Удалить все',
     'udalit otmechennie' => 'Удалить отмеченные',
     'sbrosit tablicu' => 'Сбросить таблицу',
-    'vipolnaetsya' => 'Выполняется..'
+    'vipolnaetsya' => 'Выполняется..',
+    'perehod na novuyu stroku i abzac' => 'Переход на новую строку - Shift+Enter, переход на новый абзац - Enter. Рекомендуется вставлять уже готовый текст с помощью Ctrl+Shift+V (вставить только текст) и только форматировать его в данном редакторе.',
 ];

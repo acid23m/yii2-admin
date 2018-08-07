@@ -10,6 +10,7 @@ namespace dashboard\controllers\web;
 
 use dashboard\models\log\LogRecord;
 use dashboard\models\log\LogSearch;
+use dashboard\models\user\UserIdentity;
 use dashboard\models\user\web\User;
 use yii\base\ErrorException;
 use yii\base\Exception;
@@ -17,6 +18,7 @@ use yii\base\InvalidArgumentException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
+use yii\helpers\Inflector;
 use yii\helpers\Json;
 use yii\helpers\StringHelper;
 use yii\web\Response;
@@ -74,9 +76,25 @@ final class HomeController extends BaseController
      * Show home page.
      * @return string|View
      * @throws InvalidArgumentException
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionIndex()
     {
+        // Notes
+        /** @var UserIdentity $user */
+        $user = \Yii::$app->getUser()->getIdentity();
+        if ($user->load(\Yii::$app->getRequest()->post())) {
+            $user->password = null;
+            if ($user->update()) {
+                \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'zametki sohraneny'));
+            } else {
+                $errors = $user->getErrorSummary(true);
+                $errors_str = Inflector::sentence($errors, '<br>', '<br>', '<br>');
+                \Yii::$app->getSession()->setFlash('error', $errors_str);
+            }
+        }
+
         // Log
         $logSearchModel = new LogSearch;
         $logDataProvider = $logSearchModel->search(

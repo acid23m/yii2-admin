@@ -29,7 +29,11 @@ $this->params['title'] = $this->title;
         <!--/Server-->
     </div>
 
-    <div class="col-xs-12 col-md-6"></div>
+    <div class="col-xs-12 col-md-6">
+        <!--Notes-->
+        <?= $this->render('_user_note', compact('user')) ?>
+        <!--/Notes-->
+    </div>
 </div>
 
 <!-- Log -->

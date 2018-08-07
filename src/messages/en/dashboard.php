@@ -129,8 +129,10 @@ return [
     'dobavit' => 'Add',
     'obnovit' => 'Update',
     'otpravit' => 'Send',
+    'sohranit' => 'Save',
     'udalit vse' => 'Delete All',
     'udalit otmechennie' => 'Delete selected',
     'sbrosit tablicu' => 'Reload Table',
-    'vipolnaetsya' => 'In progress..'
+    'vipolnaetsya' => 'In progress..',
+    'perehod na novuyu stroku i abzac' => 'Start a new line - Shift+Enter, the transition to a new paragraph - Enter. It is recommended to insert a ready-made text using Ctrl+Shift+V (paste text only) and just format it in this editor.',
 ];

@@ -123,7 +123,7 @@ class UserRecord extends ActiveRecord
                 'required',
                 'when' => function ($model, $attribute) {
                     /** @var UserRecord $model */
-                    return $model->isNewRecord;
+                    return $model->getIsNewRecord();
                 },
                 'enableClientValidation' => false
             ],
@@ -294,7 +294,7 @@ class UserRecord extends ActiveRecord
             /** @var ManagerInterface $auth_manager */
             $auth_manager = (\Yii::$app instanceof \yii\console\Application)
                 ? \Yii::$app->get('authManagerBackend')
-                : \Yii::$app->authManager;
+                : \Yii::$app->getAuthManager();
             $auth_manager->assign($auth_manager->getRole($this->role), $this->id);
         }
 
@@ -311,7 +311,7 @@ class UserRecord extends ActiveRecord
             /** @var ManagerInterface $auth_manager */
             $auth_manager = (\Yii::$app instanceof \yii\console\Application)
                 ? \Yii::$app->get('authManagerBackend')
-                : \Yii::$app->authManager;
+                : \Yii::$app->getAuthManager();
 
             $auth_manager->revoke($auth_manager->getRole($this->role), $this->id);
 
