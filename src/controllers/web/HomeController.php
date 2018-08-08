@@ -196,4 +196,30 @@ final class HomeController extends BaseController
         return $this->renderPartial('phpinfo');
     }
 
+    /**
+     * Clear application cache.
+     * @return Response
+     */
+    public function actionClearCache(): Response
+    {
+        clearstatcache(true);
+
+        if (\extension_loaded('Zend OPcache')) {
+            opcache_reset();
+        }
+
+        $cache = \Yii::$app->getCache();
+
+        if ($cache === null) {
+            \Yii::$app->getSession()->setFlash('warning', \Yii::t('dashboard', 'kesh ne skonfigurirovan'));
+
+            return $this->goHome();
+        }
+
+        $cache->flush();
+        \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'kesh ochishen'));
+
+        return $this->goHome();
+    }
+
 }

@@ -120,6 +120,15 @@ return [
     'zanyato' => 'Занято',
     'svobodno' => 'Свободно',
     'disk' => 'Диск',
+
+    // service
+    'obsluzhivanie' => 'Обслуживание',
+    'kesh' => 'Кэш',
+    'sbrosit kesh vruchnuyu' => 'Не весь кэшируемый на сервере контент автоматически обновляется. Для обновления можно вручную сбросить кэш.',
+    'sbrosit kesh' => 'Сбросить кэш',
+    'kesh ochishen' => 'Кэш очищен.',
+    'kesh ne skonfigurirovan' => 'Компонент Cache не сконфигурирован.',
+    'papka resursov ochishena' => 'Папка ресурсов очищена.',
     
     // common
     'zapis ne sushestvuet' => 'Запись не существует.',

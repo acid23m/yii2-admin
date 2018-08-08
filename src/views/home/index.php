@@ -18,21 +18,27 @@ $this->params['title'] = $this->title;
 
 <div class="row">
     <div class="col-xs-12 col-md-6">
-        <!--User-->
+        <!-- User -->
         <?= $this->render('_user', compact('user')) ?>
-        <!--/User-->
+        <!-- /User -->
 
-        <!--Server-->
+        <!-- Server -->
         <?php if (\Yii::$app->getUser()->can($user::ROLE_ADMIN)): ?>
             <?= $this->render('_server') ?>
         <?php endif ?>
-        <!--/Server-->
+        <!-- /Server -->
     </div>
 
     <div class="col-xs-12 col-md-6">
-        <!--Notes-->
+        <!-- Notes -->
         <?= $this->render('_user_note', compact('user')) ?>
-        <!--/Notes-->
+        <!-- /Notes -->
+
+        <!-- Service -->
+        <?php if (\Yii::$app->getUser()->can($user::ROLE_ADMIN)): ?>
+            <?= $this->render('_service', compact('user')) ?>
+        <?php endif ?>
+        <!-- /Service -->
     </div>
 </div>
 

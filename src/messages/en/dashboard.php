@@ -121,6 +121,15 @@ return [
     'svobodno' => 'Available',
     'disk' => 'Disk',
 
+    // service
+    'obsluzhivanie' => 'Maintenance',
+    'kesh' => 'Cache',
+    'sbrosit kesh vruchnuyu' => 'Not all of the cached content on the server is automatically updated. To update, you can manually reset the cache.',
+    'sbrosit kesh' => 'Clear Cache',
+    'kesh ochishen' => 'Cache cleared.',
+    'kesh ne skonfigurirovan' => 'Cache Component is not configured.',
+    'papka resursov ochishena' => 'Assets Folder cleared.',
+
     // common
     'zapis ne sushestvuet' => 'Record is not exist.',
     'vremya sozdaniya' => 'Created At',
