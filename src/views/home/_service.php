@@ -32,11 +32,18 @@ use yii\bootstrap\Tabs;
             </div>
             <div class="x_content">
                 <?= Tabs::widget([
+                    'options' => [
+                        'class' => 'bar_tabs'
+                    ],
                     'items' => [
                         [
                             'label' => \Yii::t('dashboard', 'kesh'),
                             'content' => $this->render('_service_cache'),
                             'active' => true
+                        ],
+                        [
+                            'label' => \Yii::t('dashboard', 'resursi'),
+                            'content' => $this->render('_service_assets')
                         ]
                     ]
                 ]) ?>

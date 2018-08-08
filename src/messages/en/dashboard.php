@@ -8,7 +8,7 @@ return [
     'osnovnoe' => 'General',
     'glavnaya' => 'Home',
     'privet' => 'Welcome',
-    
+
     // users
     'imya polzovatelya' => 'Username',
     'parol' => 'Password',
@@ -44,7 +44,7 @@ return [
     'dobavit polzovatelya' => 'Add User',
     'obnovit polzovatelya' => 'Update User:',
     'obnovit token' => 'Update API ID',
-    
+
     // auth
     'dostup ogranichen' => 'Restricted Access Area',
     'voyti' => 'Log in',
@@ -129,6 +129,9 @@ return [
     'kesh ochishen' => 'Cache cleared.',
     'kesh ne skonfigurirovan' => 'Cache Component is not configured.',
     'papka resursov ochishena' => 'Assets Folder cleared.',
+    'resursi' => 'Assets',
+    'direktoriya s resursami' => 'Assets Directory - a temporary folder styles, scripts, images and other files with additional plug-ins and extensions. Sometime it can be cleaned.',
+    'ochistit papku s resursami' => 'Clear Assets Folder',
 
     // common
     'zapis ne sushestvuet' => 'Record is not exist.',

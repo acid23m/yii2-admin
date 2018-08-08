@@ -222,4 +222,42 @@ final class HomeController extends BaseController
         return $this->goHome();
     }
 
+    /**
+     * Clear assets folders.
+     * @return Response
+     * @throws ErrorException
+     * @throws Exception
+     * @throws InvalidArgumentException
+     */
+    public function actionClearAssets(): Response
+    {
+        $path1 = \Yii::getAlias('@frontend/web/assets');
+        $path2 = \Yii::getAlias('@backend/web/assets');
+
+        /**
+         * Create .gitignore file.
+         * @param string $path
+         */
+        $create_gitignore = function (string $path): void {
+            $content = '*' . PHP_EOL . '!.gitignore' . PHP_EOL;
+            $file = fopen($path . '/.gitignore', 'wb');
+            fwrite($file, $content);
+            fclose($file);
+            chmod($path . '/.gitignore', PERM_FILE);
+        };
+
+        FileHelper::removeDirectory($path1);
+        FileHelper::removeDirectory($path2);
+
+        FileHelper::createDirectory($path1, PERM_DIR);
+        FileHelper::createDirectory($path2, PERM_DIR);
+
+        $create_gitignore($path1);
+        $create_gitignore($path2);
+
+        \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'papka resursov ochishena'));
+
+        return $this->goHome();
+    }
+
 }

@@ -8,7 +8,7 @@ return [
     'osnovnoe' => 'Основное',
     'glavnaya' => 'Главная',
     'privet' => 'Привет',
-    
+
     // users
     'imya polzovatelya' => 'Имя пользователя',
     'parol' => 'Пароль',
@@ -44,7 +44,7 @@ return [
     'dobavit polzovatelya' => 'Добавить пользователя',
     'obnovit polzovatelya' => 'Обновить пользователя:',
     'obnovit token' => 'Обновить API ID',
-    
+
     // auth
     'dostup ogranichen' => 'Зона ограниченного доступа',
     'voyti' => 'Войти',
@@ -129,7 +129,10 @@ return [
     'kesh ochishen' => 'Кэш очищен.',
     'kesh ne skonfigurirovan' => 'Компонент Cache не сконфигурирован.',
     'papka resursov ochishena' => 'Папка ресурсов очищена.',
-    
+    'resursi' => 'Ресурсы',
+    'direktoriya s resursami' => 'Директория с ресурсами - это временная папка со стилями, скриптами, изображениями и другими дополнительными файлами плагинов и расширений. Переодически её можно очищать.',
+    'ochistit papku s resursami' => 'Очистить папку с ресурсами',
+
     // common
     'zapis ne sushestvuet' => 'Запись не существует.',
     'vremya sozdaniya' => 'Время создания',
