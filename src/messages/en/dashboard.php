@@ -132,6 +132,9 @@ return [
     'resursi' => 'Assets',
     'direktoriya s resursami' => 'Assets Directory - a temporary folder styles, scripts, images and other files with additional plug-ins and extensions. Sometime it can be cleaned.',
     'ochistit papku s resursami' => 'Clear Assets Folder',
+    'baza dannih' => 'Database',
+    'ostorozhno s bazoy' => 'Direct interaction with the database is not recommended. Use the editor only if you know what you are doing!',
+    'redaktor bazy' => 'Database Editor',
 
     // common
     'zapis ne sushestvuet' => 'Record is not exist.',

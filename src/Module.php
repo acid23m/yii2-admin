@@ -351,6 +351,33 @@ SQL
 
             chmod($user_db_file, PERM_FILE);
         }
+
+        // check adminer
+        $adminer_dir = \Yii::getAlias('@backend/web/adminer');
+        if (!file_exists($adminer_dir)) {
+            FileHelper::createDirectory($adminer_dir);
+        }
+
+        $adminer_index = \Yii::getAlias('@vendor/dg/adminer-custom/index.php');
+        $adminer_index_sl = $adminer_dir . '/index.php';
+        try {
+            if (!\linkinfo($adminer_index_sl)) {
+                \symlink($adminer_index, $adminer_index_sl);
+            }
+        } catch (\Throwable $e) {
+            \symlink($adminer_index, $adminer_index_sl);
+
+        }
+
+        $admin_css = \Yii::getAlias('@vendor/dg/adminer-custom/adminer.css');
+        $admin_css_sl = $adminer_dir . '/adminer.css';
+        try {
+            if (!linkinfo($admin_css_sl)) {
+                \symlink($admin_css, $admin_css_sl);
+            }
+        } catch (\Throwable $e) {
+            \symlink($admin_css, $admin_css_sl);
+        }
     }
 
     /**

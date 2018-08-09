@@ -41,6 +41,10 @@ use yii\bootstrap\Tabs;
                         [
                             'label' => \Yii::t('dashboard', 'resursi'),
                             'content' => $this->render('_service_assets')
+                        ],
+                        [
+                            'label' => \Yii::t('dashboard', 'baza dannih'),
+                            'content' => $this->render('_service_bd', compact('user'))
                         ]
                     ],
                     'options' => [
