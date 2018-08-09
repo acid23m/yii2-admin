@@ -27,6 +27,7 @@
     "vlucas/phpdotenv": "~2.4",
     "matomo/ini": "~2.0",
     "yii-dream-team/yii2-timezone-picker": "~0.1",
+    "dg/adminer-custom": "~1.15",
     "acid23m/yii2-image": "dev-master"
   },
   "autoload": {
