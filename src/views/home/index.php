@@ -6,6 +6,8 @@
  * Time: 1:45
  */
 
+use dashboard\widgets\HomePanel;
+
 /** @var \yii\web\View $this */
 /** @var \dashboard\models\log\LogSearch $logSearchModel */
 /** @var \yii\data\ActiveDataProvider $logDataProvider */
@@ -16,8 +18,12 @@ $this->title = \Yii::t('dashboard', 'panel');
 $this->params['title'] = $this->title;
 ?>
 
+<?= HomePanel::widget(['y_position' => 'top', 'x_position' => 'wide']) ?>
+
 <div class="row">
     <div class="col-xs-12 col-md-6">
+        <?= HomePanel::widget(['y_position' => 'top', 'x_position' => 'left']) ?>
+
         <!-- User -->
         <?= $this->render('_user', compact('user')) ?>
         <!-- /User -->
@@ -27,9 +33,13 @@ $this->params['title'] = $this->title;
             <?= $this->render('_server') ?>
         <?php endif ?>
         <!-- /Server -->
+
+        <?= HomePanel::widget(['y_position' => 'bottom', 'x_position' => 'left']) ?>
     </div>
 
     <div class="col-xs-12 col-md-6">
+        <?= HomePanel::widget(['y_position' => 'top', 'x_position' => 'right']) ?>
+
         <!-- Notes -->
         <?= $this->render('_user_note', compact('user')) ?>
         <!-- /Notes -->
@@ -39,8 +49,12 @@ $this->params['title'] = $this->title;
             <?= $this->render('_service', compact('user')) ?>
         <?php endif ?>
         <!-- /Service -->
+
+        <?= HomePanel::widget(['y_position' => 'bottom', 'x_position' => 'right']) ?>
     </div>
 </div>
+
+<?= HomePanel::widget(['y_position' => 'bottom', 'x_position' => 'wide']) ?>
 
 <!-- Log -->
 <?php if (\Yii::$app->getUser()->can($user::ROLE_SUPER)): ?>

@@ -66,6 +66,42 @@ final class Module extends \yii\base\Module implements BootstrapInterface
      * @var string Option view
      */
     public $option_view = 'index';
+    /**
+     * @var string|array Html content (not encoded) for homepage.
+     * It can be string with content, string with path alias to file with content or
+     * array with widget configuration.
+     */
+    public $top_wide_panel = '';
+    /**
+     * @var string|array Html content (not encoded) for homepage.
+     * It can be string with content, string with path alias to file with content or
+     * array with widget configuration.
+     */
+    public $bottom_wide_panel = '';
+    /**
+     * @var string|array Html content (not encoded) for homepage.
+     * It can be string with content, string with path alias to file with content or
+     * array with widget configuration.
+     */
+    public $top_left_panel = '';
+    /**
+     * @var string|array Html content (not encoded) for homepage.
+     * It can be string with content, string with path alias to file with content or
+     * array with widget configuration.
+     */
+    public $top_right_panel = '';
+    /**
+     * @var string|array Html content (not encoded) for homepage.
+     * It can be string with content, string with path alias to file with content or
+     * array with widget configuration.
+     */
+    public $bottom_left_panel = '';
+    /**
+     * @var string|array Html content (not encoded) for homepage.
+     * It can be string with content, string with path alias to file with content or
+     * array with widget configuration.
+     */
+    public $bottom_right_panel = '';
 
     /**
      * @inheritdoc

@@ -15,7 +15,7 @@ use yii\helpers\Url;
 use yii\web\View;
 
 /**
- * Class TopMenu.
+ * Topbar menu.
  *
  * @package dashboard\widgets
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>

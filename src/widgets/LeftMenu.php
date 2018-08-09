@@ -13,7 +13,7 @@ use yii\base\Widget;
 use yii\web\View;
 
 /**
- * Class LeftMenu.
+ * Sidebar menu.
  *
  * @package dashboard\widgets
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>

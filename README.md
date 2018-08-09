@@ -80,7 +80,14 @@ Once the extension is installed, do next:
         ],
         // extend options
         'option_model' => \backend\modules\option\models\Option::class, // must be extended from \dashboard\models\option\Main
-        'option_view' => '@backend/modules/option/views/option'
+        'option_view' => '@backend/modules/option/views/option',
+        // additional content for dashboard homepage
+        'top_wide_panel' => '<p class="bg-red" style="padding:10px">Top Wide HTML Content</p>',
+        'top_right_panel' => [
+            'class' => '\backend\widgets\TopRightPanel'
+        ],
+        'bottom_left_panel' => '@backend/views/bottom_left_panel.php',
+        'bottom_wide_panel' => file_get_contents(__DIR__ . '/../views/panels/bottom_wide_panel.php')
     ]
 ],
 ```
