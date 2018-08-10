@@ -3,8 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var \dashboard\models\user\web\User $model */
+/** @var yii\web\View $this */
+/** @var \dashboard\models\user\web\User $model */
 
 $this->title = Html::encode($model->username);
 $this->params['title'] = $this->title;
