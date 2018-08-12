@@ -37,6 +37,7 @@ use <?= ltrim($generator->searchModelClass, '\\') . (isset($searchModelAlias) ? 
 use yii\data\ActiveDataProvider;
 <?php endif; ?>
 use <?= ltrim($generator->baseControllerClass, '\\') ?>;
+use yii\base\InvalidArgumentException;
 use yii\db\IntegrityException;
 use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
@@ -76,6 +77,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
     /**
      * Lists all <?= $modelClass ?> models.
      * @return string|View
+     * @throws InvalidArgumentException
      */
     public function actionIndex()
     {
@@ -97,6 +99,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
      * Displays a single <?= $modelClass ?> model.
      * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
      * @return string|View
+     * @throws InvalidArgumentException
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView(<?= $actionParams ?>)
@@ -110,6 +113,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
      * Creates a new <?= $modelClass ?> model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|View|Response
+     * @throws InvalidArgumentException
      */
     public function actionCreate()
     {
@@ -128,6 +132,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
      * If update is successful, the browser will be redirected to the 'view' page.
      * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
      * @return string|View|Response
+     * @throws InvalidArgumentException
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionUpdate(<?= $actionParams ?>)
@@ -176,6 +181,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
      * Deletes an existing <?= $modelClass ?> models.
      * @param string $ids List of ID (array in json format)
      * @return Response
+     * @throws InvalidArgumentException
      */
     public function actionDeleteMultiple($ids): Response
     {
@@ -208,20 +214,21 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
      * @param string $ids List of ID (array in json format)
      * @return Response
      * @throws NotFoundHttpException
+     * @throws InvalidArgumentException
      */
-    /*public function actionSaveOrder($ids): Response
-    {
-        /** @var array $list */
-        $list = Json::decode($ids);
-        foreach ($list as $index => &$id) {
-            $model = $this->findModel($id);
-            $model->moveToPosition($index + 1); // index is zero based, but position is not
-        }
-
-        \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'zapis obnovlena'));
-
-        return $this->redirect(['index']);
-    }*/
+//    public function actionSaveOrder($ids): Response
+//    {
+//        /** @var array $list */
+//        $list = Json::decode($ids);
+//        foreach ($list as $index => $id) {
+//            $model = $this->findModel($id);
+//            $model->moveToPosition($index + 1); // index is zero based, but position is not
+//        }
+//
+//        \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'zapis obnovlena'));
+//
+//        return $this->redirect(['index']);
+//    }
 
     /**
      * Finds the <?= $modelClass ?> model based on its primary key value.

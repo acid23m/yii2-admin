@@ -29,7 +29,7 @@ class BaseController extends Controller
     /**
      * @inheritdoc
      */
-    public $layout = 'main';
+    public $layout = '@vendor/acid23m/yii2-admin/src/views/layouts/main';
 
     /**
      * @inheritdoc

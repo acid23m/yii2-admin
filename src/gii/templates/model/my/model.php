@@ -29,6 +29,9 @@ use yii2tech\ar\position\PositionBehavior;
 <?php if (isset($properties['deleted'])):  ?>
 use yii2tech\ar\softdelete\SoftDeleteBehavior;
 <?php endif ?>
+<?php if (isset($properties['slug'])):  ?>
+use yii\behaviors\SluggableBehavior;
+<?php endif ?>
 <?php if ($generator->db !== 'db'): ?>
 use yii\db\Connection;
 <?php endif ?>
@@ -68,7 +71,7 @@ use yii\db\Connection;
  * @method int|false safeDelete() Attempts to perform regular [[BaseActiveRecord::delete()]], if it fails with exception, falls back to [[softDelete()]].
 <?php endif ?>
  *
- * @package <?= $generator->ns ?>
+ * @package <?= $generator->ns . "\n" ?>
  */
 class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
 {
@@ -114,10 +117,17 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
 <?php endif ?>
 <?php if (isset($properties['deleted'])):  ?>
             'softDelete' => [
-                'class' => SoftDeleteBehavior::className(),
+                'class' => SoftDeleteBehavior::class,
                 'softDeleteAttributeValues' => [
                     'deleted' => true
                 ]
+            ],
+<?php endif ?>
+<?php if (isset($properties['slug'])):  ?>
+            'slug' => [
+                'class' => SluggableBehavior::class,
+                'attribute' => 'slug'
+                // 'ensureUnique' => true
             ]
 <?php endif ?>
         ];
@@ -161,7 +171,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
      * @inheritdoc
      * @return <?= $queryClassFullName ?> the active query used by this AR class.
      */
-    public static function find(): <?= $queryClassFullName ?>
+    public static function find(): <?= $queryClassFullName . "\n" ?>
     {
         return new <?= $queryClassFullName ?>(static::class);
     }

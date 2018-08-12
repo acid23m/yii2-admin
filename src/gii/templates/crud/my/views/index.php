@@ -12,13 +12,12 @@ $nameAttribute = $generator->getNameAttribute();
 echo "<?php\n";
 ?>
 
-use yii\bootstrap\ButtonGroup;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\CheckboxColumn;
 use yii\grid\SerialColumn;
-use <?= $generator->indexWidgetType === 'grid' ? "use yiister\\gentelella\\widgets\\grid\\GridView;" : "yii\\widgets\\ListView" ?>;
+use <?= $generator->indexWidgetType === 'grid' ? "yiister\\gentelella\\widgets\\grid\\GridView" : "yii\\widgets\\ListView" ?>;
 <?= $generator->enablePjax ? 'use yii\widgets\Pjax;' : '' ?>
 
 /** @var \yii\web\View $this */
@@ -67,7 +66,7 @@ $this->registerJs('
             'class' => 'btn btn-danger',
             'disabled' => 'disabled',
             'data' => [
-                'confirm' => \Yii::t('common', 'Udalit zapisi?'),
+                'confirm' => \Yii::t('yii', 'Are you sure you want to delete this item?'),
                 'method' => 'post',
                 'pjax' => 0
             ]
@@ -108,8 +107,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
 
             [
                 'class' => ActionColumn::class,
-                'viewOptions' => ['class' => 'js_show_progress'],
-                'updateOptions' => ['class' => 'js_show_progress']
+                'buttonOptions' => ['class' => 'js_show_progress']
             ]
         ]
     ]) ?>

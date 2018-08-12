@@ -37,12 +37,12 @@ final class <?= $className ?> extends \yii\base\Module
 
         $this->defaultRoute = 'default/index';
 
-        \Yii::$app->i18n->translations['MODULE*'] = [ // TODO: change translate id
+        \Yii::$app->i18n->translations["{$this->id}*"] = [
             'class' => PhpMessageSource::class,
-            'basePath' => '@backend/modules/MODULE/messages', // TODO: change path to messages
+            'basePath' => "@backend/modules/{$this->id}/messages",
             'fileMap' => [ // TODO: change or remove file map
-                'MODULE/tr1' => 'tr1.php',
-                'MODULE/tr2' => 'tr2.php'
+                "{$this->id}/tr1" => 'tr1.php',
+                "{$this->id}/tr2" => 'tr2.php'
             ]
         ];
     }
