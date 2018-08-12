@@ -56,7 +56,9 @@ $status_list = $model->getList('statuses');
                                     'previewFileType' => 'image',
                                     'showUpload' => false,
                                     'browseClass' => 'btn btn-default',
-                                    'initialPreview' => empty($model->avatar) ? [] : [$model->avatar],
+                                    'initialPreview' => empty($model->avatar) || $model->avatar === null
+                                        ? []
+                                        : [$model->avatar],
                                     'initialPreviewAsData' => true,
                                     'initialCaption' => 'Avatar',
                                     'overwriteInitial' => false

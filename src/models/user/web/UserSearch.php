@@ -85,37 +85,37 @@ final class UserSearch extends User
         if (!empty($this->last_access)) {
             if (strpos($this->last_access, ',') !== false) {
                 [$last_access_start, $last_access_end] = explode(',', $this->last_access);
-                $query->andFilterWhere(['between', 'user.last_access', $last_access_start, $last_access_end]);
+                $query->andFilterWhere(['between', '{{user]].[[last_access]]', $last_access_start, $last_access_end]);
             } else {
-                $query->andFilterWhere(['user.last_access' => $this->last_access]);
+                $query->andFilterWhere(['{{user}}.[[last_access]]' => $this->last_access]);
             }
         }
         if (!empty($this->created_at)) {
             if (strpos($this->created_at, ',') !== false) {
                 [$created_at_start, $created_at_end] = explode(',', $this->created_at);
-                $query->andFilterWhere(['between', 'user.created_at', $created_at_start, $created_at_end]);
+                $query->andFilterWhere(['between', '{{user]].[[created_at]]', $created_at_start, $created_at_end]);
             } else {
-                $query->andFilterWhere(['user.created_at' => $this->created_at]);
+                $query->andFilterWhere(['{{user}}.[[created_at]]' => $this->created_at]);
             }
         }
         if (!empty($this->updated_at)) {
             if (strpos($this->updated_at, ',') !== false) {
                 [$updated_at_start, $updated_at_end] = explode(',', $this->updated_at);
-                $query->andFilterWhere(['between', 'user.updated_at', $updated_at_start, $updated_at_end]);
+                $query->andFilterWhere(['between', '{{user}}.[[updated_at]]', $updated_at_start, $updated_at_end]);
             } else {
-                $query->andFilterWhere(['user.updated_at' => $this->updated_at]);
+                $query->andFilterWhere(['{{user}}.[[updated_at]]' => $this->updated_at]);
             }
         }
 
         $query->andFilterWhere([
-            'user.id' => $this->id,
-            'user.role' => $this->role,
-            'user.status' => $this->status
+            '{{user}}.[[id]]' => $this->id,
+            '{{user}}.[[role]]' => $this->role,
+            '{{user}}.[[status]]' => $this->status
         ]);
 
-        $query->andFilterWhere(['like', 'user.username', $this->username])
-            ->andFilterWhere(['like', 'user.email', $this->email])
-            ->andFilterWhere(['like', 'user.ip', $this->ip]);
+        $query->andFilterWhere(['like', '{{user}}.[[username]]', $this->username])
+            ->andFilterWhere(['like', '{{user}}.[[email]]', $this->email])
+            ->andFilterWhere(['like', '{{user}}.[[ip]]', $this->ip]);
 
         return $dataProvider;
     }

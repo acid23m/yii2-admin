@@ -71,7 +71,7 @@ class User extends UserRecord
     public function rules(): array
     {
         $rules = [
-            [['avatar_file'], 'image', 'mimeTypes' => ['image/*']]
+            [['avatar_file'], 'image', 'skipOnEmpty' => !$this->isNewRecord, 'mimeTypes' => ['image/*']]
         ];
 
         return ArrayHelper::merge(parent::rules(), $rules);
@@ -119,6 +119,16 @@ class User extends UserRecord
 
     /**
      * @inheritdoc
+     */
+    public function beforeValidate(): bool
+    {
+        $this->avatar_file = UploadedFile::getInstance($this, 'avatar_file');
+
+        return parent::beforeValidate();
+    }
+
+    /**
+     * @inheritdoc
      * @param $insert
      * @return bool
      * @throws \ImageOptimizer\Exception\Exception
@@ -128,18 +138,16 @@ class User extends UserRecord
     public function beforeSave($insert): bool
     {
         if (parent::beforeSave($insert)) {
-            // save avatar
-            $image = UploadedFile::getInstance($this, 'avatar_file');
             // save uploaded as new
-            if ($image !== null) {
-                $imagetool = new Image($image->tempName, [
+            if ($this->avatar_file !== null) {
+                $imagetool = new Image($this->avatar_file->tempName, [
                     'quality' => 75
                 ]);
                 $imagetool->resizeProportional(self::AVATAR_WIDTH, self::AVATAR_HEIGHT);
                 $this->avatar = $imagetool->encode(Image::FORMAT_DATA_URI);
             }
             // create avatar
-            if ($insert && $image === null) {
+            if ($insert && $this->avatar_file === null) {
                 $image_manager = new ImageManager(['driver' => 'imagick']);
                 $str = mb_strtoupper(mb_substr($this->username, 0, 2));
                 $this->avatar = (string) $image_manager

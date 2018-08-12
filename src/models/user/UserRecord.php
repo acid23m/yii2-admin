@@ -9,6 +9,7 @@
 namespace dashboard\models\user;
 
 use dashboard\traits\DateTime;
+use imagetool\helpers\File;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
@@ -314,6 +315,13 @@ class UserRecord extends ActiveRecord
                 : \Yii::$app->getAuthManager();
 
             $auth_manager->revoke($auth_manager->getRole($this->role), $this->id);
+
+            // delete avatar
+            $avatar_path = File::getPath($this->avatar);
+            try {
+                unlink($avatar_path);
+            } catch (\Throwable $e) {
+            }
 
             return true;
         }
