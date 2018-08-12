@@ -59,7 +59,7 @@ $enctype_list = $model->getList('mail_gate_encryptions');
                             'previewFileType' => 'image',
                             'showUpload' => false,
                             'browseClass' => 'btn btn-default',
-                            'initialPreview' => empty($model->get('app_logo')) || is_null($model->get('app_logo'))
+                            'initialPreview' => empty($model->get('app_logo')) || $model->get('app_logo') === null
                                 ? []
                                 : [File::getUrl($model->get('app_logo'))],
                             'initialPreviewAsData' => true,
