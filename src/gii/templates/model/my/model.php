@@ -120,7 +120,8 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
                 'class' => SoftDeleteBehavior::class,
                 'softDeleteAttributeValues' => [
                     'deleted' => true
-                ]
+                ],
+                'invokeDeleteEvents' => false
             ],
 <?php endif ?>
 <?php if (isset($properties['slug'])):  ?>

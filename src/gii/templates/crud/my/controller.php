@@ -66,7 +66,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
             ],
             [
                 'allow' => true,
-                'actions' => ['create', 'update', 'delete', 'delete-multiple'],
+                'actions' => ['create', 'update', 'delete', 'delete-multiple', 'restore', 'save-order'],
                 'roles' => [User::ROLE_MODER]
             ]
         ];
@@ -208,6 +208,22 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
 
         return $this->redirect(['index']);
     }
+
+    /**
+     * Restore <?= $modelClass ?> model.
+     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
+     * @return Response
+     * @throws NotFoundHttpException
+     */
+//    public function actionRestore(<?= $actionParams ?>): Response
+//    {
+//        $model = $this->findModel(<?= $actionParams ?>);
+//        $model->restore();
+//
+//        \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'zapis vosstanovlena'));
+//
+//        return $this->redirect(['view', <?= $urlParams ?>]);
+//    }
 
     /**
      * Change positions of an existing <?= $modelClass ?> models.

@@ -43,6 +43,12 @@ final class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClas
         return $this;
     }*/
 
+    /*public function deleted(): self
+    {
+        $this->andWhere('[[deleted]]=1');
+        return $this;
+    }*/
+
     /**
      * @inheritdoc
      * @return <?= $modelFullClassName ?>[]|array

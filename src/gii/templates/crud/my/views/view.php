@@ -25,8 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-view">
 
-    <h1 class="page-header"><?= "<?= " ?>Html::encode($this->title) ?></h1>
-
     <p>
         <?= "<?= " ?>Html::a(\Yii::t('yii', 'Update'), ['update', <?= $urlParams ?>], [
             'class' => 'btn btn-primary js_show_progress'
