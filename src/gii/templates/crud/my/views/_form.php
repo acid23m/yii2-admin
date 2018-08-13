@@ -43,16 +43,14 @@ use yii\helpers\Html;
                 </div>
 
                 <div class="panel-footer">
-                    <div class="form-group">
-                        <?= "<?= " ?>Html::submitButton($model->isNewRecord
-                            ? \Yii::t('dashboard', 'sozdat')
-                            : \Yii::t('dashboard', 'sohranit'), [
-                                'class' => $model->isNewRecord
-                                    ? 'btn btn-success js_show_progress'
-                                    : 'btn btn-primary js_show_progress'
-                            ]
-                        ) ?>
-                    </div>
+                    <?= "<?= " ?>Html::submitButton($model->isNewRecord
+                        ? \Yii::t('dashboard', 'sozdat')
+                        : \Yii::t('dashboard', 'sohranit'), [
+                            'class' => $model->isNewRecord
+                                ? 'btn btn-success js_show_progress'
+                                : 'btn btn-primary js_show_progress'
+                        ]
+                    ) ?>
                 </div>
 
                 <?= "<?php " ?>ActiveForm::end() ?>

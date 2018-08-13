@@ -31,23 +31,61 @@ namespace <?= $generator->queryNs ?>;
  */
 final class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\') . "\n" ?>
 {
+    /**
+     * Get published items.
+     * @return $this
+     */
     /*public function published(): self
     {
         $this->andWhere('[[status]]=1');
+
         return $this;
     }*/
 
+    /**
+     * Get not deleted items.
+     * @return $this
+     */
     /*public function actual(): self
     {
         $this->andWhere('[[deleted]]=0');
+
         return $this;
     }*/
 
+    /**
+     * Get deleted items.
+     * @return $this
+     */
     /*public function deleted(): self
     {
         $this->andWhere('[[deleted]]=1');
+
         return $this;
     }*/
+
+    /**
+     * Sort items by position.
+     * @return $this
+     */
+    /*public function ordered(): self
+    {
+        $this->orderBy('[[position]] ASC');
+
+        return $this;
+    }*/
+
+    /**
+     * Show item by its slug parameter.
+     * @param string $slug
+     * @return $this
+     */
+    public function show(string $slug): self
+    {
+        $this->andWhere(['[[slug]]' => $slug]);
+
+        return $this;
+    }
 
     /**
      * @inheritdoc

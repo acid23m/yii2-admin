@@ -85,13 +85,27 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
         $searchModel = new <?= $searchModelAlias ?? $searchModelClass ?>();
         $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
 
-        return $this->render('index', compact('searchModel', 'dataProvider'));
+        // sort items
+//        $data = <?= $modelClass ?>::find()->published()->actual()->ordered()->all();
+//        $sortItems = [];
+//        foreach ($data as &$item) {
+//            $sortItems[$item->position] = $item;
+//        }
+
+        return $this->render('index', compact('searchModel', 'dataProvider', 'sortItems'));
 <?php else: ?>
         $dataProvider = new ActiveDataProvider([
             'query' => <?= $modelClass ?>::find()
         ]);
 
-        return $this->render('index', compact('dataProvider'));
+        // sort items
+//        $data = <?= $modelClass ?>::find()->published()->actual()->ordered()->all();
+//        $sortItems = [];
+//        foreach ($data as &$item) {
+//            $sortItems[$item->position] = $item;
+//        }
+
+        return $this->render('index', compact('dataProvider', 'sortItems'));
 <?php endif ?>
     }
 
