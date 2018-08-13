@@ -68,7 +68,8 @@ $status_list = $searchModel->getList('statuses');
                             ? Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options)
                             : '';
                     }
-                ]
+                ],
+                'contentOptions' => ['style' => 'text-align: center; vertical-align: middle;']
             ]
         ]
     ]) ?>
