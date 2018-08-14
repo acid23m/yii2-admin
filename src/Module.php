@@ -102,6 +102,10 @@ final class Module extends \yii\base\Module implements BootstrapInterface
      * array with widget configuration.
      */
     public $bottom_right_panel = '';
+    /**
+     * @var array List of configuration of soft-deletable items
+     */
+    public $trash_items = [];
 
     /**
      * @inheritdoc

@@ -136,6 +136,12 @@ return [
     'ostorozhno s bazoy' => 'Не рекомендуется прямое взаимодействие с базой данных. Используйте редактор, только если знаете, что делаете!',
     'redaktor bazy' => 'Редактор базы данных',
 
+    // trash
+    'korzina' => 'Корзина',
+    'gruppa' => 'Группа',
+    'element' => 'Элемент',
+    'ne mogu vosstanovit' => 'Не удалось восстановить.',
+
     // common
     'vremya sozdaniya' => 'Время создания',
     'vremya obnovleniya' => 'Время обновления',
@@ -183,5 +189,5 @@ return [
     'opisanie stranici' => 'Описание страницы',
     'kluchevie slova' => 'Ключевые слова',
     'meta dannie' => 'Мета-данные страницы',
-    'sortirovka' => 'Сортировка',
+    'sortirovka' => 'Сортировка'
 ];

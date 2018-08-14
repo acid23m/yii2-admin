@@ -137,7 +137,7 @@ $dashboard_module_id = \dashboard\Module::getInstance()->id;
                     <ul class="nav navbar-nav navbar-right">
                         <!-- users -->
                         <li>
-                            <a href="#" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                            <a class="user-profile dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
                                 <img src="<?= $user->avatar ?>" alt="<?= $user->username ?>">
                                 <?= $user->username ?>
                                 <span class=" fa fa-angle-down"></span>
@@ -164,6 +164,7 @@ $dashboard_module_id = \dashboard\Module::getInstance()->id;
                                         <?= \Yii::t('dashboard', 'dobavit polzovatelya') ?>
                                     </a>
                                 </li>
+                                <li class="divider"></li>
                                 <li>
                                     <a href="<?= Url::to(["/{$dashboard_module_id}/auth/logout"]) ?>"
                                        data-method="post"
@@ -178,9 +179,25 @@ $dashboard_module_id = \dashboard\Module::getInstance()->id;
 
                         <!-- options -->
                         <li>
-                            <a href="<?= Url::to(["/{$dashboard_module_id}/option-main/index"]) ?>">
+                            <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-cog"></i>
+                                <span class=" fa fa-angle-down"></span>
                             </a>
+                            <ul class="dropdown-menu dropdown-usermenu pull-right">
+                                <li>
+                                    <a href="<?= Url::to(["/{$dashboard_module_id}/option-main/index"]) ?>">
+                                        <i class="fa fa-wrench pull-right"></i>
+                                        <?= \Yii::t('dashboard', 'osnovnie nastroyki') ?>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="<?= Url::to(["/{$dashboard_module_id}/trash/index"]) ?>">
+                                        <i class="fa fa-trash-o pull-right"></i>
+                                        <?= \Yii::t('dashboard', 'korzina') ?>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <!-- /options -->
 

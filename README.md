@@ -87,7 +87,11 @@ Once the extension is installed, do next:
             'class' => '\backend\widgets\TopRightPanel'
         ],
         'bottom_left_panel' => '@backend/views/bottom_left_panel.php',
-        'bottom_wide_panel' => file_get_contents(__DIR__ . '/../views/panels/bottom_wide_panel.php')
+        'bottom_wide_panel' => file_get_contents(__DIR__ . '/../views/panels/bottom_wide_panel.php'),
+        // items that can be soft deleted (removed to the recycle bin) and can be shown in the recycle bin
+        'trash_items' => [
+            \backend\modules\post\models\PostTrash::class // must implement \dashboard\models\trash\TrashableInterface
+        ]
     ]
 ],
 ```
