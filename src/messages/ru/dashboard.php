@@ -142,6 +142,11 @@ return [
     'element' => 'Элемент',
     'ne mogu vosstanovit' => 'Не удалось восстановить.',
 
+    // sitemap
+    'karta sayta' => 'Карта сайта',
+    'generirovat kartu' => 'Генерировать карту сайта',
+    'sozdanie kart xml' => 'Файлы sitemap.xml помогают в индексировании сайта поисковиками. Главный файл sitemap_index.xml',
+
     // common
     'vremya sozdaniya' => 'Время создания',
     'vremya obnovleniya' => 'Время обновления',
@@ -180,6 +185,7 @@ return [
     'ne udaleno iz za svasannih dannih' => 'Невозможно удалить из-за связанных данных.',
     'zapis obnovlena' => 'Элемент обновлён.',
     'zapis dobavlena' => 'Элемент добавлен.',
+    'gotovo' => 'Готово.',
     'opublikovana' => 'Опубликована',
     'opublikovan' => 'Опубликован',
     'udalena' => 'Удалена',

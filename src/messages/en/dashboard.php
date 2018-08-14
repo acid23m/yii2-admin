@@ -142,6 +142,11 @@ return [
     'element' => 'Element',
     'ne mogu vosstanovit' => 'Could not restore.',
 
+    // sitemap
+    'karta sayta' => 'Sitemap',
+    'generirovat kartu' => 'Generate sitemap',
+    'sozdanie kart xml' => 'Sitemap.xml files help indexing site pages by web crawlers. Main file is sitemap_index.xml',
+
     // common
     'vremya sozdaniya' => 'Created At',
     'vremya obnovleniya' => 'Last Modified',
@@ -180,6 +185,7 @@ return [
     'ne udaleno iz za svasannih dannih' => 'It is impossible to remove item because of the associated data.',
     'zapis obnovlena' => 'Item updated.',
     'zapis dobavlena' => 'Item added.',
+    'gotovo' => 'Done.',
     'opublikovana' => 'Published',
     'opublikovan' => 'Published',
     'udalena' => 'Deleted',

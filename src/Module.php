@@ -106,6 +106,10 @@ final class Module extends \yii\base\Module implements BootstrapInterface
      * @var array List of configuration of soft-deletable items
      */
     public $trash_items = [];
+    /**
+     * @var array Sitemap configuration
+     */
+    public $sitemap_items = [];
 
     /**
      * @inheritdoc

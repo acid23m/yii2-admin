@@ -91,6 +91,10 @@ Once the extension is installed, do next:
         // items that can be soft deleted (removed to the recycle bin) and can be shown in the recycle bin
         'trash_items' => [
             \backend\modules\post\models\PostTrash::class // must implement \dashboard\models\trash\TrashableInterface
+        ],
+        // sitemap config
+        'sitemap_items' => [
+            'class' => \common\models\sitemap\Sitemap::class // must implement \dashboard\models\sitemap\SitemapConfigInterface
         ]
     ]
 ],
@@ -126,7 +130,11 @@ Once the extension is installed, do next:
             $auth->addChild($agent, $default_roles[\dashboard\models\user\web\User::ROLE_MODER]);
             $auth->addChild($agent, $default_permissions['isOwner']);
             $auth->addChild($agent, $receivePayment);
-        }
+        },
+        // sitemap config
+        'sitemap_items' => [
+            'class' => \common\models\sitemap\Sitemap::class // must implement \dashboard\models\sitemap\SitemapConfigInterface
+        ]
     ]
 ],
 ```

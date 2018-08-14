@@ -10,6 +10,7 @@ namespace dashboard\controllers\web;
 
 use dashboard\models\log\LogRecord;
 use dashboard\models\log\LogSearch;
+use dashboard\models\sitemap\SitemapGenerator;
 use dashboard\models\user\UserIdentity;
 use dashboard\models\user\web\User;
 use yii\base\ErrorException;
@@ -47,7 +48,7 @@ final class HomeController extends BaseController
             ],
             [
                 'allow' => true,
-                'actions' => ['clear-cache', 'clear-assets'],
+                'actions' => ['clear-cache', 'clear-assets', 'sitemap'],
                 'roles' => [User::ROLE_AUTHOR]
             ],
             [
@@ -256,6 +257,21 @@ final class HomeController extends BaseController
         $create_gitignore($path2);
 
         \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'papka resursov ochishena'));
+
+        return $this->goHome();
+    }
+
+    /**
+     * Create sitemap files.
+     * @return Response
+     * @throws InvalidArgumentException
+     * @throws \InvalidArgumentException
+     */
+    public function actionSitemap(): Response
+    {
+        SitemapGenerator::write();
+
+        \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'gotovo'));
 
         return $this->goHome();
     }
