@@ -32,7 +32,7 @@
     "yii2tech/ar-softdelete": "~1.0",
     "yii2tech/crontab": "~1.0",
     "samdark/sitemap": "~2.2",
-    "brussens/yii2-maintenance-mode": "dev-master",
+    "brussens/yii2-maintenance-mode": "~0.2",
     "acid23m/yii2-image": "dev-master"
   },
   "require-dev": {
