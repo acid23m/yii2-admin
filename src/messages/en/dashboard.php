@@ -97,6 +97,8 @@ return [
 
     'kartinka kak data uri' => 'Image format is data-uri (data:image/png;base64,)',
 
+    'rezhim obsluzhivaniya' => 'Maintenance Mode',
+
     // log
     'log oshibok' => 'Errors Log',
     'uroven' => 'Level',

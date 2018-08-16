@@ -84,6 +84,8 @@ final class OptionMainController extends BaseRestController
         }
 
         if ($model->load(\Yii::$app->getRequest()->getBodyParams()) && $model->validate() && $model->save()) {
+            $model->triggerMaintenanceMode();
+
             return $model->getAll();
         }
 
@@ -97,16 +99,13 @@ final class OptionMainController extends BaseRestController
      */
     protected function findModel(): \dashboard\models\option\Main
     {
-        $module = \dashboard\Module::getInstance();
-
-        $class_name = $module !== null && $module->option_model !== null
-            ? $module->option_model
-            : Main::class;
-
-        $model = \Yii::createObject($class_name);
+        /** @var Main $option */
+        $model = \Yii::createObject(
+            \Yii::$app->components['option']['class']
+        );
 
         if (!($model instanceof \dashboard\models\option\Main)) {
-            throw new InvalidConfigException('Option model must be extended from \dashboard\models\option\Main.');
+            throw new InvalidConfigException('Option model must be extended from \dashboard\models\option\rest\Main.');
         }
 
         return $model;

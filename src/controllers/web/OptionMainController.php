@@ -47,14 +47,13 @@ class OptionMainController extends BaseController
      */
     public function actionIndex()
     {
-        $module = \dashboard\Module::getInstance();
+        /** @var Main $option */
+        $model = \Yii::createObject(
+            \Yii::$app->components['option']['class']
+        );
 
-        $class_name = $module !== null && $module->option_model !== null
-            ? $module->option_model
-            : Main::class;
-        $model = \Yii::createObject($class_name);
         if (!($model instanceof \dashboard\models\option\Main)) {
-            throw new InvalidConfigException('Option model must be extended from \dashboard\models\option\Main.');
+            throw new InvalidConfigException('Option model must be extended from \dashboard\models\option\web\Main.');
         }
 
         if (\Yii::$app->get('option')->get('site_status') === null) {
@@ -62,10 +61,12 @@ class OptionMainController extends BaseController
         }
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->validate() && $model->save()) {
+            $model->triggerMaintenanceMode();
+
             \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'nastroyki obnovleni'));
         }
 
-        return $this->render($module->option_view, compact('model'));
+        return $this->render(\Yii::$app->get('option')->view, compact('model'));
     }
 
 }

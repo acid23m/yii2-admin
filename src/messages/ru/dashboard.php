@@ -97,6 +97,8 @@ return [
 
     'kartinka kak data uri' => 'Формат изображения - data-uri (data:image/png;base64,)',
 
+    'rezhim obsluzhivaniya' => 'Режим обслуживания',
+
     // log
     'log oshibok' => 'Лог ошибок',
     'uroven' => 'Уровень',

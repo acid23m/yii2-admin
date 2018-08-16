@@ -106,7 +106,15 @@ $enctype_list = $model->getList('mail_gate_encryptions');
                         </div>
 
                         <div class="col-xs-12 col-md-6">
-                            <?= $form->field($model, 'mail_gate_encryption')->dropDownList($enctype_list()) ?>
+                            <?= $form->field($model, 'mail_gate_encryption')->dropDownList($enctype_list(), ['prompt' => '']) ?>
+                        </div>
+                    </div>
+
+
+                    <br>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4">
+                            <?= $form->field($model, 'maintenance_mode')->checkbox() ?>
                         </div>
                     </div>
 

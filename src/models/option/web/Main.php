@@ -54,7 +54,8 @@ class Main extends \dashboard\models\option\Main
             'mail_gate_host' => \Yii::t('dashboard', 'imya servera'),
             'mail_gate_password' => \Yii::t('dashboard', 'parol polzovatelya'),
             'mail_gate_port' => \Yii::t('dashboard', 'port'),
-            'mail_gate_encryption' => \Yii::t('dashboard', 'zashita soedineniya')
+            'mail_gate_encryption' => \Yii::t('dashboard', 'zashita soedineniya'),
+            'maintenance_mode' => \Yii::t('dashboard', 'rezhim obsluzhivaniya')
         ];
     }
 
