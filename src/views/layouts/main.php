@@ -192,6 +192,19 @@ $dashboard_module_id = \dashboard\Module::getInstance()->id;
                                 </li>
                                 <li class="divider"></li>
                                 <li>
+                                    <a href="<?= Url::to(["/{$dashboard_module_id}/metrica/index"]) ?>">
+                                        <i class="fa fa-bar-chart pull-right"></i>
+                                        <?= \Yii::t('dashboard', 'metrika') ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= Url::to(["/{$dashboard_module_id}/script/index"]) ?>">
+                                        <i class="fa fa-code pull-right"></i>
+                                        <?= \Yii::t('dashboard', 'skripty') ?>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
                                     <a href="<?= Url::to(["/{$dashboard_module_id}/trash/index"]) ?>">
                                         <i class="fa fa-trash-o pull-right"></i>
                                         <?= \Yii::t('dashboard', 'korzina') ?>

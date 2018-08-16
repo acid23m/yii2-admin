@@ -99,6 +99,18 @@ return [
 
     'rezhim obsluzhivaniya' => 'Maintenance Mode',
 
+    // metrica
+    'metrika' => 'Analytics Services',
+    'gugl analitika' => 'Google Analytics Tracking ID',
+    'ya metrika' => 'Yandex Metrica Counting Number',
+
+    // scripts
+    'skripty' => 'User Scripts',
+    'razdel head' => 'Section <head> of the Page',
+    'razdel body' => 'At the bottom of the Page before </body>',
+    'zdes mozhno' => 'You can add an optional third-party code, such as a counter, metric, social buttons, the widget information ...',
+    'buddte vnimatelni' => 'Be careful with scripts provided by third parties. The code entered here may affect the performance of the application and create a security risk!',
+
     // log
     'log oshibok' => 'Errors Log',
     'uroven' => 'Level',

@@ -20,7 +20,7 @@ use yii\web\View;
  * @package dashboard\widgets
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
  */
-final class TopMenu extends Widget
+class TopMenu extends Widget
 {
     /**
      * @var array Menu configuration

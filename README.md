@@ -320,7 +320,7 @@ final class Option extends \dashboard\models\option\rest\Main
     /**
      * @inheritdoc
      */
-    public function bootstrap($app)
+    public function bootstrap($app): void
     {
         parent::bootstrap();
 
@@ -417,5 +417,40 @@ Maintenance Mode
 
 Component has additional options [here](https://github.com/brussens/yii2-maintenance-mode#options).
 
-Custom layout at *vendor/acid23m/yii2-admin/src/views/layouts/maintenance.php*
-Custom view at *vendor/acid23m/yii2-admin/src/views/maintenance-mode/index.php*
+Custom layout at *vendor/acid23m/yii2-admin/src/views/layouts/maintenance.php*.
+Custom view at *vendor/acid23m/yii2-admin/src/views/maintenance-mode/index.php*.
+
+
+User scripts
+------------
+
+Add script widgets in the main layout.
+
+- head scripts
+
+```html
+<head>
+    <meta charset="<?= Yii::$app->charset ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php $this->registerCsrfMetaTags() ?>
+    <title><?= Html::encode($this->title) ?></title>
+
+    <?= \dashboard\widgets\HeadScript::widget() ?>
+
+    <?php $this->head() ?>
+</head>
+```
+
+- bottom body scripts and metrics
+
+```html
+<body>
+<?php $this->beginBody() ?>
+
+<?= $content ?>
+
+<?= \dashboard\widgets\BodyScript::widget() ?>
+<?= \dashboard\widgets\Metrica::widget() ?>
+<?php $this->endBody() ?>
+</body>
+```

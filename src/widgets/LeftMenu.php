@@ -18,7 +18,7 @@ use yii\web\View;
  * @package dashboard\widgets
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
  */
-final class LeftMenu extends Widget
+class LeftMenu extends Widget
 {
     /**
      * @var array Menu configuration

@@ -19,7 +19,7 @@ use yii\helpers\StringHelper;
  * @package dashboard\widgets
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
  */
-final class HomePanel extends Widget
+class HomePanel extends Widget
 {
     /**
      * @var string (wide|left|right)

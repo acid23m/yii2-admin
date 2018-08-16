@@ -13,7 +13,6 @@ use dashboard\widgets\LeftMenu;
 use dashboard\widgets\TopMenu;
 use yii\base\BootstrapInterface;
 use yii\base\Exception;
-use yii\base\ExitException;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
 use yii\db\Connection;
@@ -147,7 +146,6 @@ final class Module extends \yii\base\Module implements BootstrapInterface
      * @param \yii\web\Application|\yii\console\Application $app
      * @throws Exception
      * @throws InvalidArgumentException
-     * @throws ExitException
      * @throws InvalidConfigException
      */
     public function bootstrap($app): void
@@ -304,14 +302,14 @@ SQL
 
         }
 
-        $admin_css = \Yii::getAlias('@vendor/dg/adminer-custom/adminer.css');
-        $admin_css_sl = $adminer_dir . '/adminer.css';
+        $adminer_css = \Yii::getAlias('@vendor/dg/adminer-custom/adminer.css');
+        $adminer_css_sl = $adminer_dir . '/adminer.css';
         try {
-            if (!linkinfo($admin_css_sl)) {
-                \symlink($admin_css, $admin_css_sl);
+            if (!linkinfo($adminer_css_sl)) {
+                \symlink($adminer_css, $adminer_css_sl);
             }
         } catch (\Throwable $e) {
-            \symlink($admin_css, $admin_css_sl);
+            \symlink($adminer_css, $adminer_css_sl);
         }
     }
 

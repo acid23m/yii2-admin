@@ -12,6 +12,7 @@ use dashboard\traits\Model;
 use yii\base\BootstrapInterface;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
+use yii\swiftmailer\Mailer;
 use yiidreamteam\widgets\timezone\Validator as TimezoneValidator;
 
 /**
@@ -138,7 +139,7 @@ class Main extends IniConfig implements BootstrapInterface
     /**
      * @inheritdoc
      */
-    public function bootstrap($app)
+    public function bootstrap($app): void
     {
         $options_file_path = \Yii::getAlias(self::FILE_PATH);
         if (!file_exists($options_file_path)) {
