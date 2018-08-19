@@ -33,7 +33,7 @@ class LogRecord extends ActiveRecord
     protected $levels;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function getDb(): Connection
     {
@@ -41,7 +41,7 @@ class LogRecord extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName(): string
     {
@@ -64,7 +64,7 @@ class LogRecord extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels(): array
     {

@@ -24,12 +24,12 @@ use yii\i18n\PhpMessageSource;
 final class <?= $className ?> extends \yii\base\Module
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $controllerNamespace = '<?= $generator->getControllerNamespace() ?>';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init(): void
     {

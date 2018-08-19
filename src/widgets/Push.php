@@ -37,7 +37,7 @@ final class Push extends Widget
     public $closeButton = [];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @throws \Exception
      */
     public function init(): void

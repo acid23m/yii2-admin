@@ -161,6 +161,16 @@ return [
     'generirovat kartu' => 'Генерировать карту сайта',
     'sozdanie kart xml' => 'Файлы sitemap.xml помогают в индексировании сайта поисковиками. Главный файл sitemap_index.xml',
 
+    // task
+    'zadaniya po raspisaniyu' => 'Задания по расписанию',
+    'zadaniya' => 'Задания',
+    'minuta' => 'Минута',
+    'chas' => 'Час',
+    'den' => 'День',
+    'mesac' => 'Месяц',
+    'den nedeli' => 'День недели',
+    'komanda' => 'Команда',
+
     // common
     'vremya sozdaniya' => 'Время создания',
     'vremya obnovleniya' => 'Время обновления',

@@ -23,12 +23,12 @@ use yii\web\ServerErrorHttpException;
 class DeleteAction extends \yii\rest\DeleteAction
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @throws BadRequestHttpException
      * @throws InvalidArgumentException
      * @throws NotFoundHttpException
      */
-    public function run($id)
+    public function run($id): void
     {
         $model = $this->findModel($id);
 

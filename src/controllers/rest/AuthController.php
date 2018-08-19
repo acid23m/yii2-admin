@@ -21,7 +21,7 @@ use yii\web\Response;
 final class AuthController extends BaseRestController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function authMethods(): array
     {
@@ -42,7 +42,7 @@ final class AuthController extends BaseRestController
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function verbs(): array
     {

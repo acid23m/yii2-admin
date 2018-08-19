@@ -34,7 +34,7 @@ use <?= ltrim($generator->modelClass, '\\') . (isset($modelAlias) ? " as $modelA
 final class <?= $searchModelClass ?> extends <?= $modelAlias ?? $modelClass ?> 
 {
     /**
-    * @inheritdoc
+    * {@inheritdoc}
     */
     public function formName(): string
     {
@@ -42,7 +42,7 @@ final class <?= $searchModelClass ?> extends <?= $modelAlias ?? $modelClass ?>
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {
@@ -52,7 +52,7 @@ final class <?= $searchModelClass ?> extends <?= $modelAlias ?? $modelClass ?>
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios(): array
     {

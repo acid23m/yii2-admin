@@ -41,7 +41,7 @@ final class Growl extends Widget
     public $options = [];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @throws \Exception
      */
     public function init(): void

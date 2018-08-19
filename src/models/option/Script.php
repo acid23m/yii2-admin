@@ -31,7 +31,7 @@ class Script extends Model
     public $body_script;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init(): void
     {
@@ -45,7 +45,7 @@ class Script extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {

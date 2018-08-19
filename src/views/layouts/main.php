@@ -205,6 +205,12 @@ $dashboard_module_id = \dashboard\Module::getInstance()->id;
                                 </li>
                                 <li class="divider"></li>
                                 <li>
+                                    <a href="<?= Url::to(["/{$dashboard_module_id}/task/index"]) ?>">
+                                        <i class="fa fa-tasks pull-right"></i>
+                                        <?= \Yii::t('dashboard', 'zadaniya po raspisaniyu') ?>
+                                    </a>
+                                </li>
+                                <li>
                                     <a href="<?= Url::to(["/{$dashboard_module_id}/trash/index"]) ?>">
                                         <i class="fa fa-trash-o pull-right"></i>
                                         <?= \Yii::t('dashboard', 'korzina') ?>

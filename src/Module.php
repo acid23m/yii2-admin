@@ -33,6 +33,7 @@ use yii\web\User;
 final class Module extends \yii\base\Module implements BootstrapInterface
 {
     public const DB_USER = 'dbAdminUser';
+    public const DB_TASK = 'dbAdminTask';
 
     /**
      * @var array Left menu configuration
@@ -96,7 +97,7 @@ final class Module extends \yii\base\Module implements BootstrapInterface
     public $sitemap_items = [];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init(): void
     {
@@ -110,6 +111,11 @@ final class Module extends \yii\base\Module implements BootstrapInterface
                 self::DB_USER => [
                     'class' => Connection::class,
                     'dsn' => 'sqlite:@common/data/userdata.db',
+                    'schemaCacheDuration' => 3600
+                ],
+                self::DB_TASK => [
+                    'class' => Connection::class,
+                    'dsn' => 'sqlite:@common/data/taskdata.db',
                     'schemaCacheDuration' => 3600
                 ],
                 'i18n' => [
@@ -142,7 +148,7 @@ final class Module extends \yii\base\Module implements BootstrapInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @param \yii\web\Application|\yii\console\Application $app
      * @throws Exception
      * @throws InvalidArgumentException
@@ -283,6 +289,30 @@ SQL
             $user_db->exec('CREATE INDEX "auth_assignment_user_id_idx" ON "auth_assignment" ("user_id");');
 
             chmod($user_db_file, PERM_FILE);
+        }
+
+        // check tasks data
+        $task_db_file = \Yii::getAlias('@common/data/taskdata.db');
+
+        if (!file_exists($task_db_file)) {
+            $task_db = new \SQLite3($task_db_file);
+
+            $task_db->exec(<<<'SQL'
+CREATE TABLE "task" (
+    "id" INTEGER PRIMARY KEY NOT NULL,
+    "name" VARCHAR NOT NULL,
+    "min" VARCHAR NOT NULL DEFAULT '*',
+    "hour" VARCHAR NOT NULL DEFAULT '*',
+    "day" VARCHAR NOT NULL DEFAULT '*',
+    "month" VARCHAR NOT NULL DEFAULT '*',
+    "weekDay" VARCHAR NOT NULL DEFAULT '*',
+    "command" VARCHAR NOT NULL,
+    "status" INTEGER NOT NULL DEFAULT 0
+);
+SQL
+            );
+
+            chmod($task_db_file, PERM_FILE);
         }
 
         // check adminer

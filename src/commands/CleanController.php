@@ -68,6 +68,7 @@ final class CleanController extends Controller
             $this->delAssets($app_type);
             Console::updateProgress(++ $i, $total);
         }
+        unset($app_type);
 
         Console::endProgress();
         $this->stdout("Done.\n", Console::FG_GREEN);

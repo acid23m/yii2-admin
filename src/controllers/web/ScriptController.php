@@ -10,6 +10,7 @@ namespace dashboard\controllers\web;
 
 use dashboard\models\option\web\Script;
 use dashboard\models\user\web\User;
+use yii\base\InvalidArgumentException;
 use yii\web\View;
 
 /**
@@ -21,7 +22,7 @@ use yii\web\View;
 final class ScriptController extends BaseController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors(): array
     {
@@ -40,7 +41,7 @@ final class ScriptController extends BaseController
     /**
      * Update settings.
      * @return string|View
-     * @throws \yii\base\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function actionIndex()
     {

@@ -8,6 +8,7 @@
 
 namespace dashboard\commands;
 
+use yii\base\InvalidArgumentException;
 use yii\console\Controller;
 use yii\console\ExitCode;
 
@@ -22,7 +23,7 @@ final class PccController extends Controller
     /**
      * Check current PHP configuration for potential security flaws.
      * @return int
-     * @throws \yii\base\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function actionIndex(): int
     {

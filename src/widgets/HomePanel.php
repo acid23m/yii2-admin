@@ -31,7 +31,7 @@ class HomePanel extends Widget
     public $y_position = 'top';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return string
      * @throws InvalidConfigException
      * @throws InvalidArgumentException

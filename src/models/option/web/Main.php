@@ -26,7 +26,7 @@ use yii\web\UploadedFile;
 class Main extends \dashboard\models\option\Main
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {
@@ -38,7 +38,7 @@ class Main extends \dashboard\models\option\Main
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels(): array
     {
@@ -60,7 +60,7 @@ class Main extends \dashboard\models\option\Main
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @throws InvalidArgumentException
      * @throws InvalidConfigException
      * @throws \ImageOptimizer\Exception\Exception

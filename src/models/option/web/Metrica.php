@@ -17,7 +17,7 @@ namespace dashboard\models\option\web;
 class Metrica extends \dashboard\models\option\Metrica
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels(): array
     {

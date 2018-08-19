@@ -23,7 +23,7 @@ class Metrica extends IniConfig
     public const INI_FILE_EXAMPLE_PATH = '@vendor/acid23m/yii2-admin/src/.script.ini.example';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init(): void
     {
@@ -41,7 +41,7 @@ class Metrica extends IniConfig
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {

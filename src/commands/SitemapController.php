@@ -9,6 +9,8 @@
 namespace dashboard\commands;
 
 use dashboard\models\sitemap\SitemapGenerator;
+use yii\base\InvalidArgumentException;
+use yii\base\InvalidConfigException;
 use yii\console\Controller;
 use yii\console\ExitCode;
 use yii\helpers\Console;
@@ -25,8 +27,8 @@ final class SitemapController extends Controller
      * Create sitemap files.
      * @return int
      * @throws \InvalidArgumentException
-     * @throws \yii\base\InvalidArgumentException
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidArgumentException
+     * @throws InvalidConfigException
      */
     public function actionIndex(): int
     {

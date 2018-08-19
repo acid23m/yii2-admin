@@ -6,6 +6,7 @@
  * Time: 0:54
  */
 
+use dashboard\models\log\LogSearch;
 use kartik\daterange\DateRangePicker;
 use yii\grid\CheckboxColumn;
 use yii\helpers\Html;
@@ -13,16 +14,19 @@ use yii\helpers\Url;
 use yiister\gentelella\widgets\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var \dashboard\models\log\LogSearch $logSearchModel */
+/** @var LogSearch $logSearchModel */
 /** @var \yii\data\ActiveDataProvider $logDataProvider */
 
 $this->registerJs('
     (function ($) {
-        const $grid = $("#log-grid"),
-            $delBtn = $("#del-log-btn");
+        "use strict";
+        
+        const $grid = $("#log-grid");
+        const $delBtn = $("#del-log-btn");
 
-        $grid.on("change", "input[name^=selection]", function () {
+        $grid.on("change", "input[name^=selection]", () => {
             let keys = $grid.yiiGridView("getSelectedRows");
+            
             if (keys.length > 0) {
                 $delBtn
                     .removeAttr("disabled")
@@ -99,7 +103,7 @@ $level_list = $logSearchModel->getList('levels');
                         [
                             'attribute' => 'level',
                             'value' => function ($model, $key, $index) use ($level_list) {
-                                /** @var \dashboard\models\log\LogSearch $model */
+                                /** @var LogSearch $model */
                                 return $level_list()[$model->level];
                             },
                             'filter' => $level_list()

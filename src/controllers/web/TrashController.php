@@ -30,7 +30,7 @@ use yii\web\View;
 final class TrashController extends BaseController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors(): array
     {
@@ -47,7 +47,7 @@ final class TrashController extends BaseController
     }
 
     /**
-     * Show trash items.
+     * Show items in the recycle bin.
      * @return string|View
      * @throws InvalidArgumentException
      * @throws InvalidConfigException
@@ -147,6 +147,11 @@ final class TrashController extends BaseController
         return $this->redirect(['index']);
     }
 
+    /**
+     * Delete items.
+     * @return Response
+     * @throws InvalidConfigException
+     */
     public function actionDeleteMultiple(): Response
     {
         $items = Trash::getItems()->allModels;

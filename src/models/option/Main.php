@@ -63,7 +63,7 @@ class Main extends IniConfig implements BootstrapInterface
     protected $mail_gate_encryptions;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init(): void
     {
@@ -79,7 +79,7 @@ class Main extends IniConfig implements BootstrapInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @throws InvalidArgumentException
      */
     public function rules(): array
@@ -137,7 +137,7 @@ class Main extends IniConfig implements BootstrapInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function bootstrap($app): void
     {
@@ -176,11 +176,6 @@ class Main extends IniConfig implements BootstrapInterface
         if ($app->id === 'app-backend') {
             $app->language = $this->get('admin_lang', 'ru');
             $app->getFormatter()->locale = $this->get('admin_lang', 'ru');
-        }
-
-        // maintenance mode
-        if ($app->id === 'app-frontend' || $app->id === 'app-remote') {
-
         }
 
         $app->getFormatter()->booleanFormat = [

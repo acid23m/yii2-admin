@@ -24,7 +24,7 @@ use yii\web\ErrorAction;
 class BaseRestController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function actions(): array
     {
@@ -42,7 +42,7 @@ class BaseRestController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors(): array
     {

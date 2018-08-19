@@ -21,7 +21,7 @@ use yii\web\View;
 final class MetricaController extends BaseController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors(): array
     {

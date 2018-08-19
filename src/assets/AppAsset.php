@@ -21,23 +21,23 @@ use yiister\gentelella\assets\Asset as GentelellaAsset;
 final class AppAsset extends AssetBundle
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $sourcePath = '@vendor/acid23m/yii2-admin/src/assets';
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $css = [
         'css/site.css'
     ];
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $js = [
         'js/site.js'
     ];
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $depends = [
         YiiAsset::class,

@@ -161,6 +161,16 @@ return [
     'generirovat kartu' => 'Generate sitemap',
     'sozdanie kart xml' => 'Sitemap.xml files help indexing site pages by web crawlers. Main file is sitemap_index.xml',
 
+    // task
+    'zadaniya po raspisaniyu' => 'Scheduled Tasks',
+    'zadaniya' => 'Tasks',
+    'minuta' => 'Minute',
+    'chas' => 'Hour',
+    'den' => 'Day',
+    'mesac' => 'Month',
+    'den nedeli' => 'Day of Week',
+    'komanda' => 'Command',
+
     // common
     'vremya sozdaniya' => 'Created At',
     'vremya obnovleniya' => 'Last Modified',

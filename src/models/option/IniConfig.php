@@ -91,7 +91,7 @@ class IniConfig extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @see get()
      */
     public function __get($key)
@@ -113,7 +113,7 @@ class IniConfig extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @see set()
      */
     public function __set($key, $value)

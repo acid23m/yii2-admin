@@ -88,7 +88,7 @@ final class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClas
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return <?= $modelFullClassName ?>[]|array
      */
     public function all($db = null): array
@@ -97,7 +97,7 @@ final class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClas
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return <?= $modelFullClassName ?>|array|null
      */
     public function one($db = null)

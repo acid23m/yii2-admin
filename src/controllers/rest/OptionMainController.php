@@ -25,7 +25,7 @@ use yii\web\Response;
 final class OptionMainController extends BaseRestController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function authMethods(): array
     {
@@ -35,7 +35,7 @@ final class OptionMainController extends BaseRestController
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     protected function verbs(): array
     {
@@ -45,10 +45,10 @@ final class OptionMainController extends BaseRestController
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @throws ForbiddenHttpException
      */
-    public function checkAccess($action, $model = null, $params = []): void
+    public function checkAccess($action, $model = null, array $params = []): void
     {
         /** @var Main $model */
 

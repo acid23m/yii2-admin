@@ -16,6 +16,7 @@ use dashboard\models\user\web\User;
 use yii\base\ErrorException;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
+use yii\base\InvalidConfigException;
 use yii\filters\VerbFilter;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
@@ -34,7 +35,7 @@ use yii\web\View;
 final class HomeController extends BaseController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors(): array
     {
@@ -266,6 +267,7 @@ final class HomeController extends BaseController
      * @return Response
      * @throws InvalidArgumentException
      * @throws \InvalidArgumentException
+     * @throws InvalidConfigException
      */
     public function actionSitemap(): Response
     {

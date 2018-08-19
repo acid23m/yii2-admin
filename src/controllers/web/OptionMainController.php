@@ -23,7 +23,7 @@ use yii\web\View;
 class OptionMainController extends BaseController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors(): array
     {

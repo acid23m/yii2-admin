@@ -17,7 +17,7 @@ namespace dashboard\models\option\web;
 class Script extends \dashboard\models\option\Script
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels(): array
     {

@@ -27,12 +27,12 @@ use yii\web\ErrorAction;
 class BaseController extends Controller
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $layout = '@vendor/acid23m/yii2-admin/src/views/layouts/main';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors(): array
     {
@@ -111,7 +111,7 @@ class BaseController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function actions(): array
     {
@@ -123,7 +123,7 @@ class BaseController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init(): void
     {

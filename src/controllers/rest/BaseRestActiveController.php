@@ -24,7 +24,7 @@ use yii\web\ErrorAction;
 class BaseRestActiveController extends ActiveController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $serializer = [
         'class' => Serializer::class,
@@ -32,7 +32,7 @@ class BaseRestActiveController extends ActiveController
     ];
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function actions(): array
     {
@@ -46,7 +46,7 @@ class BaseRestActiveController extends ActiveController
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors(): array
     {

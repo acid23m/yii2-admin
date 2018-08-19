@@ -21,7 +21,7 @@ use yii\data\ActiveDataProvider;
 final class LogSearch extends LogRecord
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function formName(): string
     {
@@ -29,7 +29,7 @@ final class LogSearch extends LogRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {
@@ -40,7 +40,7 @@ final class LogSearch extends LogRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function scenarios(): array
     {
