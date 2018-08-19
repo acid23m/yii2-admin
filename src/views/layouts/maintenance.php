@@ -66,11 +66,9 @@ use yii\helpers\Html;
 
         hr {
             width: 10%;
-            color: #fff;
-            border-top: none;
-            border-left: none;
-            border-right: none;
-            border-bottom: 1px solid #fff;
+            height: 1px;
+            background-color: #555;
+            border: none;
             padding: 0;
             margin: 16px 0 32px;
         }
