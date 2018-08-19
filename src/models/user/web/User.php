@@ -40,7 +40,7 @@ class User extends UserRecord
     protected $roles;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function init(): void
     {
@@ -66,7 +66,7 @@ class User extends UserRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {
@@ -78,7 +78,7 @@ class User extends UserRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels(): array
     {
@@ -118,7 +118,7 @@ class User extends UserRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function beforeValidate(): bool
     {
@@ -128,7 +128,7 @@ class User extends UserRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @param $insert
      * @return bool
      * @throws \ImageOptimizer\Exception\Exception

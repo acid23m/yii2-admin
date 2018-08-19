@@ -70,7 +70,7 @@ class UserRecord extends ActiveRecord
     public $password;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @throws InvalidConfigException
      */
     public static function getDb(): Connection
@@ -79,7 +79,7 @@ class UserRecord extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public static function tableName(): string
     {
@@ -87,7 +87,7 @@ class UserRecord extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors(): array
     {
@@ -100,7 +100,7 @@ class UserRecord extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {
@@ -151,7 +151,7 @@ class UserRecord extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return UserQuery the active query used by this AR class.
      */
     public static function find(): UserQuery
@@ -258,7 +258,7 @@ class UserRecord extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @throws Exception
      */
     public function beforeSave($insert): bool
@@ -285,7 +285,7 @@ class UserRecord extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @throws \Exception
      * @throws InvalidConfigException
      */
@@ -303,7 +303,9 @@ class UserRecord extends ActiveRecord
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
+     * @return bool
+     * @throws InvalidArgumentException
      * @throws InvalidConfigException
      */
     public function beforeDelete(): bool

@@ -45,7 +45,7 @@ final class LoginForm extends Model
     private $user = false;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels(): array
     {
@@ -57,7 +57,7 @@ final class LoginForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {

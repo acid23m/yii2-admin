@@ -16,13 +16,14 @@ use yii\base\InvalidConfigException;
 use yii\console\Controller;
 use yii\console\ExitCode;
 use yii\console\widgets\Table;
+use yii\db\Connection;
 use yii\db\StaleObjectException;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Console;
 use yii\rbac\ManagerInterface;
 
 /**
- * Class UserController.
+ * Manage with backend users.
  *
  * @package dashboard\commands
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
@@ -30,7 +31,7 @@ use yii\rbac\ManagerInterface;
 class UserController extends Controller
 {
     /**
-     * @var \yii\db\Connection DB instance
+     * @var Connection DB instance
      */
     protected $db;
     /**
@@ -39,7 +40,7 @@ class UserController extends Controller
     public $force = 'no';
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function options($actionID): array
     {
@@ -47,7 +48,7 @@ class UserController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function optionAliases(): array
     {
@@ -57,7 +58,7 @@ class UserController extends Controller
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @throws InvalidConfigException
      */
     public function init(): void

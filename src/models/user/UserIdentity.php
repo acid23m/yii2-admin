@@ -19,7 +19,7 @@ use yii\web\IdentityInterface;
 final class UserIdentity extends UserRecord implements IdentityInterface
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return string|array|null
      */
     public function getId()
@@ -80,7 +80,7 @@ final class UserIdentity extends UserRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return string
      */
     public function getAuthKey(): string
@@ -89,7 +89,7 @@ final class UserIdentity extends UserRecord implements IdentityInterface
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return bool
      */
     public function validateAuthKey($authKey): bool

@@ -33,7 +33,7 @@ final class TfaCodeForm extends Model
     private $data;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels(): array
     {
@@ -44,7 +44,7 @@ final class TfaCodeForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {
@@ -92,7 +92,7 @@ final class TfaCodeForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function beforeValidate(): bool
     {

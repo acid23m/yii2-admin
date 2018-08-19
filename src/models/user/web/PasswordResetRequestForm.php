@@ -22,7 +22,7 @@ final class PasswordResetRequestForm extends Model
     public $email;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels(): array
     {
@@ -32,7 +32,7 @@ final class PasswordResetRequestForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {

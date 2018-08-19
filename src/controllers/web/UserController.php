@@ -17,7 +17,7 @@ use yii\web\View;
 final class UserController extends BaseController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function behaviors(): array
     {

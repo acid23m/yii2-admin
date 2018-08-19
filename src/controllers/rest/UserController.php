@@ -26,12 +26,12 @@ use yii\web\ForbiddenHttpException;
 final class UserController extends BaseRestActiveController
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public $modelClass = User::class;
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function actions(): array
     {
@@ -44,7 +44,7 @@ final class UserController extends BaseRestActiveController
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function authMethods(): array
     {
@@ -54,7 +54,7 @@ final class UserController extends BaseRestActiveController
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function checkAccess($action, $model = null, $params = []): void
     {

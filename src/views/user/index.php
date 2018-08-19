@@ -18,9 +18,17 @@ $status_list = $searchModel->getList('statuses');
 
 <div class="user-record-index">
 
+    <p>
+        <?= Html::a(\Yii::t('dashboard', 'dobavit polzovatelya'), ['create'], [
+            'class' => 'btn btn-success js_show_progress'
+        ]) ?>
+    </p>
+
     <?= GridView::widget([
+        'id' => 'user-grid',
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'condensed' => true,
         'columns' => [
             'id',
             [
@@ -69,6 +77,7 @@ $status_list = $searchModel->getList('statuses');
                             : '';
                     }
                 ],
+                'buttonOptions' => ['class' => 'js_show_progress'],
                 'contentOptions' => ['style' => 'text-align: center; vertical-align: middle;']
             ]
         ]

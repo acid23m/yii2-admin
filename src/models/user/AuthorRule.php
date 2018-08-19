@@ -13,6 +13,9 @@ use yii\rbac\Rule;
  */
 final class AuthorRule extends Rule
 {
+    /**
+     * {@inheritdoc}
+     */
     public $name = 'isOwner';
 
     /**

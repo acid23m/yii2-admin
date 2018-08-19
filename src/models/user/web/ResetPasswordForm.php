@@ -47,7 +47,7 @@ final class ResetPasswordForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels(): array
     {
@@ -57,7 +57,7 @@ final class ResetPasswordForm extends Model
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {

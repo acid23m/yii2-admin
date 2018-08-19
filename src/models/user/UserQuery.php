@@ -36,7 +36,7 @@ final class UserQuery extends ActiveQuery
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return UserRecord[]|array
      */
     public function all($db = null): array
@@ -45,7 +45,7 @@ final class UserQuery extends ActiveQuery
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @return UserRecord|array|null
      */
     public function one($db = null)
