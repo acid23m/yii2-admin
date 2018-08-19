@@ -61,6 +61,10 @@
     {
       "type": "git",
       "url": "git@github.com:acid23m/yii2-image.git"
+    },
+    {
+      "type": "git",
+      "url": "git@github.com:acid23m/yii2-multipage.git"
     }
   ]
 }
