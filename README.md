@@ -28,7 +28,7 @@ Usage
 
 Once the extension is installed, do next:
 
-- Add module in *common/config/main.php*.
+- Add module in `common/config/main.php`.
 
 ```php
 'components' => [
@@ -42,7 +42,7 @@ Once the extension is installed, do next:
 ],
 ```
 
-- Add module in *backend/config/main.php*.
+- Add module in `backend/config/main.php`.
 
 ```php
 'bootstrap' => [
@@ -121,7 +121,7 @@ Once the extension is installed, do next:
 ],
 ```
 
-- Add module in *console/config/main.php*.
+- Add module in `console/config/main.php`.
 
 ```php
 'bootstrap' => [
@@ -160,7 +160,7 @@ Once the extension is installed, do next:
 ],
 ```
 
-- Add module in *remote/config/main.php*.
+- Add module in `remote/config/main.php`.
 
 ```php
 'bootstrap' => [
@@ -183,7 +183,7 @@ Once the extension is installed, do next:
 ],
 ```
 
-- Add components in *frontend/config/main*
+- Add components in `frontend/config/main`.
 
 ```php
 'bootstrap' => [
@@ -207,7 +207,7 @@ Once the extension is installed, do next:
 ],
 ```
 
-- Every controller in backend must be extended from *\dashboard\controllers\web\BaseController*.
+- Every controller in backend must be extended from `\dashboard\controllers\web\BaseController`.
 
 - Add rule to UrlManager config.
 
@@ -223,11 +223,11 @@ Rest Api examples in *html* directory.
 App options
 -----------
 
-Application options locate in *common/data/.app.ini* file.
+Application options locate in `common/data/.app.ini` file.
 
 If you want to add additional options, you must create class and extend it from
 
-- *\dashboard\models\option\web\Main* for backend and frontend
+- `\dashboard\models\option\web\Main` for backend and frontend
 
 ```php
 namespace backend\models\option;
@@ -287,7 +287,7 @@ final class Option extends \dashboard\models\option\web\Main
 }
 ```
 
-- *\dashboard\models\option\rest\Main* for rest
+- `\dashboard\models\option\rest\Main` for rest
 
 ```php
 namespace remote\models\option;
@@ -334,8 +334,8 @@ final class Option extends \dashboard\models\option\rest\Main
 }
 ```
 
-Next create view file for example at *backend/views/option/index.php*.
-As template use file *vendor/acid23m/yii2-admin/views/option-main/index.php*.
+Next create view file for example at `backend/views/option/index.php`.
+As template use file `vendor/acid23m/yii2-admin/views/option-main/index.php`.
 Copy content. Change phpdoc for *$model* variable from
 
 ```php
@@ -356,7 +356,7 @@ And put form input somewhere.
 
 Finally update config settings
 
-- in *backend/config/main.php*
+- in `backend/config/main.php`
 
 ```php
 'bootstrap' => [
@@ -373,7 +373,7 @@ Finally update config settings
 ],
 ```
 
-- in *remote/config/main.php*
+- in `remote/config/main.php`
 
 ```php
 'bootstrap' => [
@@ -388,7 +388,7 @@ Finally update config settings
 ],
 ```
 
-- in *frontend/config/main.php*
+- in `frontend/config/main.php`
 
 ```php
 'bootstrap' => [
@@ -417,8 +417,8 @@ Maintenance Mode
 
 Component has additional options [here](https://github.com/brussens/yii2-maintenance-mode#options).
 
-Custom layout at *vendor/acid23m/yii2-admin/src/views/layouts/maintenance.php*.
-Custom view at *vendor/acid23m/yii2-admin/src/views/maintenance-mode/index.php*.
+Custom layout at `vendor/acid23m/yii2-admin/src/views/layouts/maintenance.php`.
+Custom view at `vendor/acid23m/yii2-admin/src/views/maintenance-mode/index.php`.
 
 
 User scripts
