@@ -28,7 +28,7 @@ Usage
 
 Once the extension is installed, do next:
 
-- Add module in `common/config/main.php`.
+- Add component in `common/config/main.php`.
 
 ```php
 'components' => [

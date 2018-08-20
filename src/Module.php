@@ -130,6 +130,12 @@ final class Module extends \yii\base\Module implements BootstrapInterface
             ]
         ]);
 
+        $this->modules = [
+            'multipage' => [
+                'class' => \multipage\Module::class
+            ]
+        ];
+
         // web configuration
         $this->initWeb();
         // backend configuration
