@@ -82,8 +82,8 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
     public function actionIndex()
     {
 <?php if (!empty($generator->searchModelClass)): ?>
-        $searchModel = new <?= $searchModelAlias ?? $searchModelClass ?>();
-        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
+        $searchModel = new <?= $searchModelAlias ?? $searchModelClass ?>;
+        $dataProvider = $searchModel->search(\Yii::$app->getRequest()->getQueryParams());
 
         // sort items
 //        $data = <?= $modelClass ?>::find()->published()->actual()->ordered()->all();
