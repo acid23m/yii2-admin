@@ -28,6 +28,22 @@ class TopMenu extends Widget
     public $items = [];
 
     /**
+     * {@inheritdoc}
+     */
+    public function init(): void
+    {
+        parent::init();
+
+        if (empty($this->items)) {
+            try {
+                $this->items = require_once \Yii::getAlias(\dashboard\Module::getInstance()->top_menu);
+            } catch (\Throwable $e) {
+                \Yii::error($e->getMessage());
+            }
+        }
+    }
+
+    /**
      * Show menu in top panel.
      * @return string|View
      * @throws InvalidArgumentException
@@ -72,7 +88,8 @@ class TopMenu extends Widget
                     Html::addCssClass($link_options, 'info-number');
                     $link = Html::a($icon . ' ' . $label . ' ' . $badge, $url, $link_options);
                 } else {
-                    $link = Html::a($icon . ' ' . $label, $url, $link_options);
+                    $link = Html::a($icon . ' ' . $label . '<span class=" fa fa-angle-down"></span>', $url,
+                        $link_options);
                 }
 
                 $items .= $link;
@@ -83,7 +100,7 @@ class TopMenu extends Widget
                 $subitems = $item['items'];
                 foreach ($subitems as &$subitem) {
                     $subicon = isset($subitem['icon'])
-                        ? '<i class="fa fa-' . Html::encode($subitem['icon']) . '"></i>'
+                        ? '<i class="fa fa-' . Html::encode($subitem['icon']) . ' pull-right"></i>'
                         : '';
                     $sublabel = isset($subitem['label']) ? Html::encode($subitem['label']) : '';
                     $suburl = isset($subitem['url']) ? Url::to($subitem['url']) : '#';

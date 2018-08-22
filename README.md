@@ -55,40 +55,8 @@ Once the extension is installed, do next:
     'dashboard' => [
         'class' => \dashboard\Module::class,
         'controllerNamespace' => 'dashboard\controllers\web',
-        'left_menu' => [ // move it to separate file and include here
-            'section' => [ // section header
-                [
-                    'label' => 'Menu Item', // menu item label
-                    'url' => '#', // url compatible with Url::to()
-                    'icon' => 'th', // fontawesome icon id
-                    'badge' => '123', // badge text
-                    'badgeOptions' => ['class' => 'label-success'] // badge config
-                ]
-            ]
-        ],
-        'top_menu' => [ // move it to separate file and include here
-            [
-                'label' => 'Menu Item',
-                'url' => '#',
-                'icon' => 'th',
-                'badge' => '123',
-                'badgeOptions' => ['class' => 'bg-green']
-            ],
-            [
-                'icon' => 'circle-o',
-                'items' => [
-                    [
-                        'label' => 'Subitem',
-                        'badge' => 'str',
-                        'badgeOptions' => 'bg-red'
-                    ],
-                    [
-                        'label' => 'Site',
-                        'url' => '/'
-                    ]
-                ]
-            ]
-        ],
+        'left_menu' => '@backend/config/left_menu.php',
+        'top_menu' => '@backend/config/top_menu.php',
         'user_roles' => [
             // additional user roles here
             // default roles are demonstration, author, moderator, administrator, root
@@ -218,6 +186,82 @@ Once the extension is installed, do next:
 ```
 
 Rest Api examples in *html* directory.
+
+
+Menu
+----
+
+**Left menu:**
+
+Create file somewhere, for example `backend/config/left_menu.php`.
+Configure module to use it.
+
+```php
+'modules' => [
+    'dashboard' => [
+        'class' => \dashboard\Module::class,
+        'left_menu' => '@backend/config/left_menu.php',
+    ]
+]
+```
+
+File must return an array.
+
+```php
+return [
+    'title string' => [ // section header
+        [
+            'label' => 'Menu Item', // menu item label
+            'url' => '#', // url compatible with Url::to()
+            'icon' => 'th', // fontawesome icon id
+            'badge' => '123', // badge text
+            'badgeOptions' => ['class' => 'label-success'] // badge config
+        ]
+    ]
+]
+```
+
+**Top menu:**
+
+Create file somewhere, for example `backend/config/top_menu.php`.
+Configure module to use it.
+
+```php
+'modules' => [
+    'dashboard' => [
+        'class' => \dashboard\Module::class,
+        'top_menu' => '@backend/config/top_menu.php',
+    ]
+]
+```
+
+File must return an array.
+
+```php
+return [
+    [
+        'label' => 'Menu Item', // menu item label
+        'url' => '#', // url compatible with Url::to()
+        'icon' => 'th', // fontawesome icon id
+        'badge' => '123', // badge text
+        'badgeOptions' => ['class' => 'bg-green'] // badge config
+    ],
+    [
+        'icon' => 'circle-o',
+        'items' => [
+            [
+                'label' => 'Subitem',
+                'badge' => 'str',
+                'badgeOptions' => ['class' => 'bg-red']
+            ],
+            [
+                'label' => 'Site',
+                'url' => '/'
+            ]
+        ]
+    ]
+]
+```
 
 
 App options

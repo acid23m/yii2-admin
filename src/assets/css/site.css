@@ -50,3 +50,11 @@ h6 * {
 .dropdown-menu .divider {
     margin: 0;
 }
+
+.alert-success a,
+.alert-info a,
+.alert-warning a,
+.alert-danger a {
+    color: #fff;
+    text-decoration: underline;
+}

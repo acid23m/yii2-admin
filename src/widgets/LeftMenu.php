@@ -26,6 +26,22 @@ class LeftMenu extends Widget
     public $items = [];
 
     /**
+     * {@inheritdoc}
+     */
+    public function init(): void
+    {
+        parent::init();
+
+        if (empty($this->items)) {
+            try {
+                $this->items = require_once \Yii::getAlias(\dashboard\Module::getInstance()->left_menu);
+            } catch (\Throwable $e) {
+                \Yii::error($e->getMessage());
+            }
+        }
+    }
+
+    /**
      * Show menu in left sidebar.
      * @return string|View
      * @throws InvalidArgumentException

@@ -9,8 +9,6 @@
 namespace dashboard;
 
 use dashboard\models\user\UserIdentity;
-use dashboard\widgets\LeftMenu;
-use dashboard\widgets\TopMenu;
 use yii\base\BootstrapInterface;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
@@ -18,7 +16,6 @@ use yii\base\InvalidConfigException;
 use yii\db\Connection;
 use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
-use yii\i18n\I18N;
 use yii\i18n\PhpMessageSource;
 use yii\rbac\DbManager;
 use yii\rest\UrlRule;
@@ -117,22 +114,14 @@ final class Module extends \yii\base\Module implements BootstrapInterface
                     'class' => Connection::class,
                     'dsn' => 'sqlite:@common/data/taskdata.db',
                     'schemaCacheDuration' => 3600
-                ],
-                'i18n' => [
-                    'class' => I18N::class,
-                    'translations' => [
-                        'dashboard' => [
-                            'class' => PhpMessageSource::class,
-                            'basePath' => '@vendor/acid23m/yii2-admin/src/messages'
-                        ]
-                    ]
                 ]
             ]
         ]);
 
         $this->modules = [
             'multipage' => [
-                'class' => \multipage\Module::class
+                'class' => \multipage\Module::class,
+                'layout' => '@vendor/acid23m/yii2-admin/src/views/layouts/main.php'
             ]
         ];
 
@@ -184,15 +173,6 @@ final class Module extends \yii\base\Module implements BootstrapInterface
 
 
         if ($app instanceof \yii\web\Application) {
-            // configure left menu
-            \Yii::$container->set(LeftMenu::class, [
-                'items' => $this->left_menu
-            ]);
-            // configure top menu
-            \Yii::$container->set(TopMenu::class, [
-                'items' => $this->top_menu
-            ]);
-
             // rest api
             if ($this->controllerNamespace === 'dashboard\controllers\rest') {
                 \Yii::$app->getUrlManager()->addRules([
@@ -217,6 +197,11 @@ final class Module extends \yii\base\Module implements BootstrapInterface
             \Yii::$app->get('urlManagerBackend')->setHostInfo('http://' . $domain);
             \Yii::$app->get('urlManagerRemote')->setHostInfo('http://' . $domain);
         }
+
+        $app->getI18n()->translations['dashboard'] = [
+            'class' => PhpMessageSource::class,
+            'basePath' => '@vendor/acid23m/yii2-admin/src/messages'
+        ];
 
 
         // check access user data
