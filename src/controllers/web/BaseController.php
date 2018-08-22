@@ -8,8 +8,6 @@
 
 namespace dashboard\controllers\web;
 
-use dashboard\assets\AppAsset;
-use dashboard\assets\BootboxAsset;
 use dashboard\models\user\web\User;
 use yii\filters\AccessControl;
 use yii\filters\HttpCache;
@@ -29,7 +27,7 @@ class BaseController extends Controller
     /**
      * {@inheritdoc}
      */
-    public $layout = '@vendor/acid23m/yii2-admin/src/views/layouts/main';
+    public $layout = '@vendor/acid23m/yii2-admin/src/views/layouts/main.php';
 
     /**
      * {@inheritdoc}
@@ -120,17 +118,6 @@ class BaseController extends Controller
         ];
 
         return ArrayHelper::merge(parent::actions(), $actions);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function init(): void
-    {
-        parent::init();
-
-        AppAsset::register($this->getView());
-        BootboxAsset::overrideSystemConfirm();
     }
 
 }

@@ -6,6 +6,8 @@
  * Time: 1:31
  */
 
+use dashboard\assets\AppAsset;
+use dashboard\assets\BootboxAsset;
 use dashboard\widgets\Growl;
 use dashboard\widgets\LeftMenu;
 use dashboard\widgets\Push;
@@ -23,6 +25,9 @@ $controller = $this->context;
 $user = \Yii::$app->getUser()->getIdentity();
 /** @var string $dashboard_module_id */
 $dashboard_module_id = \dashboard\Module::getInstance()->id;
+
+AppAsset::register($this);
+BootboxAsset::overrideSystemConfirm();
 ?>
 
 <?php $this->beginPage() ?>
@@ -64,7 +69,7 @@ $dashboard_module_id = \dashboard\Module::getInstance()->id;
 
                 <div class="navbar nav_title" style="border: 0 none">
                     <a href="/" class="site_title">
-<!--                        <i class="fa fa-paw"></i>-->
+                        <!--                        <i class="fa fa-paw"></i>-->
                         <span><?= Html::encode(\Yii::$app->name) ?></span>
                     </a>
                 </div>
@@ -137,7 +142,8 @@ $dashboard_module_id = \dashboard\Module::getInstance()->id;
                     <ul class="nav navbar-nav navbar-right">
                         <!-- users -->
                         <li>
-                            <a class="user-profile dropdown-toggle" href="#" data-toggle="dropdown" aria-expanded="false">
+                            <a class="user-profile dropdown-toggle" href="#" data-toggle="dropdown"
+                               aria-expanded="false">
                                 <img src="<?= $user->avatar ?>" alt="<?= $user->username ?>">
                                 <?= $user->username ?>
                                 <span class=" fa fa-angle-down"></span>
@@ -201,6 +207,19 @@ $dashboard_module_id = \dashboard\Module::getInstance()->id;
                                     <a href="<?= Url::to(["/{$dashboard_module_id}/script/index"]) ?>">
                                         <i class="fa fa-code pull-right"></i>
                                         <?= \Yii::t('dashboard', 'skripty') ?>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="<?= Url::to(["/{$dashboard_module_id}/multipage/marker/index"]) ?>">
+                                        <i class="fa fa-bookmark pull-right"></i>
+                                        <?= \Yii::t('multipage', 'spisok markerov') ?>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="<?= Url::to(["/{$dashboard_module_id}/multipage/parameter/index"]) ?>">
+                                        <i class="fa fa-paperclip pull-right"></i>
+                                        <?= \Yii::t('multipage', 'spisok parametrov') ?>
                                     </a>
                                 </li>
                                 <li class="divider"></li>
