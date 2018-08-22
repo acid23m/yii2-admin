@@ -28,7 +28,7 @@ Usage
 
 Once the extension is installed, do next:
 
-- Add component in `common/config/main.php`.
+Add component in `common/config/main.php`.
 
 ```php
 'components' => [
@@ -42,7 +42,7 @@ Once the extension is installed, do next:
 ],
 ```
 
-- Add module in `backend/config/main.php`.
+Add module in `backend/config/main.php`.
 
 ```php
 'bootstrap' => [
@@ -89,7 +89,7 @@ Once the extension is installed, do next:
 ],
 ```
 
-- Add module in `console/config/main.php`.
+Add module in `console/config/main.php`.
 
 ```php
 'bootstrap' => [
@@ -128,7 +128,7 @@ Once the extension is installed, do next:
 ],
 ```
 
-- Add module in `remote/config/main.php`.
+Add module in `remote/config/main.php`.
 
 ```php
 'bootstrap' => [
@@ -151,7 +151,7 @@ Once the extension is installed, do next:
 ],
 ```
 
-- Add components in `frontend/config/main`.
+Add components in `frontend/config/main`.
 
 ```php
 'bootstrap' => [
@@ -175,9 +175,9 @@ Once the extension is installed, do next:
 ],
 ```
 
-- Every controller in backend must be extended from `\dashboard\controllers\web\BaseController`.
+Every controller in backend must be extended from `\dashboard\controllers\web\BaseController`.
 
-- Add rule to UrlManager config.
+Add rule to UrlManager config.
 
 ```php
 'rules' => [
