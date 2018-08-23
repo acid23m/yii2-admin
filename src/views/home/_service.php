@@ -49,6 +49,10 @@ use yii\bootstrap\Tabs;
                         [
                             'label' => \Yii::t('dashboard', 'baza dannih'),
                             'content' => $this->render('_service_bd', compact('user'))
+                        ],
+                        [
+                            'label' => \Yii::t('dashboard', 'poiskoviy indeks'),
+                            'content' => $this->render('_service_index')
                         ]
                     ],
                     'options' => [

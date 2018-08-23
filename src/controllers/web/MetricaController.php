@@ -10,7 +10,6 @@ namespace dashboard\controllers\web;
 
 use dashboard\models\option\web\Metrica;
 use dashboard\models\user\web\User;
-use yii\web\View;
 
 /**
  * Class MetricaController.
@@ -39,7 +38,7 @@ final class MetricaController extends BaseController
 
     /**
      * Update settings.
-     * @return string|View
+     * @return string
      * @throws \yii\base\InvalidArgumentException
      * @throws \yii\base\InvalidConfigException
      */

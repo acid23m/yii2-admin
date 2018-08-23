@@ -8,6 +8,7 @@
 
 namespace dashboard;
 
+use dashboard\models\index\SearchIndex;
 use dashboard\models\user\UserIdentity;
 use yii\base\BootstrapInterface;
 use yii\base\Exception;
@@ -92,6 +93,10 @@ final class Module extends \yii\base\Module implements BootstrapInterface
      * @var array Sitemap configuration
      */
     public $sitemap_items = [];
+    /**
+     * @var array Search configuration
+     */
+    public $search_items = [];
 
     /**
      * {@inheritdoc}
@@ -171,10 +176,9 @@ final class Module extends \yii\base\Module implements BootstrapInterface
         $dotenv = new \Dotenv\Dotenv(\Yii::getAlias('@root'));
         $dotenv->load();
 
-
         if ($app instanceof \yii\web\Application) {
             // rest api
-            if ($this->controllerNamespace === 'dashboard\controllers\rest') {
+            if ($app->id === 'app-remote') {
                 \Yii::$app->getUrlManager()->addRules([
                     "GET,POST,HEAD /{$this->id}/auth/<_a:[\w\d\-_]+>" => "/{$this->id}/auth/<_a>",
                     "OPTIONS /{$this->id}/auth/<_a:[\w\d\-_]+>" => "/{$this->id}/auth/options",

@@ -149,6 +149,9 @@ return [
     'baza dannih' => 'Database',
     'ostorozhno s bazoy' => 'Direct interaction with the database is not recommended. Use the editor only if you know what you are doing!',
     'redaktor bazy' => 'Database Editor',
+    'poiskoviy indeks' => 'Search Index',
+    'nuzhno pereindeksirovat' => 'After adding, updating or deleting content, the search database needs to be reindexed.',
+    'obnovit indeks' => 'Udate Index',
 
     // trash
     'korzina' => 'Recycle Bin',
@@ -219,5 +222,7 @@ return [
     'opisanie stranici' => 'Page Description',
     'kluchevie slova' => 'Key Words',
     'meta dannie' => 'Page Meta-data',
-    'sortirovka' => 'Sort'
+    'sortirovka' => 'Sort',
+    'poisk' => 'Search',
+    'resultat poiska' => 'Search results for: {query}'
 ];

@@ -15,8 +15,9 @@ use samdark\sitemap\Sitemap;
  *
  * @package dashboard\models\sitemap
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
+ * @link https://github.com/samdark/sitemap
  */
-interface SitemapConfigInterface
+interface SitemapCollectionInterface
 {
     /**
      * Add dynamic pages.

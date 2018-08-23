@@ -341,12 +341,16 @@ BootboxAsset::overrideSystemConfirm();
                     </div>
                     <div class="title_right">
                         <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                            <?= Html::beginForm(["/{$dashboard_module_id}/search/result"], 'get') ?>
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Search for...">
+                                <input type="text" name="q" class="form-control" placeholder="...">
                                 <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">Go!</button>
-                            </span>
+                                    <button class="btn btn-default" type="submit">
+                                        <?= \Yii::t('dashboard', 'poisk') ?>
+                                    </button>
+                                </span>
                             </div>
+                            <?= Html::endForm() ?>
                         </div>
                     </div>
                 </div>

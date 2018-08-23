@@ -39,7 +39,7 @@ class SitemapGenerator
 
         $module = \dashboard\Module::getInstance();
         if ($module !== null && isset($module->sitemap_items['class'])) {
-            /** @var null|SitemapConfigInterface $sitemap_config */
+            /** @var null|SitemapCollectionInterface $sitemap_config */
             try {
                 $sitemap_config = new $module->sitemap_items['class'];
             } catch (\Throwable $e) {

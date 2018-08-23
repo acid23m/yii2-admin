@@ -11,7 +11,6 @@ namespace dashboard\controllers\web;
 use dashboard\models\option\web\Script;
 use dashboard\models\user\web\User;
 use yii\base\InvalidArgumentException;
-use yii\web\View;
 
 /**
  * Class ScriptController.
@@ -40,10 +39,10 @@ final class ScriptController extends BaseController
 
     /**
      * Update settings.
-     * @return string|View
+     * @return string
      * @throws InvalidArgumentException
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $model = new Script;
 

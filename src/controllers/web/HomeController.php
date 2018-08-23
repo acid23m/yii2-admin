@@ -8,6 +8,7 @@
 
 namespace dashboard\controllers\web;
 
+use dashboard\models\index\SearchIndex;
 use dashboard\models\log\LogRecord;
 use dashboard\models\log\LogSearch;
 use dashboard\models\sitemap\SitemapGenerator;
@@ -24,7 +25,6 @@ use yii\helpers\Inflector;
 use yii\helpers\Json;
 use yii\helpers\StringHelper;
 use yii\web\Response;
-use yii\web\View;
 
 /**
  * Class HomeController.
@@ -76,12 +76,12 @@ final class HomeController extends BaseController
 
     /**
      * Show home page.
-     * @return string|View
+     * @return string
      * @throws InvalidArgumentException
      * @throws \Throwable
      * @throws \yii\db\StaleObjectException
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         // Notes
         /** @var UserIdentity $user */
@@ -190,10 +190,10 @@ final class HomeController extends BaseController
 
     /**
      * Php info.
-     * @return string|View
+     * @return string
      * @throws InvalidArgumentException
      */
-    public function actionPhpinfo()
+    public function actionPhpinfo(): string
     {
         return $this->renderPartial('phpinfo');
     }
@@ -272,6 +272,22 @@ final class HomeController extends BaseController
     public function actionSitemap(): Response
     {
         SitemapGenerator::write();
+
+        \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'gotovo'));
+
+        return $this->goHome();
+    }
+
+    /**
+     * Update search index.
+     * @return Response
+     * @throws InvalidConfigException
+     */
+    public function actionSearchIndex(): Response
+    {
+        /** @var SearchIndex $search_index */
+        $search_index = \Yii::createObject(SearchIndex::class);
+        $search_index->index();
 
         \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'gotovo'));
 

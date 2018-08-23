@@ -19,7 +19,6 @@ use yii\helpers\StringHelper;
 use yii\web\BadRequestHttpException;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use yii\web\View;
 
 /**
  * Class TrashController.
@@ -48,11 +47,11 @@ final class TrashController extends BaseController
 
     /**
      * Show items in the recycle bin.
-     * @return string|View
+     * @return string
      * @throws InvalidArgumentException
      * @throws InvalidConfigException
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $data_provider = Trash::getItems();
 

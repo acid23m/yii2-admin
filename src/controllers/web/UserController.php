@@ -9,7 +9,6 @@ use yii\base\InvalidArgumentException;
 use yii\db\StaleObjectException;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use yii\web\View;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -49,10 +48,10 @@ final class UserController extends BaseController
 
     /**
      * Lists all User models.
-     * @return string|View
+     * @return string
      * @throws InvalidArgumentException
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $searchModel = new UserSearch;
         $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
@@ -66,11 +65,11 @@ final class UserController extends BaseController
     /**
      * Displays a single User model.
      * @param integer $id
-     * @return string|View
+     * @return string
      * @throws NotFoundHttpException
      * @throws InvalidArgumentException
      */
-    public function actionView($id)
+    public function actionView($id): string
     {
         return $this->render('view', [
             'model' => $this->findModel($id)
@@ -80,7 +79,7 @@ final class UserController extends BaseController
     /**
      * Creates a new User model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|View|Response
+     * @return string|Response
      * @throws InvalidArgumentException
      */
     public function actionCreate()
@@ -102,7 +101,7 @@ final class UserController extends BaseController
      * Updates an existing User model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
-     * @return string|View|Response
+     * @return string|Response
      * @throws NotFoundHttpException
      * @throws InvalidArgumentException
      */

@@ -58,7 +58,7 @@ final class AuthController extends BaseController
 
     /**
      * Render authorization form.
-     * @return string|View|Response
+     * @return string|Response
      * @throws InvalidArgumentException
      * @throws Exception
      */
@@ -92,7 +92,7 @@ final class AuthController extends BaseController
     /**
      * Check 2fa code and login user if the code is correct.
      * @param string $ci Cache ID
-     * @return string|View|Response
+     * @return string|Response
      * @throws InvalidArgumentException
      */
     public function actionTfaCode($ci)
@@ -132,7 +132,7 @@ final class AuthController extends BaseController
 
     /**
      * Render request password reset form.
-     * @return string|View|Response
+     * @return string|Response
      * @throws Exception
      * @throws InvalidArgumentException
      */
@@ -162,7 +162,7 @@ final class AuthController extends BaseController
     /**
      * Render password reset form.
      * @param string $token Secret token
-     * @return string|View|Response
+     * @return string|Response
      * @throws BadRequestHttpException
      * @throws InvalidArgumentException
      * @throws Exception

@@ -42,7 +42,6 @@ use yii\db\IntegrityException;
 use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use yii\web\View;
 
 /**
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> model.
@@ -76,10 +75,10 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
 
     /**
      * Lists all <?= $modelClass ?> models.
-     * @return string|View
+     * @return string
      * @throws InvalidArgumentException
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
 <?php if (!empty($generator->searchModelClass)): ?>
         $searchModel = new <?= $searchModelAlias ?? $searchModelClass ?>;
@@ -112,11 +111,11 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
     /**
      * Displays a single <?= $modelClass ?> model.
      * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
-     * @return string|View
+     * @return string
      * @throws InvalidArgumentException
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView(<?= $actionParams ?>)
+    public function actionView(<?= $actionParams ?>): string
     {
         return $this->render('view', [
             'model' => $this->findModel(<?= $actionParams ?>)

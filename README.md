@@ -75,7 +75,11 @@ Add module in `backend/config/main.php`.
         ],
         // sitemap config
         'sitemap_items' => [
-            'class' => \common\models\sitemap\Sitemap::class // must implement \dashboard\models\sitemap\SitemapConfigInterface
+            'class' => \common\models\sitemap\Sitemap::class // must implement \dashboard\models\sitemap\SitemapCollectionInterface
+        ],
+        // search index config
+        'search_items' => [
+            'class' => \common\models\search\SearchCollection::class // must implement \dashboard\models\index\SearchCollectionInterface
         ]
     ]
 ],
@@ -122,7 +126,11 @@ Add module in `console/config/main.php`.
         },
         // sitemap config
         'sitemap_items' => [
-            'class' => \common\models\sitemap\Sitemap::class // must implement \dashboard\models\sitemap\SitemapConfigInterface
+            'class' => \common\models\sitemap\SitemapCollection::class // must implement \dashboard\models\sitemap\SitemapCollectionInterface
+        ],
+        // search index config
+        'search_items' => [
+            'class' => \common\models\search\SearchCollection::class // must implement \dashboard\models\index\SearchCollectionInterface
         ]
     ]
 ],
@@ -171,7 +179,10 @@ Add components in `frontend/config/main`.
     'option' => [
         'class' => \dashboard\models\option\web\Main::class // original class
         //'class' => \backend\models\option\Option::class // must be extended from \dashboard\models\option\web\Main
-    ]
+    ],
+    'searchIndex' => [
+        'class' => \dashboard\models\index\SearchIndex::class
+    ],
 ],
 ```
 
@@ -498,3 +509,218 @@ Add script widgets in the main layout.
 <?php $this->endBody() ?>
 </body>
 ```
+
+
+Sitemap
+-------
+
+You can create sitemap XML files for web crawlers.
+
+First create class that will collect items for sitemap.
+
+```php
+namespace common\models\sitemap;
+
+use common\models\post\PostRecord;
+use dashboard\models\sitemap\SitemapConfigInterface;
+use samdark\sitemap\Sitemap;
+use yii\web\UrlManager;
+
+/**
+ * Class SitemapCollection.
+ *
+ * @package common\models\sitemap
+ */
+final class SitemapCollection implements SitemapCollectionInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function dynamicItems(Sitemap $sitemap): void
+    {
+        /** @var UrlManager $url_manager */
+        $url_manager = \Yii::$app->get('urlManagerFrontend');
+
+        // posts
+        $posts_query = PostRecord::find()->actual()->published()->ordered();
+        foreach ($posts_query->batch(50) as $posts) {
+            /** @var PostRecord $post */
+            foreach ($posts as &$post) {
+                $sitemap->addItem(
+                    $url_manager->createAbsoluteUrl(['post/view', 'slug' => $post->slug]),
+                    (new \DateTime($post->updated_at, new \DateTimeZone(\Yii::$app->timeZone)))->format('U'),
+                    Sitemap::MONTHLY,
+                    0.3
+                );
+            }
+        }
+        unset($posts_query, $post);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function staticItems(Sitemap $sitemap): void
+    {
+        /** @var UrlManager $url_manager */
+        $url_manager = \Yii::$app->get('urlManagerFrontend');
+        $base_url = rtrim($url_manager->getHostInfo(), '/');
+
+        // home page
+        $sitemap->addItem($base_url);
+    }
+
+}
+```
+
+Next define it in module configuration in `backend/config/main.php`
+and `console/config/main.php`.
+
+```php
+'modules' => [
+    'dashboard' => [
+        'class' => \dashboard\Module::class,
+        'sitemap_items' => [
+            'class' => \common\models\sitemap\SitemapCollection::class
+        ]
+    ]
+],
+```
+
+Than run index manually from the "Service section" of the admin. panel
+or by cron task with command `php /app/yii dashboard/sitemap/index`.
+
+
+Search Index
+------------
+
+You can use full text search.
+
+*REQUIREMENTS*: Database MySQL/MariaDB must be installed
+and configured with `S_DB_NAME`, `S_DB_USER` and `S_DB_PASSWORD`
+environment variables from `.env` file.
+
+*RECOMMENDS*: install [php-ds extension](https://github.com/php-ds).
+
+First create class that will collect items for search index.
+
+```php
+namespace common\models\search;
+
+use common\models\post\PostRecord;
+use dashboard\components\index\SearchCollectionInterface;
+use S2\Rose\Entity\Indexable;
+use S2\Rose\Indexer;
+use yii\helpers\StringHelper;
+use yii\web\UrlManager;
+
+/**
+ * Search index collection.
+ *
+ * @package common\models\search
+ */
+class SearchCollection implements SearchCollectionInterface
+{
+    /**
+     * {@inheritdoc}
+     */
+    public function index(Indexer $indexer): void
+    {
+        /** @var UrlManager $url_manager */
+        $url_manager = \Yii::$app->get('urlManagerFrontend');
+
+        // posts
+        $posts_query = PostRecord::find()->actual()->published()->ordered();
+        foreach ($posts_query->batch(50) as $posts) {
+            /** @var PostRecord $post */
+            foreach ($posts as &$post) {
+                $item = new Indexable(
+                    'post-' . $post->id,
+                    $post->title,
+                    $post->description
+                );
+                $item->setDescription(
+                    StringHelper::truncateWords($post->description, 100)
+                );
+                $item->setDate(
+                    new \DateTime($post->updated_at, new \DateTimeZone(\Yii::$app->timeZone))
+                );
+                $item->setUrl(
+                    $url_manager->createAbsoluteUrl(['post/view', 'slug' => $post->slug])
+                );
+
+                $indexer->index($item);
+            }
+        }
+        unset($posts_query, $post, $item);
+    }
+
+}
+```
+
+Next define it in module configuration in `backend/config/main.php`
+and `console/config/main.php`.
+
+```php
+'modules' => [
+    'dashboard' => [
+        'class' => \dashboard\Module::class,
+        'search_items' => [
+            'class' => \common\models\search\SearchCollection::class
+        ]
+    ]
+],
+```
+
+Than run index manually from the "Search Index section" of the admin. panel
+or by cron task with command `php /app/yii dashboard/search/index`.
+
+To use search index in front configure component in `frontend/config/main.php`.
+
+```php
+'components' => [
+    'searchIndex' => [
+        'class' => \dashboard\models\index\SearchIndex::class
+    ],
+],
+```
+
+Create controller and point form with search input to it.
+
+```php
+namespace frontend\controllers;
+
+use dashboard\components\index\SearchIndex;
+use yii\helpers\Html;
+use yii\web\Controller;
+
+/**
+ * Class SearchController.
+ *
+ * @package frontend\controllers
+ */
+final class SearchController extends Controller
+{
+    /**
+     * Find contents by query.
+     * @param string $q Search query
+     * @return string
+     */
+    public function actionResult($q): string
+    {
+        if (!empty($q)) {
+            $q = Html::encode($q);
+
+            /** @var SearchIndex $search_index */
+            $search_index = \Yii::$app->get('searchIndex');
+            $results = $search_index->find($q);
+        } else {
+            $results = [];
+        }
+
+        return $this->render('result', compact('q', 'results'));
+    }
+}
+```
+
+Finally create view file for search results.

@@ -16,7 +16,6 @@ use yii\db\StaleObjectException;
 use yii\helpers\Json;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use yii\web\View;
 
 /**
  * Class TaskController.
@@ -45,10 +44,10 @@ final class TaskController extends BaseController
 
     /**
      * Lists all Task models.
-     * @return string|View
+     * @return string
      * @throws InvalidArgumentException
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Task::find()
@@ -60,11 +59,11 @@ final class TaskController extends BaseController
     /**
      * Displays a single Task model.
      * @param integer $id
-     * @return string|View
+     * @return string
      * @throws NotFoundHttpException
      * @throws InvalidArgumentException
      */
-    public function actionView($id)
+    public function actionView($id): string
     {
         return $this->render('view', [
             'model' => $this->findModel($id)
@@ -74,7 +73,7 @@ final class TaskController extends BaseController
     /**
      * Creates a new Task model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|View|Response
+     * @return string|Response
      * @throws InvalidArgumentException
      */
     public function actionCreate()
@@ -94,7 +93,7 @@ final class TaskController extends BaseController
      * Updates an existing Task model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
-     * @return string|View|Response
+     * @return string|Response
      * @throws InvalidArgumentException
      * @throws NotFoundHttpException
      */

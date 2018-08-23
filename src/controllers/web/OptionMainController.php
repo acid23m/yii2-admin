@@ -12,7 +12,6 @@ use dashboard\models\option\web\Main;
 use dashboard\models\user\web\User;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
-use yii\web\View;
 
 /**
  * Class OptionMainController.
@@ -41,11 +40,11 @@ class OptionMainController extends BaseController
 
     /**
      * Set main options.
-     * @return string|View
+     * @return string
      * @throws InvalidArgumentException
      * @throws InvalidConfigException
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         /** @var Main $option */
         $model = \Yii::createObject(
