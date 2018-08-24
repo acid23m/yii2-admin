@@ -6,6 +6,8 @@
  * Time: 21:33
  */
 
+use dashboard\assets\AppAsset;
+use dashboard\assets\BootboxAsset;
 use dashboard\widgets\Growl;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -13,6 +15,9 @@ use yii\helpers\Url;
 /** @var string $content */
 
 $this->title = Html::encode(\Yii::t('dashboard', 'panel'));
+
+AppAsset::register($this);
+BootboxAsset::overrideSystemConfirm();
 ?>
 
 <?php $this->beginPage() ?>
