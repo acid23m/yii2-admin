@@ -145,7 +145,7 @@ class Main extends IniConfig implements BootstrapInterface
         if (!file_exists($options_file_path)) {
             // create file from example
             $example_options_file_path = \Yii::getAlias(self::FILE_EXAMPLE_PATH);
-            copy($example_options_file_path, $options_file_path);
+            \copy($example_options_file_path, $options_file_path);
         }
 
         if ($app instanceof \yii\web\Application) {
@@ -203,9 +203,9 @@ class Main extends IniConfig implements BootstrapInterface
      * @param string $list
      * @return array
      */
-    protected static function ipListAsArray(string $list): array
+    protected static function ipListAsArray(?string $list): array
     {
-        return ($list !== '')
+        return ($list !== '' && $list !== null)
             ? array_map('trim', explode(',', $list))
             : [];
     }

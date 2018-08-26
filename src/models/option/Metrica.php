@@ -31,7 +31,7 @@ class Metrica extends IniConfig
         if (!file_exists($options_file_path)) {
             // create file from example
             $example_options_file_path = \Yii::getAlias(self::INI_FILE_EXAMPLE_PATH);
-            copy($example_options_file_path, $options_file_path);
+            \copy($example_options_file_path, $options_file_path);
         }
 
         $this->path = self::INI_FILE_PATH;
