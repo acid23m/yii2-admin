@@ -9,6 +9,7 @@
 namespace dashboard\commands;
 
 use dashboard\models\user\AuthorRule;
+use dashboard\models\user\UserRecord;
 use dashboard\models\user\web\User;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
@@ -218,7 +219,10 @@ class UserController extends Controller
      */
     public function actionCreate($username = null, $email = null, $password = null, $role = null): int
     {
-        $user = new User();
+        $user = new UserRecord([
+            'tfa' => UserRecord::TFA_DISABLED,
+            'status' => UserRecord::STATUS_ACTIVE
+        ]);
 
         if ($username === null) {
             $promt = $this->ansiFormat('Enter username: ', Console::BOLD);
@@ -263,8 +267,6 @@ class UserController extends Controller
         $user->password = $password;
         $user->email = $email;
         $user->role = $role;
-        $user->tfa = $user::TFA_DISABLED;
-        $user->status = $user::STATUS_ACTIVE;
 
         if (!$user->save()) {
             $errors = Console::errorSummary($user);
