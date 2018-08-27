@@ -125,7 +125,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
     /**
      * Creates a new <?= $modelClass ?> model.
      * If creation is successful, the browser will be redirected to the 'view' page.
-     * @return string|View|Response
+     * @return string|Response
      * @throws InvalidArgumentException
      */
     public function actionCreate()
@@ -144,7 +144,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
      * Updates an existing <?= $modelClass ?> model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
-     * @return string|View|Response
+     * @return string|Response
      * @throws InvalidArgumentException
      * @throws NotFoundHttpException if the model cannot be found
      */
