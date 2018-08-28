@@ -80,12 +80,12 @@ final class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClas
      * @param string $slug
      * @return $this
      */
-    public function show(string $slug): self
+    /*public function show(string $slug): self
     {
         $this->andWhere(['[[slug]]' => $slug]);
 
         return $this;
-    }
+    }*/
 
     /**
      * {@inheritdoc}
