@@ -11,6 +11,18 @@ use yii\helpers\Inflector;
 
 /** @var \yii\web\View $this */
 /** @var \dashboard\models\user\UserIdentity $user */
+
+/**
+ * Convert date from utc to current timezone.
+ * @param string $value
+ * @return DateTime
+ */
+$dt_from_utc = function (string $value): \DateTime {
+    $dt = new \DateTime($value, new \DateTimeZone('UTC'));
+    $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
+
+    return $dt;
+}
 ?>
 
 <div class="row">
@@ -49,15 +61,15 @@ use yii\helpers\Inflector;
                     </li>
                     <li>
                         <strong><?= \Yii::t('dashboard', 'vremya sozdaniya') ?></strong>:
-                        <?= \Yii::$app->getFormatter()->asDatetime($user->created_at) ?>
+                        <?= \Yii::$app->getFormatter()->asDatetime($dt_from_utc($user->created_at)) ?>
                     </li>
                     <li>
                         <strong><?= \Yii::t('dashboard', 'vremya obnovleniya') ?></strong>:
-                        <?= \Yii::$app->getFormatter()->asDatetime($user->updated_at) ?>
+                        <?= \Yii::$app->getFormatter()->asDatetime($dt_from_utc($user->updated_at)) ?>
                     </li>
                     <li>
                         <strong><?= \Yii::t('dashboard', 'posledniy vhod') ?></strong>:
-                        <?= \Yii::$app->getFormatter()->asDatetime($user->last_access) ?>
+                        <?= \Yii::$app->getFormatter()->asDatetime($dt_from_utc($user->last_access)) ?>
                     </li>
                     <li>
                         <strong>IP</strong>:

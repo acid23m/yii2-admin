@@ -17,11 +17,24 @@ namespace dashboard\traits;
 trait DateTime
 {
     /**
-     * @return string Current time
+     * Current time in current timezone.
+     * @return string
      */
     public static function getNow(): string
     {
-        $now = new \DateTime('now', new \DateTimeZone(\Yii::$app->timeZone));
+        $now = new \DateTime('now', new \DateTimeZone(\Yii::$app->getTimeZone()));
+
+        return $now->format(STANDARD_DATETIME_FORMAT);
+    }
+
+    /**
+     * Current time in UTC.
+     * @return string
+     */
+    public static function getNowUTC(): string
+    {
+        $now = new \DateTime('now', new \DateTimeZone(\Yii::$app->getTimeZone()));
+        $now->setTimezone(new \DateTimeZone('UTC'));
 
         return $now->format(STANDARD_DATETIME_FORMAT);
     }

@@ -169,8 +169,8 @@ class Main extends IniConfig implements BootstrapInterface
         $app->name = $this->get('app_name');
 
         // application time zone
-        $app->timeZone = $this->get('time_zone', 'UTC');
-        $app->getFormatter()->defaultTimeZone = $app->timeZone;
+        $app->setTimeZone($this->get('time_zone', 'UTC'));
+        $app->getFormatter()->defaultTimeZone = $app->getTimeZone();
 
         // backend language
         if ($app->id === 'app-backend') {

@@ -94,7 +94,7 @@ class UserRecord extends ActiveRecord
         return [
             'timestamp' => [
                 'class' => TimestampBehavior::class,
-                'value' => \call_user_func([$this, 'getNow'])
+                'value' => \call_user_func([$this, 'getNowUTC'])
             ]
         ];
     }

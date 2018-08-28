@@ -1,10 +1,11 @@
 <?php
 
+use dashboard\models\user\web\User;
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var \dashboard\models\user\web\User $model */
+/** @var User $model */
 
 $this->title = Html::encode($model->username);
 $this->params['title'] = $this->title;
@@ -57,9 +58,39 @@ $status_list = $model->getList('statuses');
             ],
             'note:html',
             'access_token',
-            'created_at:datetime',
-            'updated_at:datetime',
-            'last_access:datetime',
+            [
+                'attribute' => 'created_at',
+                'format' => 'datetime',
+                'value' => function ($model, $widget) {
+                    /** @var User $model */
+                    $dt = new \DateTime($model->created_at, new \DateTimeZone('UTC'));
+                    $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
+
+                    return $dt;
+                }
+            ],
+            [
+                'attribute' => 'updated_at',
+                'format' => 'datetime',
+                'value' => function ($model, $widget) {
+                    /** @var User $model */
+                    $dt = new \DateTime($model->updated_at, new \DateTimeZone('UTC'));
+                    $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
+
+                    return $dt;
+                }
+            ],
+            [
+                'attribute' => 'last_access',
+                'format' => 'datetime',
+                'value' => function ($model, $widget) {
+                    /** @var User $model */
+                    $dt = new \DateTime($model->last_access, new \DateTimeZone('UTC'));
+                    $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
+
+                    return $dt;
+                }
+            ],
             'ip'
         ]
     ]) ?>

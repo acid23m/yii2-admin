@@ -31,6 +31,49 @@ Once the extension is installed, do next:
 Add component in `common/config/main.php`.
 
 ```php
+'modules' => [
+    'datecontrol' => [
+        'class' => \kartik\datecontrol\Module::class,
+        'displaySettings' => [
+            \kartik\datecontrol\Module::FORMAT_DATETIME => 'dd.MM.yyyy hh:mm:ss a',
+            \kartik\datecontrol\Module::FORMAT_DATE => 'dd.MM.yyyy',
+            \kartik\datecontrol\Module::FORMAT_TIME => 'hh:mm:ss a'
+        ],
+        'saveSettings' => [
+            \kartik\datecontrol\Module::FORMAT_DATETIME => 'php:' . STANDARD_DATETIME_FORMAT,
+            \kartik\datecontrol\Module::FORMAT_DATE => 'php:' . STANDARD_DATE_FORMAT,
+            \kartik\datecontrol\Module::FORMAT_TIME => 'php:H:i:s'
+        ],
+        'saveTimezone' => 'UTC',
+        'autoWidgetSettings' => [
+            \kartik\datecontrol\Module::FORMAT_DATETIME => [
+                'type' => DateTimePicker::TYPE_INPUT,
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'todayBtn' => true,
+                    'todayHighlight' => true
+                ]
+            ],
+            \kartik\datecontrol\Module::FORMAT_DATE => [
+                'type' => DatePicker::TYPE_INPUT,
+                'pluginOptions' => [
+                    'autoclose' => true,
+                    'todayBtn' => true,
+                    'todayHighlight' => true
+                ]
+            ],
+            \kartik\datecontrol\Module::FORMAT_TIME => [
+                'addon' => '',
+                'pluginOptions' => [
+                    'minuteStep' => 1,
+                    'secondStep' => 5,
+                    'showMeridian' => false
+                ]
+            ]
+        ]
+    ]
+],
+
 'components' => [
     'maintenanceMode' => [
         'class' => \brussens\maintenance\MaintenanceMode::class,
@@ -724,3 +767,71 @@ final class SearchController extends Controller
 ```
 
 Finally create view file for search results.
+
+
+Datetime control
+----------------
+
+System (os, db) timezone is always UTC.
+The [Date Control](https://github.com/kartik-v/yii2-datecontrol) module allows controlling date formats of attributes separately for View and Model.
+
+Once the `datecontrol` module is configured, you can use widgets for forms.
+Widget show datetime/time in application timezone, but save it in UTC.
+
+```html
+<?= $form->field($model, 'datetime')->widget(\kartik\datecontrol\DateControl::class, [
+    'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
+    'displayTimezone' => \Yii::$app->getTimeZone()
+]) ?>
+```
+
+To show saved datetime/time you can convert it, e.g:
+
+```html
+<?= \yii\widgets\DetailView::widget([
+    'model' => $model,
+    'attributes' => [
+        'id',
+        [
+            'attribute' => 'datetime',
+            'format' => 'datetime',
+            'value' => function ($model, $widget) {
+                $dt = new \DateTime($model->datetime, new \DateTimeZone('UTC'));
+                $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
+
+                return $dt;
+            }
+        ],
+        [
+            'attribute' => 'title',
+            'format' => 'html',
+            'value' => Html::tag('strong', $model->title)
+        ],
+        'description:raw',
+        [
+            'attribute' => 'created_at',
+            'format' => 'datetime',
+            'value' => function ($model, $widget) {
+                $dt = new \DateTime($model->created_at, new \DateTimeZone('UTC'));
+                $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
+
+                return $dt;
+            }
+        ],
+        [
+            'attribute' => 'updated_at',
+            'format' => 'datetime',
+            'value' => function ($model, $widget) {
+                $dt = new \DateTime($model->updated_at, new \DateTimeZone('UTC'));
+                $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
+
+                return $dt;
+            }
+        ]
+    ]
+]) ?>
+```
+
+---
+
+*Developed for internal usage.*

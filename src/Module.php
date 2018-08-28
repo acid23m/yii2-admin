@@ -8,7 +8,6 @@
 
 namespace dashboard;
 
-use dashboard\models\index\SearchIndex;
 use dashboard\models\user\UserIdentity;
 use yii\base\BootstrapInterface;
 use yii\base\Exception;

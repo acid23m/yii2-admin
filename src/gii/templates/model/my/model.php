@@ -106,7 +106,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
 <?php if (isset($properties['updated_at'])):  ?>
             'timestamp' => [
                 'class' => TimestampBehavior::class,
-                'value' => \call_user_func([$this, 'getNow'])
+                'value' => \call_user_func([$this, 'getNowUTC'])
             ],
 <?php endif ?>
 <?php if (isset($properties['position'])):  ?>

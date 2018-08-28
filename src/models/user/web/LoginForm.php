@@ -109,7 +109,7 @@ final class LoginForm extends Model
     {
         $user = $this->getUser();
         if ($user !== null) {
-            $user->last_access = $user::getNow();
+            $user->last_access = $user::getNowUTC();
             $user->ip = \Yii::$app->getRequest()->getUserIP();
             $user->save(false);
         }
