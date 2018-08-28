@@ -26,6 +26,7 @@
     "kartik-v/yii2-widget-growl": "~1.1",
     "kartik-v/yii2-widget-fileinput": "~1.0",
     "kartik-v/yii2-date-range": "~1.6",
+    "kartik-v/yii2-datecontrol": "~1.9",
     "vlucas/phpdotenv": "~2.4",
     "matomo/ini": "~2.0",
     "yii-dream-team/yii2-timezone-picker": "~0.1",
