@@ -127,8 +127,9 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
 <?php if (isset($properties['slug'])):  ?>
             'slug' => [
                 'class' => SluggableBehavior::class,
-                'attribute' => 'slug'
-                // 'ensureUnique' => true
+                'attribute' => 'title'
+                //'attribute' => ['title', 'date']
+                //'ensureUnique' => true
             ]
 <?php endif ?>
         ];
