@@ -111,7 +111,8 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
 
                     [
                         'class' => ActionColumn::class,
-                        'buttonOptions' => ['class' => 'js_show_progress']
+                        'buttonOptions' => ['class' => 'js_show_progress'],
+                        'contentOptions' => ['style' => 'text-align: center; vertical-align: middle;']
                     ]
                 ]
             ]) ?>
