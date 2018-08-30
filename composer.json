@@ -30,7 +30,7 @@
     "kartik-v/yii2-widget-datepicker": "@dev",
     "kartik-v/yii2-widget-timepicker": "*",
     "kartik-v/yii2-datecontrol": "@dev",
-    "kartik-v/yii2-sortable": "@dev",
+    "kartik-v/yii2-sortable": "*",
     "vlucas/phpdotenv": "~2.4",
     "matomo/ini": "~2.0",
     "yii-dream-team/yii2-timezone-picker": "~0.1",
