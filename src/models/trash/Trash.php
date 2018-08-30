@@ -61,4 +61,33 @@ final class Trash
         ]);
     }
 
+    /**
+     * Get number of items in the trash.
+     * @return int
+     * @throws InvalidConfigException
+     */
+    public static function getCount(): int
+    {
+        $module = \dashboard\Module::getInstance();
+        if ($module === null) {
+            throw new InvalidConfigException('\dashboard\Module not defined.');
+        }
+
+        $count = 0;
+        $trash_items = $module->trash_items;
+        foreach ($trash_items as $trash_item) {
+            /** @var ActiveRecord|TrashableInterface $trash_item */
+            try {
+                $_count = $trash_item::find()
+                    ->where([$trash_item::getDeleteAttribute() => true])
+                    ->count('id');
+
+                $count += (int) $_count;
+            } catch (\Throwable $e) {
+            }
+        }
+
+        return $count;
+    }
+
 }

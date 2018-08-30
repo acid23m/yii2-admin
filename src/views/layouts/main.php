@@ -8,6 +8,7 @@
 
 use dashboard\assets\AppAsset;
 use dashboard\assets\BootboxAsset;
+use dashboard\models\trash\Trash;
 use dashboard\widgets\Growl;
 use dashboard\widgets\LeftMenu;
 use dashboard\widgets\Push;
@@ -232,6 +233,9 @@ BootboxAsset::overrideSystemConfirm();
                                 <li>
                                     <a href="<?= Url::to(["/{$dashboard_module_id}/trash/index"]) ?>">
                                         <i class="fa fa-trash-o pull-right"></i>
+                                        <?php if (($trash_count = Trash::getCount()) > 0): ?>
+                                            <span class="badge bg-red pull-right"><?= $trash_count ?></span>
+                                        <?php endif ?>
                                         <?= \Yii::t('dashboard', 'korzina') ?>
                                     </a>
                                 </li>
