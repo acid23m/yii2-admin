@@ -181,13 +181,13 @@ CSS
                         'options' => ['style' => 'border:none; margin: 0;'],
                         'pluginEvents' => [
                             'sortupdate' => 'function (e, obj) {
-                                sortData = [];
+                                let sortData = [];
                                 jQuery(".sortable.grid li").each(function () {
                                     let $item = jQuery(this).find(".model-item"),
                                         id = $item.data("id");
 
                                     sortData.push(id);
-                                })
+                                });
                             }'
                         ]
                     ]) ?>
@@ -207,7 +207,7 @@ CSS
                             } else {
                                 $("#loading-block").hide();
                             }
-                        })
+                        });
                     })(jQuery);
                     ', $this::POS_END) ?>
 
