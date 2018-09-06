@@ -130,7 +130,7 @@ Add module in `backend/config/main.php`.
 'components' => [
     'option' => [
         'class' => \dashboard\models\option\web\Main::class, // original class
-        //'class' => \backend\models\option\Option::class, // own class must be extended from \dashboard\models\option\web\Main
+        //'class' => \common\models\option\Option::class, // own class must be extended from \dashboard\models\option\web\Main
         //'view' => '@backend/views/option/index', // example in vendor/acid23m/yii2-admin/src/views/option-main/index.php
     ]
 ],
@@ -221,7 +221,7 @@ Add components in `frontend/config/main`.
 'components' => [
     'option' => [
         'class' => \dashboard\models\option\web\Main::class // original class
-        //'class' => \backend\models\option\Option::class // must be extended from \dashboard\models\option\web\Main
+        //'class' => \common\models\option\Option::class // must be extended from \dashboard\models\option\web\Main
     ],
     'searchIndex' => [
         'class' => \dashboard\models\index\SearchIndex::class
@@ -328,7 +328,7 @@ If you want to add additional options, you must create class and extend it from
 - `\dashboard\models\option\web\Main` for backend and frontend
 
 ```php
-namespace backend\models\option;
+namespace common\models\option;
 
 use yii\helpers\ArrayHelper;
 
@@ -338,12 +338,12 @@ use yii\helpers\ArrayHelper;
  * @property string $app_lang
  * @property string $service_api_key
  *
- * @package backend\models\option
+ * @package common\models\option
  */
 final class Option extends \dashboard\models\option\web\Main
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {
@@ -356,7 +356,7 @@ final class Option extends \dashboard\models\option\web\Main
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function attributeLabels(): array
     {
@@ -369,7 +369,7 @@ final class Option extends \dashboard\models\option\web\Main
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function bootstrap($app)
     {
@@ -403,7 +403,7 @@ use yii\helpers\ArrayHelper;
 final class Option extends \dashboard\models\option\rest\Main
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {
@@ -416,7 +416,7 @@ final class Option extends \dashboard\models\option\rest\Main
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function bootstrap($app): void
     {
@@ -465,8 +465,8 @@ Finally update config settings
 
 'components' => [
     'option' => [
-        'class' => \backend\models\option\Option::class,
-        'view' => '@backend/views/option/index'
+        'class' => \common\models\option\Option::class,
+        'view' => '@backend/views/option/index.php'
     ]
 ],
 ```
@@ -481,7 +481,7 @@ Finally update config settings
 
 'components' => [
     'option' => [
-        'class' => \backend\models\option\Option::class
+        'class' => \remote\models\option\Option::class
     ]
 ],
 ```
@@ -497,7 +497,7 @@ Finally update config settings
 
 'components' => [
     'option' => [
-        'class' => \backend\models\option\Option::class
+        'class' => \common\models\option\Option::class
     ]
 ],
 ```
