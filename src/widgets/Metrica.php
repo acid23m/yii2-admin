@@ -47,7 +47,7 @@ class Metrica extends Widget
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', '{$script->google_analytics}');
+  gtag('config', '{$google_analytics_id}');
 </script>
 
 GA;
