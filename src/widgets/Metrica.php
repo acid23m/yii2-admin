@@ -39,7 +39,7 @@ class Metrica extends Widget
 
         $google_analytics = '';
         $google_analytics_id = $model->get('google_analytics');
-        if (!empty($google_analytics_id)) {
+        if ($google_analytics_id !== null && $google_analytics_id !== '') {
             $google_analytics = <<<GA
 <script async src="https://www.googletagmanager.com/gtag/js?id={$google_analytics_id}"></script>
 <script>
@@ -61,39 +61,36 @@ GA;
 
         $yandex_metrika = '';
         $yandex_metrika_id = $model->get('yandex_metrika');
-        if (!empty($yandex_metrika_id)) {
+        if ($yandex_metrika_id !== null && $yandex_metrika_id !== '') {
             $yandex_metrika = <<<YM
 <script>
     (function (d, w, c) {
         (w[c] = w[c] || []).push(function () {
             try {
-                w.yaCounter{$yandex_metrika_id} = new Ya.Metrika({
+                w.yaCounter{$yandex_metrika_id} = new Ya.Metrika2({
                     id: {$yandex_metrika_id},
-                    webvisor: true,
                     clickmap: true,
                     trackLinks: true,
-                    accurateTrackBounce: true
+                    accurateTrackBounce: true,
+                    webvisor: true
                 });
-            } catch (e) {
-            }
+            } catch(e) { }
         });
+
         var n = d.getElementsByTagName("script")[0],
             s = d.createElement("script"),
-            f = function () {
-                n.parentNode.insertBefore(s, n);
-            };
+            f = function () { n.parentNode.insertBefore(s, n); };
         s.type = "text/javascript";
         s.async = true;
-        s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+        s.src = "https://mc.yandex.ru/metrika/tag.js";
+
         if (w.opera == "[object Opera]") {
             d.addEventListener("DOMContentLoaded", f, false);
-        } else {
-            f();
-        }
-    })(document, window, "yandex_metrika_callbacks");
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks2");
 </script>
 <noscript>
-    <div><img src="//mc.yandex.ru/watch/{$yandex_metrika_id}" style="position:absolute; left:-9999px;" alt=""/></div>
+    <div><img src="https://mc.yandex.ru/watch/{$yandex_metrika_id}" style="position:absolute; left:-9999px;" alt="" /></div>
 </noscript>
 YM;
         }
