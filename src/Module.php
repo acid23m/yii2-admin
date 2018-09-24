@@ -10,6 +10,7 @@ namespace dashboard;
 
 use dashboard\models\user\UserIdentity;
 use yii\base\BootstrapInterface;
+use yii\base\Event;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
@@ -112,12 +113,30 @@ final class Module extends \yii\base\Module implements BootstrapInterface
                 self::DB_USER => [
                     'class' => Connection::class,
                     'dsn' => 'sqlite:@common/data/userdata.db',
-                    'schemaCacheDuration' => 3600
+                    'schemaCacheDuration' => 3600,
+                    'on afterOpen' => function (Event $event) {
+                        /** @var Connection $connection */
+                        $connection = $event->sender;
+                        $connection->createCommand('PRAGMA foreign_keys = ON;')->execute();
+                        $connection->createCommand('PRAGMA case_sensitive_like = false;')->execute();
+                        $connection->createCommand('PRAGMA count_changes = false;')->execute();
+//                        $connection->createCommand('PRAGMA journal_mode = OFF;')->execute();
+                        $connection->createCommand('PRAGMA synchronous = NORMAL;')->execute();
+                    }
                 ],
                 self::DB_TASK => [
                     'class' => Connection::class,
                     'dsn' => 'sqlite:@common/data/taskdata.db',
-                    'schemaCacheDuration' => 3600
+                    'schemaCacheDuration' => 3600,
+                    'on afterOpen' => function (Event $event) {
+                        /** @var Connection $connection */
+                        $connection = $event->sender;
+                        $connection->createCommand('PRAGMA foreign_keys = ON;')->execute();
+                        $connection->createCommand('PRAGMA case_sensitive_like = false;')->execute();
+                        $connection->createCommand('PRAGMA count_changes = false;')->execute();
+//                        $connection->createCommand('PRAGMA journal_mode = OFF;')->execute();
+                        $connection->createCommand('PRAGMA synchronous = NORMAL;')->execute();
+                    }
                 ]
             ]
         ]);
