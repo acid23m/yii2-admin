@@ -14,6 +14,7 @@ use Matomo\Ini\IniWriter;
 use Matomo\Ini\IniWritingException;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
+use yii\base\InvalidRouteException;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
 
@@ -49,6 +50,7 @@ class IniConfig extends Model
      * @throws InvalidConfigException
      * @throws IniReadingException
      * @throws InvalidArgumentException
+     * @throws InvalidRouteException
      */
     public function init(): void
     {
@@ -58,8 +60,7 @@ class IniConfig extends Model
 
         $path = \Yii::getAlias($this->path);
         if (!file_exists($path)) {
-            file_put_contents($path, '[' . $this->section . ']' . PHP_EOL);
-            chmod($path, PERM_FILE);
+            throw new InvalidRouteException("File $path not found.");
         }
 
         $reader = new IniReader();

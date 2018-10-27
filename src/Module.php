@@ -373,7 +373,7 @@ SQL
             ]);
 
             \Yii::$app->modules = ArrayHelper::merge(\Yii::$app->modules, [
-                'imagetool' => [
+                \imagetool\Module::DEFAULT_ID => [
                     'class' => \imagetool\Module::class,
                     'controllerNamespace' => 'imagetool\controllers\web'
                 ]
