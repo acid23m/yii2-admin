@@ -9,9 +9,11 @@
 namespace dashboard\commands;
 
 use dashboard\models\index\SearchIndex;
+use dashboard\models\index\SearchIndexJob;
 use S2\Rose\Exception\LogicException;
 use S2\Rose\Exception\UnknownException;
 use S2\Rose\Storage\Exception\InvalidEnvironmentException;
+use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
 use yii\console\Controller;
 use yii\console\ExitCode;
@@ -28,10 +30,11 @@ final class SearchController extends Controller
     /**
      * Recreate index DB.
      * @return int
+     * @throws InvalidConfigException
+     * @throws InvalidEnvironmentException
      * @throws LogicException
      * @throws UnknownException
-     * @throws InvalidEnvironmentException
-     * @throws InvalidConfigException
+     * @throws InvalidArgumentException
      */
     public function actionErase(): int
     {
@@ -47,17 +50,24 @@ final class SearchController extends Controller
     /**
      * Add items to search index.
      * @return int
+     * @throws InvalidConfigException
+     * @throws InvalidEnvironmentException
      * @throws LogicException
      * @throws UnknownException
-     * @throws InvalidEnvironmentException
-     * @throws InvalidConfigException
+     * @throws InvalidArgumentException
      */
     public function actionIndex(): int
     {
-        /** @var SearchIndex $search_index */
-        $search_index = \Yii::createObject(SearchIndex::class);
-        $search_index->getStorage()->erase(); // clear
-        $search_index->index(); // index
+        /** @var \yii\queue\Queue $queue */
+        $queue = \Yii::$app->get('queue');
+        if ($queue instanceof \yii\queue\Queue) {
+            $queue->push(new SearchIndexJob);
+        } else {
+            /** @var SearchIndex $search_index */
+            $search_index = \Yii::createObject(SearchIndex::class);
+            $search_index->getStorage()->erase(); // clear
+            $search_index->index(); // index
+        }
 
         $this->stdout("Done.\n", Console::FG_GREEN);
 

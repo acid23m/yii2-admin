@@ -9,9 +9,11 @@
 namespace dashboard\controllers\web;
 
 use dashboard\models\index\SearchIndex;
+use dashboard\models\index\SearchIndexJob;
 use dashboard\models\log\LogRecord;
 use dashboard\models\log\LogSearch;
 use dashboard\models\sitemap\SitemapGenerator;
+use dashboard\models\sitemap\SitemapJob;
 use dashboard\models\user\UserIdentity;
 use dashboard\models\user\web\User;
 use yii\base\ErrorException;
@@ -271,7 +273,13 @@ final class HomeController extends BaseController
      */
     public function actionSitemap(): Response
     {
-        SitemapGenerator::write();
+        /** @var \yii\queue\Queue $queue */
+        $queue = \Yii::$app->get('queue');
+        if ($queue instanceof \yii\queue\Queue) {
+            $queue->push(new SitemapJob);
+        } else {
+            SitemapGenerator::write();
+        }
 
         \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'gotovo'));
 
@@ -281,13 +289,24 @@ final class HomeController extends BaseController
     /**
      * Update search index.
      * @return Response
+     * @throws InvalidArgumentException
      * @throws InvalidConfigException
+     * @throws \S2\Rose\Exception\LogicException
+     * @throws \S2\Rose\Exception\UnknownException
+     * @throws \S2\Rose\Storage\Exception\InvalidEnvironmentException
      */
     public function actionSearchIndex(): Response
     {
-        /** @var SearchIndex $search_index */
-        $search_index = \Yii::createObject(SearchIndex::class);
-        $search_index->index();
+        /** @var \yii\queue\Queue $queue */
+        $queue = \Yii::$app->get('queue');
+        if ($queue instanceof \yii\queue\Queue) {
+            $queue->push(new SearchIndexJob);
+        } else {
+            /** @var SearchIndex $search_index */
+            $search_index = \Yii::createObject(SearchIndex::class);
+            $search_index->getStorage()->erase(); // clear
+            $search_index->index(); // index
+        }
 
         \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'gotovo'));
 

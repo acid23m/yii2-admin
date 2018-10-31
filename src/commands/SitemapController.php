@@ -32,7 +32,13 @@ final class SitemapController extends Controller
      */
     public function actionIndex(): int
     {
-        SitemapGenerator::write();
+        /** @var \yii\queue\Queue $queue */
+        $queue = \Yii::$app->get('queue');
+        if ($queue instanceof \yii\queue\Queue) {
+            $queue->push(new SitemapJob);
+        } else {
+            SitemapGenerator::write();
+        }
 
         $this->stdout("Done.\n", Console::FG_GREEN);
 

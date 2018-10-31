@@ -23,6 +23,7 @@
     "yiister/yii2-gentelella": "~1.0",
     "bower-asset/bootbox": "~4.4",
     "yiisoft/yii2-swiftmailer": "~2.1",
+    "yiisoft/yii2-queue": "~2.0",
     "kartik-v/yii2-widget-growl": "*",
     "kartik-v/yii2-widget-fileinput": "@dev",
     "kartik-v/yii2-date-range": "~1.0",
@@ -48,8 +49,9 @@
     "yiisoft/yii2-debug": "~2.0.0",
     "yiisoft/yii2-gii": "~2.0.0",
     "yiisoft/yii2-faker": "~2.0.0",
-    "codeception/base": "^2.3",
-    "codeception/verify": "^1.0"
+    "codeception/base": "~2.0",
+    "codeception/verify": "~0.3",
+    "codeception/specify": "~0.4"
   },
   "autoload": {
     "psr-4": {
