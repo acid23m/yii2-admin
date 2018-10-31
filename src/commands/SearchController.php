@@ -59,7 +59,7 @@ final class SearchController extends Controller
     public function actionIndex(): int
     {
         /** @var \yii\queue\Queue $queue */
-        $queue = \Yii::$app->get('queue');
+        $queue = \Yii::$app->get('queue', false);
         if ($queue instanceof \yii\queue\Queue) {
             $queue->push(new SearchIndexJob);
         } else {

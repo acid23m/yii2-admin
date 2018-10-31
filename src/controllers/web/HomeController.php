@@ -274,7 +274,7 @@ final class HomeController extends BaseController
     public function actionSitemap(): Response
     {
         /** @var \yii\queue\Queue $queue */
-        $queue = \Yii::$app->get('queue');
+        $queue = \Yii::$app->get('queue', false);
         if ($queue instanceof \yii\queue\Queue) {
             $queue->push(new SitemapJob);
         } else {
@@ -298,7 +298,7 @@ final class HomeController extends BaseController
     public function actionSearchIndex(): Response
     {
         /** @var \yii\queue\Queue $queue */
-        $queue = \Yii::$app->get('queue');
+        $queue = \Yii::$app->get('queue', false);
         if ($queue instanceof \yii\queue\Queue) {
             $queue->push(new SearchIndexJob);
         } else {
