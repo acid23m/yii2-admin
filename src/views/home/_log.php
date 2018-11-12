@@ -102,8 +102,7 @@ $level_list = $logSearchModel->getList('levels');
 //                        'id:integer',
                         [
                             'attribute' => 'level',
-                            'value' => function ($model, $key, $index) use ($level_list) {
-                                /** @var LogSearch $model */
+                            'value' => function (LogSearch $model, $key, $index) use ($level_list) {
                                 return $level_list()[$model->level];
                             },
                             'filter' => $level_list()

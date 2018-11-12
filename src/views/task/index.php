@@ -79,8 +79,7 @@ $status_list = $model->getList('statuses');
             'weekDay',
             [
                 'attribute' => 'status',
-                'value' => function ($model, $key, $index) use ($status_list) {
-                    /** @var Task $model */
+                'value' => function (Task $model, $key, $index) use ($status_list) {
                     return Html::tag('span', $status_list()[$model->status]);
                 },
                 'format' => 'html',

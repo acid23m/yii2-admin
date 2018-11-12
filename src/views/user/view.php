@@ -61,8 +61,7 @@ $status_list = $model->getList('statuses');
             [
                 'attribute' => 'created_at',
                 'format' => 'datetime',
-                'value' => function ($model, $widget) {
-                    /** @var User $model */
+                'value' => function (User $model, $widget) {
                     $dt = new \DateTime($model->created_at, new \DateTimeZone('UTC'));
                     $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
 
@@ -72,8 +71,7 @@ $status_list = $model->getList('statuses');
             [
                 'attribute' => 'updated_at',
                 'format' => 'datetime',
-                'value' => function ($model, $widget) {
-                    /** @var User $model */
+                'value' => function (User $model, $widget) {
                     $dt = new \DateTime($model->updated_at, new \DateTimeZone('UTC'));
                     $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
 
@@ -83,8 +81,7 @@ $status_list = $model->getList('statuses');
             [
                 'attribute' => 'last_access',
                 'format' => 'datetime',
-                'value' => function ($model, $widget) {
-                    /** @var User $model */
+                'value' => function (User $model, $widget) {
                     $dt = new \DateTime($model->last_access, new \DateTimeZone('UTC'));
                     $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
 
