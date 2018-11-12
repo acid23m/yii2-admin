@@ -1,8 +1,8 @@
 <?php
 use yii\helpers\Html;
 
-/* @var $this yii\web\View */
-/* @var \dashboard\models\user\UserIdentity $user */
+/** @var yii\web\View $this */
+/** @var \dashboard\models\user\UserIdentity $user */
 /** @var string $code */
 ?>
 
