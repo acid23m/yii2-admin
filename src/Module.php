@@ -337,20 +337,15 @@ SQL
         $adminer_index = \Yii::getAlias('@vendor/dg/adminer-custom/index.php');
         $adminer_index_sl = $adminer_dir . '/index.php';
         try {
-            if (!\linkinfo($adminer_index_sl)) {
-                \symlink($adminer_index, $adminer_index_sl);
-            }
+            \linkinfo($adminer_index_sl);
         } catch (\Throwable $e) {
             \symlink($adminer_index, $adminer_index_sl);
-
         }
 
         $adminer_css = \Yii::getAlias('@vendor/dg/adminer-custom/adminer.css');
         $adminer_css_sl = $adminer_dir . '/adminer.css';
         try {
-            if (!linkinfo($adminer_css_sl)) {
-                \symlink($adminer_css, $adminer_css_sl);
-            }
+            \linkinfo($adminer_css_sl);
         } catch (\Throwable $e) {
             \symlink($adminer_css, $adminer_css_sl);
         }
