@@ -6,7 +6,7 @@
  * Time: 0:54
  */
 
-use dashboard\models\log\LogSearch;
+use dashboard\models\log\LogRecord;
 use kartik\daterange\DateRangePicker;
 use yii\grid\CheckboxColumn;
 use yii\helpers\Html;
@@ -14,7 +14,7 @@ use yii\helpers\Url;
 use yiister\gentelella\widgets\grid\GridView;
 
 /** @var yii\web\View $this */
-/** @var LogSearch $logSearchModel */
+/** @var \dashboard\models\log\LogSearch $logSearchModel */
 /** @var \yii\data\ActiveDataProvider $logDataProvider */
 
 $this->registerJs('
@@ -102,7 +102,7 @@ $level_list = $logSearchModel->getList('levels');
 //                        'id:integer',
                         [
                             'attribute' => 'level',
-                            'value' => function (LogSearch $model, $key, $index) use ($level_list) {
+                            'value' => function (LogRecord $model, $key, $index) use ($level_list) {
                                 return $level_list()[$model->level];
                             },
                             'filter' => $level_list()

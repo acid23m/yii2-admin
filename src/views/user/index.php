@@ -1,5 +1,6 @@
 <?php
 
+use dashboard\models\user\web\User;
 use dashboard\models\user\web\UserSearch;
 use yii\grid\ActionColumn;
 use yii\helpers\Html;
@@ -33,7 +34,7 @@ $status_list = $searchModel->getList('statuses');
             'id',
             [
                 'attribute' => 'username',
-                'value' => function (UserSearch $model, $key, $index) {
+                'value' => function (User $model, $key, $index) {
                     return (int) \Yii::$app->user->id === (int) $model['id']
                         ? Html::tag('strong', $model['username'])
                         : $model['username'];
@@ -43,14 +44,14 @@ $status_list = $searchModel->getList('statuses');
             'email:email',
             [
                 'attribute' => 'role',
-                'value' => function (UserSearch $model, $key, $index) {
+                'value' => function (User $model, $key, $index) {
                     return $model->getRoles(true, true)[$model->role];
                 },
                 'filter' => $searchModel->getRoles(true)
             ],
             [
                 'attribute' => 'status',
-                'value' => function (UserSearch $model, $key, $index) use ($status_list) {
+                'value' => function (User $model, $key, $index) use ($status_list) {
                     return Html::tag('span', $status_list()[$model->status]);
                 },
                 'format' => 'html',
@@ -59,7 +60,7 @@ $status_list = $searchModel->getList('statuses');
             [
                 'class' => ActionColumn::class,
                 'buttons' => [
-                    'delete' => function ($url, UserSearch $model, $key) {
+                    'delete' => function ($url, User $model, $key) {
                         $options = [
                             'title' => \Yii::t('yii', 'Delete'),
                             'aria-label' => \Yii::t('yii', 'Delete'),
