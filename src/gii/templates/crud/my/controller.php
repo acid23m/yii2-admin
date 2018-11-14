@@ -180,7 +180,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
             return $this->redirect(['view', <?= $urlParams ?>]);
         } catch (\Throwable $e) {
             \Yii::error($e->getMessage());
-            \Yii::$app->getSession()->setFlash('error', 'Error.');
+            \Yii::$app->getSession()->setFlash('error', \Yii::t('yii', 'Error'));
 
             return $this->redirect(['view', <?= $urlParams ?>]);
         }
@@ -214,7 +214,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
             return $this->redirect(['index']);
         } catch (\Throwable $e) {
             \Yii::error($e->getMessage());
-            \Yii::$app->getSession()->setFlash('error', 'Error.');
+            \Yii::$app->getSession()->setFlash('error', \Yii::t('yii', 'Error'));
 
             return $this->redirect(['index']);
         }
