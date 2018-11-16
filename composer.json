@@ -42,8 +42,7 @@
     "samdark/sitemap": "~2.2",
     "brussens/yii2-maintenance-mode": "~0.2",
     "s2/rose": "~0.2",
-    "acid23m/yii2-image": "dev-master",
-    "acid23m/yii2-multipage": "dev-master"
+    "acid23m/yii2-image": "dev-master"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
@@ -51,6 +50,9 @@
     "yiisoft/yii2-faker": "~2.0.0",
     "codeception/base": "~2.0",
     "codeception/verify": "~1.0"
+  },
+  "suggest": {
+    "acid23m/yii2-multipage": "Manage content on page that depends on URL query or Geo data."
   },
   "autoload": {
     "psr-4": {

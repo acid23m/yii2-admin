@@ -769,6 +769,25 @@ final class SearchController extends Controller
 Finally create view file for search results.
 
 
+Multi-Page
+----------
+
+You can manage content on page that depends on URL query or Geo data.
+Just install "acid23m/yii2-multipage" extension.
+
+```
+"require": {
+  "acid23m/yii2-multipage": "dev-master"
+},
+"repositories": [
+  {
+    "type": "git",
+    "url": "git@github.com:acid23m/yii2-multipage.git"
+  }
+]
+```
+
+
 Datetime control
 ----------------
 
