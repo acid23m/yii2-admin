@@ -40,7 +40,9 @@ final class SearchController extends Controller
     {
         /** @var SearchIndex $search_index */
         $search_index = \Yii::createObject(SearchIndex::class);
-        $search_index->getStorage()->erase();
+        if ($search_index->is_active) {
+            $search_index->getStorage()->erase();
+        }
 
         $this->stdout("Done.\n", Console::FG_GREEN);
 
@@ -65,8 +67,10 @@ final class SearchController extends Controller
         } else {
             /** @var SearchIndex $search_index */
             $search_index = \Yii::createObject(SearchIndex::class);
-            $search_index->getStorage()->erase(); // clear
-            $search_index->index(); // index
+            if ($search_index->is_active) {
+                $search_index->getStorage()->erase(); // clear
+                $search_index->index(); // index
+            }
         }
 
         $this->stdout("Done.\n", Console::FG_GREEN);

@@ -9,6 +9,7 @@
 use dashboard\widgets\HomePanel;
 
 /** @var \yii\web\View $this */
+/** @var bool $search_index_is_active */
 /** @var \dashboard\models\log\LogSearch $logSearchModel */
 /** @var \yii\data\ActiveDataProvider $logDataProvider */
 /** @var \dashboard\models\user\UserIdentity $user */
@@ -46,7 +47,7 @@ $this->params['title'] = $this->title;
 
         <!-- Service -->
         <?php if (\Yii::$app->getUser()->can($user::ROLE_ADMIN)): ?>
-            <?= $this->render('_service', compact('user')) ?>
+            <?= $this->render('_service', compact('user', 'search_index_is_active')) ?>
         <?php endif ?>
         <!-- /Service -->
 

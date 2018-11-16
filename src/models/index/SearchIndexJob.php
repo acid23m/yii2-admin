@@ -24,15 +24,17 @@ class SearchIndexJob implements JobInterface
      * @throws \S2\Rose\Exception\LogicException
      * @throws \S2\Rose\Exception\UnknownException
      * @throws \S2\Rose\Storage\Exception\InvalidEnvironmentException
-     * @throws \yii\base\InvalidArgumentException
      * @throws \yii\base\InvalidConfigException
      */
     public function execute($queue): void
     {
         /** @var SearchIndex $search_index */
         $search_index = \Yii::createObject(SearchIndex::class);
-        $search_index->getStorage()->erase(); // clear
-        $search_index->index(); // index
+
+        if ($search_index->is_active) {
+            $search_index->getStorage()->erase(); // clear
+            $search_index->index(); // index
+        }
     }
 
 }

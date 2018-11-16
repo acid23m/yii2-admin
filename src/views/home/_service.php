@@ -7,9 +7,11 @@
  */
 
 use yii\bootstrap\Tabs;
+use yii\helpers\ArrayHelper;
 
 /** @var \yii\web\View $this */
 /** @var \dashboard\models\user\UserIdentity $user */
+/** @var bool $search_index_is_active */
 ?>
 
 <div class="row">
@@ -31,30 +33,37 @@ use yii\bootstrap\Tabs;
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
-                <?= Tabs::widget([
-                    'items' => [
-                        [
-                            'label' => \Yii::t('dashboard', 'kesh'),
-                            'content' => $this->render('_service_cache'),
-                            'active' => true
-                        ],
-                        [
-                            'label' => \Yii::t('dashboard', 'resursi'),
-                            'content' => $this->render('_service_assets')
-                        ],
-                        [
-                            'label' => \Yii::t('dashboard', 'karta sayta'),
-                            'content' => $this->render('_service_sitemap')
-                        ],
-                        [
-                            'label' => \Yii::t('dashboard', 'baza dannih'),
-                            'content' => $this->render('_service_bd', compact('user'))
-                        ],
-                        [
-                            'label' => \Yii::t('dashboard', 'poiskoviy indeks'),
-                            'content' => $this->render('_service_index')
-                        ]
+                <?php
+                $items = [
+                    [
+                        'label' => \Yii::t('dashboard', 'kesh'),
+                        'content' => $this->render('_service_cache'),
+                        'active' => true
                     ],
+                    [
+                        'label' => \Yii::t('dashboard', 'resursi'),
+                        'content' => $this->render('_service_assets')
+                    ],
+                    [
+                        'label' => \Yii::t('dashboard', 'karta sayta'),
+                        'content' => $this->render('_service_sitemap')
+                    ],
+                    [
+                        'label' => \Yii::t('dashboard', 'baza dannih'),
+                        'content' => $this->render('_service_bd', compact('user'))
+                    ]
+                ];
+
+                if ($search_index_is_active) {
+                    $items = ArrayHelper::merge($items, [
+                        'label' => \Yii::t('dashboard', 'poiskoviy indeks'),
+                        'content' => $this->render('_service_index')
+                    ]);
+                }
+                ?>
+
+                <?= Tabs::widget([
+                    'items' => $items,
                     'options' => [
                         'class' => 'bar_tabs'
                     ]

@@ -17,7 +17,6 @@ use S2\Rose\Indexer;
 use S2\Rose\Stemmer\PorterStemmerRussian;
 use S2\Rose\Storage\Database\PdoStorage;
 use yii\base\Component;
-use yii\base\InvalidArgumentException;
 
 /**
  * Class SearchIndex.
@@ -29,6 +28,15 @@ use yii\base\InvalidArgumentException;
 class SearchIndex extends Component
 {
     /**
+     * @var bool Component is ready or not.
+     */
+    public $is_active = false;
+
+    /**
+     * @var \PDO|null
+     */
+    protected $connection;
+    /**
      * @var Indexer
      */
     protected $indexer;
@@ -38,11 +46,12 @@ class SearchIndex extends Component
     protected $finder;
 
     /**
-     * @return PdoStorage
-     * @throws InvalidArgumentException
+     * {@inheritdoc}
      */
-    public function getStorage(): PdoStorage
+    public function init(): void
     {
+        parent::init();
+
         $dotenv = new \Dotenv\Dotenv(
             \Yii::getAlias('@root')
         );
@@ -52,19 +61,35 @@ class SearchIndex extends Component
         $db_user = getenv('S_DB_USER');
         $db_password = getenv('S_DB_PASSWORD');
 
-        $pdo = new \PDO("mysql:host=search;dbname=$db_name;charset=utf8", $db_user, $db_password);
-        $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+        try {
+            $pdo = new \PDO("mysql:host=search;dbname=$db_name;charset=utf8", $db_user, $db_password);
+            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
-        return new PdoStorage($pdo, '');
+            $this->connection = $pdo;
+        } catch (\PDOException $e) {
+        }
+
+        $this->is_active = $this->connection instanceof \PDO;
     }
 
     /**
-     * @return Indexer
-     * @throws InvalidArgumentException
+     * @return PdoStorage|null
+     */
+    public function getStorage(): ?PdoStorage
+    {
+        return $this->is_active ? new PdoStorage($this->connection, '') : null;
+    }
+
+    /**
+     * @return Indexer|null
      * @link https://github.com/parpalak/rose/blob/master/src/S2/Rose/Indexer.php
      */
-    public function getIndexer(): Indexer
+    public function getIndexer(): ?Indexer
     {
+        if (!$this->is_active) {
+            return null;
+        }
+
         if ($this->indexer === null) {
             $this->indexer = new Indexer(
                 $this->getStorage(),
@@ -76,12 +101,15 @@ class SearchIndex extends Component
     }
 
     /**
-     * @return Finder
-     * @throws InvalidArgumentException
+     * @return Finder|null
      * @link https://github.com/parpalak/rose/blob/master/src/S2/Rose/Finder.php
      */
-    public function getFinder(): Finder
+    public function getFinder(): ?Finder
     {
+        if (!$this->is_active) {
+            return null;
+        }
+
         if ($this->finder === null) {
             $this->finder = new Finder(
                 $this->getStorage(),
@@ -100,6 +128,10 @@ class SearchIndex extends Component
         // check module instance
         $module = \dashboard\Module::getInstance();
         if ($module === null) {
+            return;
+        }
+
+        if (!$this->is_active) {
             return;
         }
 
@@ -130,7 +162,6 @@ class SearchIndex extends Component
      * @param int|null $limit
      * @param int $offset
      * @return iterable|Vector|ResultItem[]
-     * @throws InvalidArgumentException
      * @throws ImmutableException
      */
     public function find(string $query, ?int $limit = null, int $offset = 0)
@@ -139,8 +170,13 @@ class SearchIndex extends Component
         $q->setLimit($limit);
         $q->setOffset($offset);
 
-        $query_result = $this->getFinder()->find($q);
         $results = new Vector;
+
+        if (!$this->is_active) {
+            return $results;
+        }
+
+        $query_result = $this->getFinder()->find($q);
 
         foreach ($query_result->getItems() as $item) {
             $results->push($item);

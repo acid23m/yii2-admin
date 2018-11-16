@@ -99,13 +99,18 @@ final class HomeController extends BaseController
             }
         }
 
+        // Search index
+        /** @var SearchIndex $search_index */
+        $search_index = \Yii::createObject(SearchIndex::class);
+        $search_index_is_active = $search_index->is_active;
+
         // Log
         $logSearchModel = new LogSearch;
         $logDataProvider = $logSearchModel->search(
             \Yii::$app->getRequest()->getQueryParams()
         );
 
-        return $this->render('index', compact('logSearchModel', 'logDataProvider'));
+        return $this->render('index', compact('search_index_is_active', 'logSearchModel', 'logDataProvider'));
     }
 
     /**
@@ -304,8 +309,10 @@ final class HomeController extends BaseController
         } else {
             /** @var SearchIndex $search_index */
             $search_index = \Yii::createObject(SearchIndex::class);
-            $search_index->getStorage()->erase(); // clear
-            $search_index->index(); // index
+            if ($search_index->is_active) {
+                $search_index->getStorage()->erase(); // clear
+                $search_index->index(); // index
+            }
         }
 
         \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'gotovo'));

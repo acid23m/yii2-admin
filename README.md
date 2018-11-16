@@ -778,7 +778,7 @@ The [Date Control](https://github.com/kartik-v/yii2-datecontrol) module allows c
 Once the `datecontrol` module is configured, you can use widgets for forms.
 Widget show datetime/time in application timezone, but save it in UTC.
 
-```html
+```php
 <?= $form->field($model, 'datetime')->widget(\kartik\datecontrol\DateControl::class, [
     'type' => \kartik\datecontrol\DateControl::FORMAT_DATETIME,
     'displayTimezone' => \Yii::$app->getTimeZone()
@@ -787,7 +787,7 @@ Widget show datetime/time in application timezone, but save it in UTC.
 
 To show saved datetime/time you can convert it, e.g:
 
-```html
+```php
 <?= \yii\widgets\DetailView::widget([
     'model' => $model,
     'attributes' => [
