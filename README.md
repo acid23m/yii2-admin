@@ -773,7 +773,7 @@ Multi-Page
 ----------
 
 You can manage content on page that depends on URL query or Geo data.
-Just install "acid23m/yii2-multipage" extension.
+Just install [multipage](https://github.com/acid23m/yii2-multipage) extension
 
 ```
 "require": {
@@ -785,6 +785,17 @@ Just install "acid23m/yii2-multipage" extension.
     "url": "git@github.com:acid23m/yii2-multipage.git"
   }
 ]
+```
+
+and add module in `frontend/config/main.php`.
+
+```php
+'modules' => [
+    \multipage\Module::DEFAULT_ID => [
+        'class' => \multipage\Module::class,
+        'controllerNamespace' => 'multipage\controllers'
+    ],
+],
 ```
 
 

@@ -141,12 +141,14 @@ final class Module extends \yii\base\Module implements BootstrapInterface
             ]
         ]);
 
-        $this->modules = [
-            'multipage' => [
-                'class' => \multipage\Module::class,
-                'layout' => '@vendor/acid23m/yii2-admin/src/views/layouts/main.php'
-            ]
-        ];
+        if (ArrayHelper::keyExists('acid23m/yii2-multipage', \Yii::$app->extensions)) {
+            $this->modules = [
+                'multipage' => [
+                    'class' => \multipage\Module::class,
+                    'layout' => '@vendor/acid23m/yii2-admin/src/views/layouts/main.php'
+                ]
+            ];
+        }
 
         // web configuration
         $this->initWeb();

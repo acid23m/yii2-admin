@@ -13,6 +13,7 @@ use dashboard\widgets\Growl;
 use dashboard\widgets\LeftMenu;
 use dashboard\widgets\Push;
 use dashboard\widgets\TopMenu;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\Breadcrumbs;
@@ -210,19 +211,23 @@ BootboxAsset::overrideSystemConfirm();
                                         <?= \Yii::t('dashboard', 'skripty') ?>
                                     </a>
                                 </li>
-                                <li class="divider"></li>
-                                <li>
-                                    <a href="<?= Url::to(["/{$dashboard_module_id}/multipage/marker/index"]) ?>">
-                                        <i class="fa fa-bookmark pull-right"></i>
-                                        <?= \Yii::t('multipage', 'spisok markerov') ?>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="<?= Url::to(["/{$dashboard_module_id}/multipage/parameter/index"]) ?>">
-                                        <i class="fa fa-paperclip pull-right"></i>
-                                        <?= \Yii::t('multipage', 'spisok parametrov') ?>
-                                    </a>
-                                </li>
+
+                                <?php if (ArrayHelper::keyExists('acid23m/yii2-multipage', \Yii::$app->extensions)): ?>
+                                    <li class="divider"></li>
+                                    <li>
+                                        <a href="<?= Url::to(["/{$dashboard_module_id}/multipage/marker/index"]) ?>">
+                                            <i class="fa fa-bookmark pull-right"></i>
+                                            <?= \Yii::t('multipage', 'spisok markerov') ?>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="<?= Url::to(["/{$dashboard_module_id}/multipage/parameter/index"]) ?>">
+                                            <i class="fa fa-paperclip pull-right"></i>
+                                            <?= \Yii::t('multipage', 'spisok parametrov') ?>
+                                        </a>
+                                    </li>
+                                <?php endif ?>
+
                                 <li class="divider"></li>
                                 <li>
                                     <a href="<?= Url::to(["/{$dashboard_module_id}/task/index"]) ?>">
