@@ -7,7 +7,6 @@
  */
 
 use yii\bootstrap\Tabs;
-use yii\helpers\ArrayHelper;
 
 /** @var \yii\web\View $this */
 /** @var \dashboard\models\user\UserIdentity $user */
@@ -55,10 +54,10 @@ use yii\helpers\ArrayHelper;
                 ];
 
                 if ($search_index_is_active) {
-                    $items = ArrayHelper::merge($items, [
+                    $items[] = [
                         'label' => \Yii::t('dashboard', 'poiskoviy indeks'),
                         'content' => $this->render('_service_index')
-                    ]);
+                    ];
                 }
                 ?>
 
