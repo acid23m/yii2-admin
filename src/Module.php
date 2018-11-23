@@ -21,6 +21,7 @@ use yii\i18n\PhpMessageSource;
 use yii\rbac\DbManager;
 use yii\rest\UrlRule;
 use yii\web\User;
+use yii\web\UserEvent;
 
 /**
  * Class Module.
@@ -391,6 +392,13 @@ SQL
                         'class' => User::class,
                         'identityClass' => UserIdentity::class,
                         'enableAutoLogin' => true,
+                        'on afterLogin' => function (UserEvent $event) {
+                            /** @var UserIdentity $user */
+                            $user = $event->identity;
+                            $user->last_access = $user::getNowUTC();
+                            $user->ip = \Yii::$app->getRequest()->getUserIP();
+                            $user->save(false);
+                        },
                         'identityCookie' => [
                             'name' => '_backendUser',
                             'path' => '/admin',

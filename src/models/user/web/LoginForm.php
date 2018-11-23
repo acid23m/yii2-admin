@@ -107,15 +107,8 @@ final class LoginForm extends Model
      */
     public function login(): bool
     {
-        $user = $this->getUser();
-        if ($user !== null) {
-            $user->last_access = $user::getNowUTC();
-            $user->ip = \Yii::$app->getRequest()->getUserIP();
-            $user->save(false);
-        }
-
         return \Yii::$app->getUser()->login(
-            $user,
+            $this->getUser(),
             $this->rememberMe ? self::REMEMBER_ME_TIME : 1
         );
     }
