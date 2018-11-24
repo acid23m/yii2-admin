@@ -85,7 +85,7 @@ final class UserSearch extends User
         if (!empty($this->last_access)) {
             if (strpos($this->last_access, ',') !== false) {
                 [$last_access_start, $last_access_end] = explode(',', $this->last_access);
-                $query->andFilterWhere(['between', '{{user]].[[last_access]]', $last_access_start, $last_access_end]);
+                $query->andFilterWhere(['between', '{{user}}.[[last_access]]', $last_access_start, $last_access_end]);
             } else {
                 $query->andFilterWhere(['{{user}}.[[last_access]]' => $this->last_access]);
             }
@@ -93,7 +93,7 @@ final class UserSearch extends User
         if (!empty($this->created_at)) {
             if (strpos($this->created_at, ',') !== false) {
                 [$created_at_start, $created_at_end] = explode(',', $this->created_at);
-                $query->andFilterWhere(['between', '{{user]].[[created_at]]', $created_at_start, $created_at_end]);
+                $query->andFilterWhere(['between', '{{user}}.[[created_at]]', $created_at_start, $created_at_end]);
             } else {
                 $query->andFilterWhere(['{{user}}.[[created_at]]' => $this->created_at]);
             }
