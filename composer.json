@@ -42,7 +42,7 @@
     "samdark/sitemap": "~2.2",
     "brussens/yii2-maintenance-mode": "~0.2",
     "s2/rose": "~0.2",
-    "acid23m/yii2-image": "dev-master"
+    "acid23m/yii2-image": "~1.0"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",
