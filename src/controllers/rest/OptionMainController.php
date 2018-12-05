@@ -40,7 +40,7 @@ final class OptionMainController extends BaseRestController
     protected function verbs(): array
     {
         return [
-            'update' => ['POST']
+            'update' => ['post']
         ];
     }
 

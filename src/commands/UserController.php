@@ -144,8 +144,8 @@ class UserController extends Controller
             try {
                 $external_rules(
                     $auth,
-                    compact('showData', 'addData', 'updateData', 'delData', 'isOwner'),
-                    compact(User::ROLE_DEMO, User::ROLE_AUTHOR, User::ROLE_MODER, User::ROLE_ADMIN, User::ROLE_SUPER)
+                    \compact('showData', 'addData', 'updateData', 'delData', 'isOwner'),
+                    \compact(User::ROLE_DEMO, User::ROLE_AUTHOR, User::ROLE_MODER, User::ROLE_ADMIN, User::ROLE_SUPER)
                 );
             } catch (\Throwable $e) {
                 throw new InvalidConfigException('Additional user rules is not defined properly. ' . $e->getMessage());
@@ -189,14 +189,14 @@ class UserController extends Controller
             $permissions_str .= $permission->description . ', ';
         }
         unset($permission);
-        $data[0] = trim($permissions_str, ', ');
+        $data[0] = \trim($permissions_str, ', ');
 
         $roles_str = '';
         foreach ($roles as &$role) {
             $roles_str .= $role->description . ', ';
         }
         unset($role);
-        $data[1] = trim($roles_str, ', ');
+        $data[1] = \trim($roles_str, ', ');
 
         $rows[] = $data;
         $table = Table::widget([
@@ -291,7 +291,7 @@ class UserController extends Controller
     public function actionDelete($search_criteria): int
     {
         /** @var User|null $user */
-        $user = is_numeric($search_criteria)
+        $user = \is_numeric($search_criteria)
             ? User::findOne($search_criteria)
             : User::findOne(['username' => $search_criteria]);
 
@@ -344,7 +344,7 @@ class UserController extends Controller
         $status = $this->select($promt, $status_list());
 
         /** @var User|null $user */
-        $user = is_numeric($search_criteria)
+        $user = \is_numeric($search_criteria)
             ? User::findOne($search_criteria)
             : User::findOne(['username' => $search_criteria]);
 
@@ -396,7 +396,7 @@ class UserController extends Controller
         if ($search_criteria === null) {
             $model = null;
             $models = User::find()->all();
-        } elseif (is_numeric($search_criteria)) {
+        } elseif (\is_numeric($search_criteria)) {
             $model = User::findOne($search_criteria);
             $models = $model === null ? [] : [$model];
         } else {

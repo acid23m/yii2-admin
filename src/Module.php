@@ -216,7 +216,7 @@ final class Module extends \yii\base\Module implements BootstrapInterface
             }
         } elseif ($app instanceof \yii\console\Application) {
             // default host info for console commands
-            $domain = getenv('SITE_DOMAIN');
+            $domain = \getenv('SITE_DOMAIN');
             \Yii::$app->get('urlManager')->setHostInfo('http://' . $domain);
             \Yii::$app->get('urlManagerFrontend')->setHostInfo('http://' . $domain);
             \Yii::$app->get('urlManagerBackend')->setHostInfo('http://' . $domain);
@@ -232,7 +232,7 @@ final class Module extends \yii\base\Module implements BootstrapInterface
         // check access user data
         $user_db_file = \Yii::getAlias('@common/data/userdata.db');
 
-        if (!file_exists($user_db_file)) {
+        if (!\file_exists($user_db_file)) {
             FileHelper::createDirectory(\Yii::getAlias('@common/data'));
             $user_db = new \SQLite3($user_db_file);
 
@@ -304,13 +304,13 @@ SQL
             );
             $user_db->exec('CREATE INDEX "auth_assignment_user_id_idx" ON "auth_assignment" ("user_id");');
 
-            chmod($user_db_file, PERM_FILE);
+            \chmod($user_db_file, PERM_FILE);
         }
 
         // check tasks data
         $task_db_file = \Yii::getAlias('@common/data/taskdata.db');
 
-        if (!file_exists($task_db_file)) {
+        if (!\file_exists($task_db_file)) {
             $task_db = new \SQLite3($task_db_file);
 
             $task_db->exec(<<<'SQL'
@@ -328,12 +328,12 @@ CREATE TABLE "task" (
 SQL
             );
 
-            chmod($task_db_file, PERM_FILE);
+            \chmod($task_db_file, PERM_FILE);
         }
 
         // check adminer
         $adminer_dir = \Yii::getAlias('@backend/web/adminer');
-        if (!file_exists($adminer_dir)) {
+        if (!\file_exists($adminer_dir)) {
             FileHelper::createDirectory($adminer_dir);
         }
 

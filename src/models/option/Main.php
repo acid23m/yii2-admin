@@ -68,7 +68,7 @@ class Main extends IniConfig implements BootstrapInterface
     public function init(): void
     {
         $options_file_path = \Yii::getAlias(self::FILE_PATH);
-        if (!file_exists($options_file_path)) {
+        if (!\file_exists($options_file_path)) {
             // create file from example
             $example_options_file_path = \Yii::getAlias(self::FILE_EXAMPLE_PATH);
             \copy($example_options_file_path, $options_file_path);

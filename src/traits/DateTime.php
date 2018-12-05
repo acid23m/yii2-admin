@@ -18,7 +18,9 @@ trait DateTime
 {
     /**
      * Current time in current timezone.
+     * @static
      * @return string
+     * @throws \Exception
      */
     public static function getNow(): string
     {
@@ -29,7 +31,9 @@ trait DateTime
 
     /**
      * Current time in UTC.
+     * @static
      * @return string
+     * @throws \Exception
      */
     public static function getNowUTC(): string
     {

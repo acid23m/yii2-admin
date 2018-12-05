@@ -109,7 +109,7 @@ class User extends UserRecord
      */
     public function getRoles(bool $associative = true, bool $all = false): array
     {
-        $list = $associative ? $this->roles : array_keys($this->roles);
+        $list = $associative ? $this->roles : \array_keys($this->roles);
         if (!$all) {
             ArrayHelper::remove($list, self::ROLE_SUPER);
         }
@@ -149,7 +149,7 @@ class User extends UserRecord
             // create avatar
             if ($insert && $this->avatar_file === null) {
                 $image_manager = new ImageManager(['driver' => 'imagick']);
-                $str = mb_strtoupper(mb_substr($this->username, 0, 2));
+                $str = \mb_strtoupper(\mb_substr($this->username, 0, 2));
                 $this->avatar = (string) $image_manager
                     ->canvas(self::AVATAR_WIDTH, self::AVATAR_HEIGHT, '#666666')
                     ->text($str, 35, 80, function (AbstractFont $font) {

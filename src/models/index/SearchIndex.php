@@ -57,9 +57,9 @@ class SearchIndex extends Component
         );
         $dotenv->load();
 
-        $db_name = getenv('S_DB_NAME');
-        $db_user = getenv('S_DB_USER');
-        $db_password = getenv('S_DB_PASSWORD');
+        $db_name = \getenv('S_DB_NAME');
+        $db_user = \getenv('S_DB_USER');
+        $db_password = \getenv('S_DB_PASSWORD');
 
         try {
             $pdo = new \PDO("mysql:host=search;dbname=$db_name;charset=utf8", $db_user, $db_password);

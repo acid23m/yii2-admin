@@ -26,7 +26,7 @@ $this->params['title'] = $this->title;
         <?= HomePanel::widget(['y_position' => 'top', 'x_position' => 'left']) ?>
 
         <!-- User -->
-        <?= $this->render('_user', compact('user')) ?>
+        <?= $this->render('_user', \compact('user')) ?>
         <!-- /User -->
 
         <!-- Server -->
@@ -42,12 +42,12 @@ $this->params['title'] = $this->title;
         <?= HomePanel::widget(['y_position' => 'top', 'x_position' => 'right']) ?>
 
         <!-- Notes -->
-        <?= $this->render('_user_note', compact('user')) ?>
+        <?= $this->render('_user_note', \compact('user')) ?>
         <!-- /Notes -->
 
         <!-- Service -->
         <?php if (\Yii::$app->getUser()->can($user::ROLE_ADMIN)): ?>
-            <?= $this->render('_service', compact('user', 'search_index_is_active')) ?>
+            <?= $this->render('_service', \compact('user', 'search_index_is_active')) ?>
         <?php endif ?>
         <!-- /Service -->
 
@@ -59,6 +59,6 @@ $this->params['title'] = $this->title;
 
 <!-- Log -->
 <?php if (\Yii::$app->getUser()->can($user::ROLE_SUPER)): ?>
-    <?= $this->render('_log', compact('logSearchModel', 'logDataProvider')) ?>
+    <?= $this->render('_log', \compact('logSearchModel', 'logDataProvider')) ?>
 <?php endif ?>
 <!-- /Log -->

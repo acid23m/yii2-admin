@@ -53,7 +53,7 @@ final class TaskController extends BaseController
             'query' => Task::find()
         ]);
 
-        return $this->render('index', compact('dataProvider'));
+        return $this->render('index', \compact('dataProvider'));
     }
 
     /**
@@ -78,7 +78,7 @@ final class TaskController extends BaseController
      */
     public function actionCreate()
     {
-        $model = new Task();
+        $model = new Task;
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->save()) {
             \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'zapis dobavlena'));
@@ -86,7 +86,7 @@ final class TaskController extends BaseController
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('create', compact('model'));
+        return $this->render('create', \compact('model'));
     }
 
     /**
@@ -107,7 +107,7 @@ final class TaskController extends BaseController
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-        return $this->render('update', compact('model'));
+        return $this->render('update', \compact('model'));
     }
 
     /**

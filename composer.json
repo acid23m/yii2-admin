@@ -19,6 +19,12 @@
   "require": {
     "php": ">=7.1",
     "yiisoft/yii2": "~2.0.15",
+    "ext-curl": "*",
+    "ext-pdo": "*",
+    "ext-sqlite3": "*",
+    "ext-json": "*",
+    "ext-zip": "*",
+    "ext-zend-opcache": "*",
     "php-ds/php-ds": "~1.1",
     "yiister/yii2-gentelella": "~1.0",
     "bower-asset/bootbox": "~4.4",
@@ -52,6 +58,7 @@
     "codeception/verify": "~1.0"
   },
   "suggest": {
+    "ext-ds": "Advanced data structures.",
     "acid23m/yii2-multipage": "Manage content on page that depends on URL query or Geo data."
   },
   "autoload": {

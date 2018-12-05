@@ -64,7 +64,7 @@ final class TfaCodeForm extends Model
     public function validateCode($attribute, $params): void
     {
         if (!$this->hasErrors()) {
-            if ($this->data['code'] !== hash('md4', $this->code) || $this->data['loginForm'] === null) {
+            if ($this->data['code'] !== \hash('md4', $this->code) || $this->data['loginForm'] === null) {
                 $this->addError($attribute, \Yii::t('dashboard', 'neverniy kod'));
 
                 return;

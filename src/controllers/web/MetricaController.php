@@ -42,7 +42,7 @@ final class MetricaController extends BaseController
      * @throws \yii\base\InvalidArgumentException
      * @throws \yii\base\InvalidConfigException
      */
-    public function actionIndex()
+    public function actionIndex(): string
     {
         /** @var Metrica $model */
         $model = \Yii::createObject(Metrica::class);
@@ -51,7 +51,7 @@ final class MetricaController extends BaseController
             \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'nastroyki obnovleni'));
         }
 
-        return $this->render('index', compact('model'));
+        return $this->render('index', \compact('model'));
     }
 
 }

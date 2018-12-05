@@ -113,8 +113,8 @@ final class CleanController extends Controller
         LogRecord::deleteAll();
 
         $log_file = \Yii::getAlias("@$app_type/runtime/logs/app.log");
-        if (file_exists($log_file)) {
-            file_put_contents($log_file, '', LOCK_EX);
+        if (\file_exists($log_file)) {
+            \file_put_contents($log_file, '', LOCK_EX);
         }
     }
 
@@ -127,11 +127,11 @@ final class CleanController extends Controller
     {
         $log_dir = \Yii::getAlias("@$app_type/runtime/logs");
 
-        if (file_exists($log_dir)) {
+        if (\file_exists($log_dir)) {
             $log_files = FileHelper::findFiles($log_dir, [
                 'filter' => function ($path) {
                     $file_name = StringHelper::basename($path);
-                    if (preg_match('/[\d]$/', $file_name)) {
+                    if (\preg_match('/[\d]$/', $file_name)) {
                         return true;
                     }
 
@@ -140,7 +140,7 @@ final class CleanController extends Controller
             ]);
 
             foreach ($log_files as $log_file) {
-                unlink($log_file);
+                \unlink($log_file);
             }
         }
     }
@@ -154,18 +154,18 @@ final class CleanController extends Controller
         $emails = [];
         $email_dir = \Yii::getAlias("@$app_type/runtime/debug/mail");
 
-        if (file_exists($email_dir)) {
+        if (\file_exists($email_dir)) {
             $emails = FileHelper::findFiles($email_dir);
         }
 
         $email_dir = \Yii::getAlias("@$app_type/runtime/email");
 
-        if (file_exists($email_dir)) {
+        if (\file_exists($email_dir)) {
             $emails = ArrayHelper::merge($emails, FileHelper::findFiles($email_dir));
         }
 
         foreach ($emails as $email) {
-            unlink($email);
+            \unlink($email);
         }
     }
 
@@ -177,11 +177,11 @@ final class CleanController extends Controller
     {
         $debug_dir = \Yii::getAlias("@$app_type/runtime/debug");
 
-        if (file_exists($debug_dir)) {
+        if (\file_exists($debug_dir)) {
             $data_files = FileHelper::findFiles($debug_dir, [
                 'filter' => function ($path) {
                     $file_name = StringHelper::basename($path);
-                    if (preg_match('/^[0-9a-z]*.data$/', $file_name)) {
+                    if (\preg_match('/^[0-9a-z]*.data$/', $file_name)) {
                         return true;
                     }
 
@@ -190,7 +190,7 @@ final class CleanController extends Controller
             ]);
 
             foreach ($data_files as $data_file) {
-                unlink($data_file);
+                \unlink($data_file);
             }
         }
     }
@@ -205,15 +205,15 @@ final class CleanController extends Controller
     {
         $assets_dir = \Yii::getAlias("@$app_type/web/assets");
 
-        if (file_exists($assets_dir)) {
+        if (\file_exists($assets_dir)) {
             FileHelper::removeDirectory($assets_dir);
             FileHelper::createDirectory($assets_dir, PERM_DIR);
 
             $gitignore = '*' . PHP_EOL . '!.gitignore' . PHP_EOL;
-            $file = fopen("$assets_dir/.gitignore", 'wb');
-            fwrite($file, $gitignore);
-            fclose($file);
-            chmod("$assets_dir/.gitignore", PERM_FILE);
+            $file = \fopen("$assets_dir/.gitignore", 'wb');
+            \fwrite($file, $gitignore);
+            \fclose($file);
+            \chmod("$assets_dir/.gitignore", PERM_FILE);
         }
     }
 

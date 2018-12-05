@@ -69,8 +69,8 @@ final class HomeController extends BaseController
             'verbs' => [
                 'class' => VerbFilter::class,
                 'actions' => [
-                    'clear-log' => ['POST'],
-                    'delete-log' => ['POST']
+                    'clear-log' => ['post'],
+                    'delete-log' => ['post']
                 ]
             ]
         ]);
@@ -110,7 +110,7 @@ final class HomeController extends BaseController
             \Yii::$app->getRequest()->getQueryParams()
         );
 
-        return $this->render('index', compact('search_index_is_active', 'logSearchModel', 'logDataProvider'));
+        return $this->render('index', \compact('search_index_is_active', 'logSearchModel', 'logDataProvider'));
     }
 
     /**
@@ -148,7 +148,7 @@ final class HomeController extends BaseController
      */
     public function actionDownloadLog(): void
     {
-        $tmp_dir = sys_get_temp_dir() . DIRECTORY_SEPARATOR . crc32('log');
+        $tmp_dir = \sys_get_temp_dir() . DIRECTORY_SEPARATOR . \crc32('log');
         FileHelper::createDirectory($tmp_dir);
 
         $zip = new \ZipArchive;
@@ -167,7 +167,7 @@ final class HomeController extends BaseController
             $log_dir = \Yii::getAlias("@{$app_part}/runtime/logs");
             $log_files = FileHelper::findFiles($log_dir, [
                 'filter' => function ($path) {
-                    return preg_match('/app\.log[\.]+[\d]*$/', $path);
+                    return \preg_match('/app\.log[\.]+[\d]*$/', $path);
                 }
             ]);
             foreach ($log_files as &$file) {
@@ -211,10 +211,10 @@ final class HomeController extends BaseController
      */
     public function actionClearCache(): Response
     {
-        clearstatcache(true);
+        \clearstatcache(true);
 
         if (\extension_loaded('Zend OPcache')) {
-            opcache_reset();
+            \opcache_reset();
         }
 
         $cache = \Yii::$app->getCache();
@@ -249,10 +249,10 @@ final class HomeController extends BaseController
          */
         $create_gitignore = function (string $path): void {
             $content = '*' . PHP_EOL . '!.gitignore' . PHP_EOL;
-            $file = fopen($path . '/.gitignore', 'wb');
-            fwrite($file, $content);
-            fclose($file);
-            chmod($path . '/.gitignore', PERM_FILE);
+            $file = \fopen($path . '/.gitignore', 'wb');
+            \fwrite($file, $content);
+            \fclose($file);
+            \chmod($path . '/.gitignore', PERM_FILE);
         };
 
         FileHelper::removeDirectory($path1);

@@ -28,14 +28,14 @@ class SitemapGenerator
      */
     public static function write(): void
     {
-        $dir = rtrim(\Yii::getAlias('@frontend/web'), '/');
+        $dir = \rtrim(\Yii::getAlias('@frontend/web'), '/');
 
         // remove previous files
-        passthru("rm -f $dir/sitemap*.xml");
+        \passthru("rm -f $dir/sitemap*.xml");
 
         /** @var UrlManager $url_manager */
         $url_manager = \Yii::$app->get('urlManagerFrontend');
-        $base_url = rtrim($url_manager->getHostInfo(), '/');
+        $base_url = \rtrim($url_manager->getHostInfo(), '/');
 
         $module = \dashboard\Module::getInstance();
         if ($module !== null && isset($module->sitemap_items['class'])) {

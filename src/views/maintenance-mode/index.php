@@ -20,5 +20,5 @@ use yii\helpers\Html;
 <hr>
 
 <p class="creds">
-    <?= date('Y') ?> &copy; <?= \Yii::$app->get('option')->get('app_name') ?>
+    <?= \date('Y') ?> &copy; <?= \Yii::$app->get('option')->get('app_name') ?>
 </p>

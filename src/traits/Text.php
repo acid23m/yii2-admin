@@ -17,6 +17,7 @@ trait Text
 {
     /**
      * Transliterate filename.
+     * @static
      * @param string $name Filename
      * @return string
      */
@@ -79,11 +80,12 @@ trait Text
             '*' => ''
         ];
 
-        return strtr($name, $abc);
+        return \strtr($name, $abc);
     }
 
     /**
      * Convert html to plain text.
+     * @static
      * @param string $html Input HTML
      * @return string
      */
@@ -120,12 +122,13 @@ trait Text
             \chr(169)
         ];
 
-        return trim(preg_replace($search, $replace, $html));
+        return \trim(\preg_replace($search, $replace, $html));
     }
 
     /**
      * Clear string from alphabetic chars.
      * Helpful for price field.
+     * @static
      * @param string $str Input string
      * @return int
      */
@@ -134,7 +137,7 @@ trait Text
         $result = '';
 
         for ($i = 0, $iMax = \strlen($str); $i < $iMax; $i ++) {
-            if (is_numeric($str[$i])) {
+            if (\is_numeric($str[$i])) {
                 $result .= $str[$i];
             }
         }
@@ -144,29 +147,32 @@ trait Text
 
     /**
      * Clear phone number from formatting symbols except digits and plus.
+     * @static
      * @param string $phone_number Phone number
      * @return string Only plus and digits
      */
     public static function clearPhone(string $phone_number): string
     {
-        return preg_replace('/[^\+\d]/', '', $phone_number);
+        return \preg_replace('/[^\+\d]/', '', $phone_number);
     }
 
     /**
      * Convert text to array.
+     * @static
      * @param string $str Input string
      * @param bool $no_empty_str Remove or not empty values
      * @return array List of paragraphs
      */
     public static function nl2array(string $str, bool $no_empty_str = true): array
     {
-        $data = explode(PHP_EOL, $str);
+        $data = \explode(PHP_EOL, $str);
 
-        return $no_empty_str ? array_filter($data) : $data;
+        return $no_empty_str ? \array_filter($data) : $data;
     }
 
     /**
      * Format a flat JSON string to make it more human-readable.
+     * @static
      * @param string $json The original JSON string to process
      * When the input is not a string it is assumed the input is RAW
      * and should be converted to JSON first of all.
@@ -176,9 +182,9 @@ trait Text
     {
         if (!\is_string($json)) {
             if (PHP_VERSION && PHP_VERSION >= 5.4) {
-                return json_encode($json, JSON_PRETTY_PRINT);
+                return \json_encode($json, JSON_PRETTY_PRINT);
             }
-            $json = json_encode($json);
+            $json = \json_encode($json);
         }
         $result = '';
         $pos = 0;               // indentation level
@@ -189,9 +195,9 @@ trait Text
         $outOfQuotes = true;
         for ($i = 0; $i < $strLen; $i ++) {
             // Speedup: copy blocks of input which don't matter re string detection and formatting.
-            $copyLen = strcspn($json, $outOfQuotes ? " \t\r\n\",:[{}]" : "\\\"", $i);
+            $copyLen = \strcspn($json, $outOfQuotes ? " \t\r\n\",:[{}]" : "\\\"", $i);
             if ($copyLen >= 1) {
-                $copyStr = substr($json, $i, $copyLen);
+                $copyStr = \substr($json, $i, $copyLen);
                 // Also reset the tracker for escapes: we won't be hitting any right now
                 // and the next round is the first time an 'escape' character can be seen again at the input.
                 $prevChar = '';
@@ -208,7 +214,7 @@ trait Text
                 // Add the escaped character to the result string and ignore it for the string enter/exit detection:
                 $result .= $char;
                 $prevChar = '';
-                continue;
+                \continue;
             }
             // Are we entering/exiting a quoted string?
             if ($char === '"' && $prevChar !== '\\') {
@@ -225,8 +231,8 @@ trait Text
                     }
                 } // eat all non-essential whitespace in the input as we do our own here and it would only mess up our process
                 else {
-                    if ($outOfQuotes && false !== strpos(" \t\r\n", $char)) {
-                        continue;
+                    if ($outOfQuotes && false !== \strpos(" \t\r\n", $char)) {
+                        \continue;
                     }
                 }
             }
@@ -257,6 +263,7 @@ trait Text
 
     /**
      * Check if IP complies to mask.
+     * @static
      * @param string $ip
      * @param string $mask
      * @return bool
@@ -268,8 +275,8 @@ trait Text
             throw new InvalidArgumentException($error);
         }
 
-        $ip_sections = explode('.', $ip);
-        $mask_sections = explode('.', $mask);
+        $ip_sections = \explode('.', $ip);
+        $mask_sections = \explode('.', $mask);
 
         for ($i = 0; $i < 4; $i ++) {
             if ($mask_sections[$i] !== $ip_sections[$i] && $mask_sections[$i] !== '*') {
@@ -283,6 +290,7 @@ trait Text
     /**
      * Generate link for iframe source to embed to sites.
      * Supports Youtube, Vimeo.
+     * @static
      * @param string $url Direct or share link
      * @return null|string Just url address, not html code with iframe
      */
@@ -298,7 +306,7 @@ trait Text
         }
 
         if (stripos($url, 'youtube.com') !== false) { // youtube direct site link
-            $params = parse_url($url);
+            $params = \parse_url($url);
 
             try {
                 if (StringHelper::startsWith($params['path'], '/embed')) {
@@ -306,20 +314,20 @@ trait Text
                 }
 
                 // find parameter
-                $query = explode('&', $params['query']);
+                $query = \explode('&', $params['query']);
                 foreach ($query as &$item) {
                     if (StringHelper::startsWith($item, 'v=')) {
-                        $video_id = ltrim($item, 'v=');
+                        $video_id = \ltrim($item, 'v=');
                         $hosting = 'youtube';
-                        break;
+                        \break;
                     }
                 }
             } catch (\Throwable $e) {
             }
-        } elseif (stripos($url, 'youtu.be') !== false) { // youtube share link
+        } elseif (\stripos($url, 'youtu.be') !== false) { // youtube share link
             $video_id = StringHelper::basename($url);
             $hosting = 'youtube';
-        } elseif (stripos($url, 'vimeo.com') !== false) { // vimeo link
+        } elseif (\stripos($url, 'vimeo.com') !== false) { // vimeo link
             $video_id = StringHelper::basename($url);
             $hosting = 'vimeo';
         }

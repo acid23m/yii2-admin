@@ -44,10 +44,10 @@ class HomePanel extends Widget
         if (\is_string($content_config)) {
             if (StringHelper::startsWith($content_config, '@')) { // path alias to content
                 $content_path = \Yii::getAlias($content_config);
-                if (!file_exists($content_path)) {
+                if (!\file_exists($content_path)) {
                     throw new InvalidConfigException("File '$content_path' not found.");
                 }
-                $content = file_get_contents($content_path);
+                $content = \file_get_contents($content_path);
             } else { // string with content
                 $content = $content_config;
             }

@@ -50,7 +50,7 @@ final class ScriptController extends BaseController
             \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'nastroyki obnovleni'));
         }
 
-        return $this->render('index', compact('model'));
+        return $this->render('index', \compact('model'));
     }
 
 }

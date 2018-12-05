@@ -94,7 +94,7 @@ final class UserController extends BaseController
 
         $model->password = null;
 
-        return $this->render('create', compact('model'));
+        return $this->render('create', \compact('model'));
     }
 
     /**
@@ -117,7 +117,7 @@ final class UserController extends BaseController
 
         $model->password = null;
 
-        return $this->render('update', compact('model'));
+        return $this->render('update', \compact('model'));
     }
 
     /**

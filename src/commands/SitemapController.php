@@ -9,6 +9,7 @@
 namespace dashboard\commands;
 
 use dashboard\models\sitemap\SitemapGenerator;
+use dashboard\models\sitemap\SitemapJob;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
 use yii\console\Controller;

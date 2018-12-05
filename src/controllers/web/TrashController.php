@@ -55,7 +55,7 @@ final class TrashController extends BaseController
     {
         $data_provider = Trash::getItems();
 
-        return $this->render('index', compact('data_provider'));
+        return $this->render('index', \compact('data_provider'));
     }
 
     /**

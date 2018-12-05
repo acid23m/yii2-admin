@@ -19,7 +19,6 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\web\BadRequestHttpException;
 use yii\web\Response;
-use yii\web\View;
 
 /**
  * Class AuthController.
@@ -73,7 +72,7 @@ final class AuthController extends BaseController
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->validate()) {
             $user = $model->getUser();
             if ($user === null) {
-                return $this->render('login', compact('model'));
+                return $this->render('login', \compact('model'));
             }
 
             // use two-factor authentication
@@ -83,10 +82,10 @@ final class AuthController extends BaseController
 
             return $model->login()
                 ? $this->goBack()
-                : $this->render('login', compact('model'));
+                : $this->render('login', \compact('model'));
         }
 
-        return $this->render('login', compact('model'));
+        return $this->render('login', \compact('model'));
     }
 
     /**
@@ -108,7 +107,7 @@ final class AuthController extends BaseController
             return $this->redirect(['login']);
         }
 
-        $model = new TfaCodeForm(compact('ci'));
+        $model = new TfaCodeForm(\compact('ci'));
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->validate()) {
             return $model->login()
@@ -116,7 +115,7 @@ final class AuthController extends BaseController
                 : $this->redirect(['login']);
         }
 
-        return $this->render('tfa-code', compact('model'));
+        return $this->render('tfa-code', \compact('model'));
     }
 
     /**
@@ -156,7 +155,7 @@ final class AuthController extends BaseController
             );
         }
 
-        return $this->render('request-reset', compact('model'));
+        return $this->render('request-reset', \compact('model'));
     }
 
     /**
@@ -181,7 +180,7 @@ final class AuthController extends BaseController
             return $this->redirect(['login']);
         }
 
-        return $this->render('reset', compact('model'));
+        return $this->render('reset', \compact('model'));
     }
 
 }

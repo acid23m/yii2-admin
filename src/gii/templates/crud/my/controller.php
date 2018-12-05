@@ -104,7 +104,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
 //            $sortItems[$item->position] = $item;
 //        }
 
-        return $this->render('index', compact('dataProvider', 'sortItems'));
+        return $this->render('index', \compact('dataProvider', 'sortItems'));
 <?php endif ?>
     }
 
@@ -130,14 +130,14 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
      */
     public function actionCreate()
     {
-        $model = new <?= $modelClass ?>();
+        $model = new <?= $modelClass ?>;
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->save()) {
             \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'zapis dobavlena'));
             return $this->redirect(['view', <?= $urlParams ?>]);
         }
 
-        return $this->render('create', compact('model'));
+        return $this->render('create', \compact('model'));
     }
 
     /**
@@ -157,7 +157,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
             return $this->redirect(['view', <?= $urlParams ?>]);
         }
 
-        return $this->render('update', compact('model'));
+        return $this->render('update', \compact('model'));
     }
 
     /**

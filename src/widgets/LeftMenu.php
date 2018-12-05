@@ -34,7 +34,7 @@ class LeftMenu extends Widget
 
         if (empty($this->items)) {
             try {
-                $this->items = require_once \Yii::getAlias(\dashboard\Module::getInstance()->left_menu);
+                $this->items = require \Yii::getAlias(\dashboard\Module::getInstance()->left_menu);
             } catch (\Throwable $e) {
                 \Yii::error($e->getMessage());
             }

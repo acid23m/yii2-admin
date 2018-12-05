@@ -32,7 +32,7 @@ BootboxAsset::overrideSystemConfirm();
     <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
     <meta name="robots" content="noindex,nofollow">
 
-    <base href="<?= rtrim(Url::home(true), '/') ?>">
+    <base href="<?= \rtrim(Url::home(true), '/') ?>">
 
     <title><?= Html::encode(\Yii::$app->name) ?> | <?= $this->title ?></title>
 
@@ -62,7 +62,7 @@ BootboxAsset::overrideSystemConfirm();
             <div class="clearfix" role="presentation">
                 <p class="pull-left">
                     <small>
-                        2011&mdash;<?= date('Y') ?> &copy;
+                        2011&mdash;<?= \date('Y') ?> &copy;
                         <a href="<?= \dashboard\Module::getInstance()->params['author.url'] ?>" target="_blank">
                             <?= \dashboard\Module::getInstance()->params['author.name'] ?>
                         </a>

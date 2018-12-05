@@ -11,13 +11,13 @@ The preferred way to install this extension is through [composer](http://getcomp
 Either run
 
 ```bash
-php composer.phar require --prefer-dist acid23m/yii2-admin "dev-master"
+php composer.phar require --prefer-dist acid23m/yii2-admin "~1.0"
 ```
 
 or add
 
 ```
-"acid23m/yii2-admin": "dev-master"
+"acid23m/yii2-admin": "~1.0"
 ```
 
 to the require section of your `composer.json` file.

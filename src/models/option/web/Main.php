@@ -76,7 +76,7 @@ class Main extends \dashboard\models\option\Main
             if ($old_logo_filename !== '') {
                 $old_logo_file = File::getPath($old_logo_filename);
                 try {
-                    unlink($old_logo_file);
+                    \unlink($old_logo_file);
                 } catch (\Throwable $e) {
                 }
             }
@@ -90,7 +90,7 @@ class Main extends \dashboard\models\option\Main
 
         if ($logo === null && \Yii::$app->get('option')->app_logo === '') {
             $image_manager = new ImageManager(['driver' => 'imagick']);
-            $str = mb_strtoupper(mb_substr(\Yii::$app->name, 0, 2));
+            $str = \mb_strtoupper(\mb_substr(\Yii::$app->name, 0, 2));
             $_logo = $image_manager
                 ->canvas(self::LOGO_WIDTH, self::LOGO_HEIGHT, '#666666')
                 ->text($str, 70, 160, function (AbstractFont $font) {

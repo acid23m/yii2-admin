@@ -81,16 +81,16 @@ class Script extends Model
         $content = '';
 
         $mode = 'rb';
-        if (!file_exists($path)) {
+        if (!\file_exists($path)) {
             $mode = 'w+b';
         }
 
         try {
-            $file = fopen($path, $mode);
-            while (!feof($file)) {
-                $content .= fread($file, 8192);
+            $file = \fopen($path, $mode);
+            while (!\feof($file)) {
+                $content .= \fread($file, 8192);
             }
-            fclose($file);
+            \fclose($file);
         } catch (\Throwable $e) {
             \Yii::error($e->getMessage());
         }
@@ -107,9 +107,9 @@ class Script extends Model
     protected function writeFile(string $path, string $content): bool
     {
         try {
-            $file = fopen($path, 'wb');
-            fwrite($file, $content);
-            fclose($file);
+            $file = \fopen($path, 'wb');
+            \fwrite($file, $content);
+            \fclose($file);
 
             return true;
         } catch (\Throwable $e) {

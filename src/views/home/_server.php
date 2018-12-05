@@ -38,12 +38,12 @@ use yii\helpers\Url;
                         <li>
                             <strong>IP</strong>:
                             <?= \Yii::$app->getCache()->getOrSet('external_server_ip', function () {
-                                $ch = curl_init('https://api.ipify.org');
-                                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-                                curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+                                $ch = \curl_init('https://api.ipify.org');
+                                \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                                \curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+                                \curl_setopt($ch, CURLOPT_TIMEOUT, 5);
                                 $external_ip = curl_exec($ch);
-                                curl_close($ch);
+                                \curl_close($ch);
                                 unset($ch);
                                 if ($external_ip) {
                                     return $external_ip;
@@ -76,21 +76,21 @@ use yii\helpers\Url;
                         <li>
                             <?php
                             \Yii::$app->getDb()->open();
-                            $dbDriverName = \Yii::$app->getDb()->pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+                            $dbDriverName = \Yii::$app->getDb()->pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
                             echo Html::tag('strong', strtoupper($dbDriverName) . ': ');
-                            echo \Yii::$app->getDb()->pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
+                            echo \Yii::$app->getDb()->pdo->getAttribute(\PDO::ATTR_SERVER_VERSION);
                             ?>
                         </li>
                         <?php
                         /** @var \yii\db\Connection $sqlite */
                         $sqlite = \Yii::$app->get(\dashboard\Module::DB_USER);
                         $sqlite->open();
-                        $dbappDriverName = $sqlite->pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+                        $dbappDriverName = $sqlite->pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
 
                         if ($dbDriverName !== $dbappDriverName) {
                             echo Html::beginTag('li');
                             echo Html::tag('strong', strtoupper($dbappDriverName) . ': ');
-                            echo $sqlite->pdo->getAttribute(PDO::ATTR_SERVER_VERSION);
+                            echo $sqlite->pdo->getAttribute(\PDO::ATTR_SERVER_VERSION);
                             echo Html::endTag('li');
                         }
                         ?>
@@ -104,8 +104,8 @@ use yii\helpers\Url;
                                 $redis->info('server')
                             );
                             foreach ($info as &$row) {
-                                if (strpos($row, 'redis_version') === 0) {
-                                    echo str_replace('redis_version:', '', $row);
+                                if (\strpos($row, 'redis_version') === 0) {
+                                    echo \str_replace('redis_version:', '', $row);
                                     break;
                                 }
                             }
@@ -124,14 +124,14 @@ use yii\helpers\Url;
                     $cpu_model = '';
                     $cpu_count = 0;
 
-                    $cpu = file('/proc/cpuinfo');
+                    $cpu = \file('/proc/cpuinfo');
 
                     if ($cpu !== false) {
                         foreach ($cpu as &$info) {
                             if (StringHelper::startsWith($info, 'model name') && empty($cpu_model)) {
-                                $info = trim($info);
-                                $info = str_replace(["\n", "\t"], '', $info);
-                                $info = ltrim($info, 'model name');
+                                $info = \trim($info);
+                                $info = \str_replace(["\n", "\t"], '', $info);
+                                $info = \ltrim($info, 'model name');
                                 $cpu_model = $info;
                             }
 
@@ -161,17 +161,17 @@ use yii\helpers\Url;
                             $mem_free = 0;
                             $mem_used = 0;
 
-                            $memory = file('/proc/meminfo');
+                            $memory = \file('/proc/meminfo');
                             if ($memory !== false) {
                                 foreach ($memory as &$info) {
                                     if (StringHelper::startsWith($info, 'MemTotal')) {
-                                        [$key, $val] = explode(':', $info);
-                                        $mem_total = (int) trim($val) * 1024;
+                                        [$key, $val] = \explode(':', $info);
+                                        $mem_total = (int) \trim($val) * 1024;
                                     }
 
                                     if (StringHelper::startsWith($info, 'MemAvailable')) {
-                                        [$key, $val] = explode(':', $info);
-                                        $mem_free = (int) trim($val) * 1024;
+                                        [$key, $val] = \explode(':', $info);
+                                        $mem_free = (int) \trim($val) * 1024;
                                     }
                                 }
                                 unset($info, $memory);
@@ -216,12 +216,12 @@ use yii\helpers\Url;
                             $disk_free = 0;
                             $disk_used = 0;
 
-                            $ds = disk_total_space('/');
+                            $ds = \disk_total_space('/');
                             if ($ds !== false) {
                                 $disk_total = $ds;
                             }
 
-                            $df = disk_free_space('/');
+                            $df = \disk_free_space('/');
                             if ($df !== false) {
                                 $disk_free = $df;
                             }

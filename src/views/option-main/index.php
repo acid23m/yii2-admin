@@ -50,7 +50,7 @@ $enctype_list = $model->getList('mail_gate_encryptions');
 
 
                     <?php if (\Yii::$app->get('option')->app_logo !== ''): ?>
-                        <!--                        <img src="" alt="">-->
+                        <!--<img src="" alt="">-->
                     <?php endif ?>
                     <?php //= $form->field($model, 'app_logo')->fileInput() ?>
                     <?= $form->field($model, 'app_logo')->widget(FileInput::class, [

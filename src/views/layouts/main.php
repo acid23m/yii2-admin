@@ -44,7 +44,7 @@ BootboxAsset::overrideSystemConfirm();
     <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content">
     <meta name="robots" content="noindex,nofollow">
 
-    <base href="<?= rtrim(Url::home(true), '/') ?>">
+    <base href="<?= \rtrim(Url::home(true), '/') ?>">
 
     <title><?= Html::encode(\Yii::$app->name) ?> | <?= $this->title ?></title>
 
@@ -71,7 +71,7 @@ BootboxAsset::overrideSystemConfirm();
 
                 <div class="navbar nav_title" style="border: 0 none">
                     <a href="/" class="site_title">
-                        <!--                        <i class="fa fa-paw"></i>-->
+                        <!--<i class="fa fa-paw"></i>-->
                         <span><?= Html::encode(\Yii::$app->name) ?></span>
                     </a>
                 </div>

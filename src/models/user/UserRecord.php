@@ -83,7 +83,7 @@ class UserRecord extends ActiveRecord
      */
     public static function tableName(): string
     {
-        return 'user';
+        return '{{user}}';
     }
 
     /**
@@ -122,8 +122,7 @@ class UserRecord extends ActiveRecord
             [
                 ['password'],
                 'required',
-                'when' => function ($model, $attribute) {
-                    /** @var UserRecord $model */
+                'when' => function (UserRecord $model, $attribute) {
                     return $model->getIsNewRecord();
                 },
                 'enableClientValidation' => false
@@ -176,7 +175,7 @@ class UserRecord extends ActiveRecord
         ];
 
         if ($module !== null && ArrayHelper::isAssociative($module->user_roles)) {
-            $list = ArrayHelper::merge(array_keys($module->user_roles), $list);
+            $list = ArrayHelper::merge(\array_keys($module->user_roles), $list);
         }
 
         return $list;
@@ -225,7 +224,7 @@ class UserRecord extends ActiveRecord
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $timestamp = (int) \substr($token, \strrpos($token, '_') + 1);
         $expire = \dashboard\Module::getInstance()->params['user.passwordResetTokenExpire'];
 
         return $timestamp + $expire >= time();

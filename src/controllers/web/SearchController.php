@@ -39,7 +39,7 @@ final class SearchController extends BaseController
             $results = [];
         }
 
-        return $this->render('result', compact('q', 'results'));
+        return $this->render('result', \compact('q', 'results'));
     }
 
 }

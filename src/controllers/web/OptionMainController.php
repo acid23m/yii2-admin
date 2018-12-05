@@ -65,7 +65,7 @@ class OptionMainController extends BaseController
             \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'nastroyki obnovleni'));
         }
 
-        return $this->render(\Yii::$app->get('option')->view, compact('model'));
+        return $this->render(\Yii::$app->get('option')->view, \compact('model'));
     }
 
 }

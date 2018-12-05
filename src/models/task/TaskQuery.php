@@ -17,7 +17,7 @@ final class TaskQuery extends ActiveQuery
      */
     public function published(): self
     {
-        $this->andWhere(['[[status]]' => TaskRecord::STATUS_ACTIVE]);
+        $this->andWhere(['{{task}}.[[status]]' => TaskRecord::STATUS_ACTIVE]);
 
         return $this;
     }
@@ -28,7 +28,7 @@ final class TaskQuery extends ActiveQuery
      */
     public function draft(): self
     {
-        $this->andWhere(['[[status]]' => TaskRecord::STATUS_NOT_ACTIVE]);
+        $this->andWhere(['{{task}}.[[status]]' => TaskRecord::STATUS_NOT_ACTIVE]);
 
         return $this;
     }

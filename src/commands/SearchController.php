@@ -34,7 +34,6 @@ final class SearchController extends Controller
      * @throws InvalidEnvironmentException
      * @throws LogicException
      * @throws UnknownException
-     * @throws InvalidArgumentException
      */
     public function actionErase(): int
     {

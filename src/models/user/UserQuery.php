@@ -18,7 +18,7 @@ final class UserQuery extends ActiveQuery
      */
     public function active(): self
     {
-        $this->andWhere(['[[status]]' => UserRecord::STATUS_ACTIVE]);
+        $this->andWhere(['{{user}}.[[status]]' => UserRecord::STATUS_ACTIVE]);
 
         return $this;
     }
@@ -30,7 +30,7 @@ final class UserQuery extends ActiveQuery
      */
     public function limited(): self
     {
-        $this->andWhere('[[role]]<>"' . UserRecord::ROLE_SUPER . '"');
+        $this->andWhere('{{user}}.[[role]]<>"' . UserRecord::ROLE_SUPER . '"');
 
         return $this;
     }

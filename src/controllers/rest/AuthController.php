@@ -47,7 +47,7 @@ final class AuthController extends BaseRestController
     protected function verbs(): array
     {
         return [
-            'login' => ['POST']
+            'login' => ['post']
         ];
     }
 
