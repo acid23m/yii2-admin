@@ -319,7 +319,7 @@ trait Text
                     if (StringHelper::startsWith($item, 'v=')) {
                         $video_id = \ltrim($item, 'v=');
                         $hosting = 'youtube';
-                        \break;
+                        break;
                     }
                 }
             } catch (\Throwable $e) {

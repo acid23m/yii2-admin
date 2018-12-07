@@ -80,20 +80,20 @@ final class LogSearch extends LogRecord
                 [$log_time_start, $log_time_end] = \explode(',', $this->log_time);
                 $log_time_start = (new \DateTime($log_time_start, new \DateTimeZone(\Yii::$app->timeZone)))->format('U');
                 $log_time_end = (new \DateTime($log_time_end, new \DateTimeZone(\Yii::$app->timeZone)))->format('U');
-                $query->andFilterWhere(['between', '{{log}}.[[log_time]]', $log_time_start, $log_time_end]);
+                $query->andFilterWhere(['between', '{{%log}}.[[log_time]]', $log_time_start, $log_time_end]);
             } else {
-                $query->andFilterWhere(['{{log}}.[[log_time]]' => $this->log_time]);
+                $query->andFilterWhere(['{{%log}}.[[log_time]]' => $this->log_time]);
             }
         }
 
         $query->andFilterWhere([
-            '{{log}}.[[id]]' => $this->id,
-            '{{log}}.[[level]]' => $this->level
+            '{{%log}}.[[id]]' => $this->id,
+            '{{%log}}.[[level]]' => $this->level
         ]);
 
-        $query->andFilterWhere(['like', '{{log}}.[[category]]', $this->category])
-            ->andFilterWhere(['like', '{{log}}.[[prefix]]', $this->prefix])
-            ->andFilterWhere(['like', '{{log}}.[[message]]', $this->message]);
+        $query->andFilterWhere(['like', '{{%log}}.[[category]]', $this->category])
+            ->andFilterWhere(['like', '{{%log}}.[[prefix]]', $this->prefix])
+            ->andFilterWhere(['like', '{{%log}}.[[message]]', $this->message]);
 
         return $dataProvider;
     }

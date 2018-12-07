@@ -53,7 +53,7 @@ class TaskRecord extends ActiveRecord
      */
     public static function tableName(): string
     {
-        return '{{task}}';
+        return '{{%task}}';
     }
 
     /**

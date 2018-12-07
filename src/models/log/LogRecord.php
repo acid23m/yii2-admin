@@ -45,7 +45,7 @@ class LogRecord extends ActiveRecord
      */
     public static function tableName(): string
     {
-        return '{{log}}';
+        return '{{%log}}';
     }
 
     public function init(): void

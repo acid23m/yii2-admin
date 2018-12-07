@@ -83,7 +83,7 @@ class UserRecord extends ActiveRecord
      */
     public static function tableName(): string
     {
-        return '{{user}}';
+        return '{{%user}}';
     }
 
     /**
