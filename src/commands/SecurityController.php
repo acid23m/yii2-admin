@@ -13,22 +13,34 @@ use yii\console\Controller;
 use yii\console\ExitCode;
 
 /**
- * PHP Secure Configuration Checker.
+ * Security tools.
  *
  * @package dashboard\commands
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
  */
-final class PccController extends Controller
+final class SecurityController extends Controller
 {
     /**
      * Check current PHP configuration for potential security flaws.
      * @return int
      * @throws InvalidArgumentException
      */
-    public function actionIndex(): int
+    public function actionPcc(): int
     {
         $pcc_path = \Yii::getAlias('@vendor/acid23m/yii2-admin/src/phpconfigcheck.php');
-        \passthru("/usr/bin/php $pcc_path");
+        \passthru("PCC_OUTPUT_TYPE=text /usr/bin/php $pcc_path");
+
+        return ExitCode::OK;
+    }
+
+    /**
+     * Smart PHP vulnerability detector.
+     * @return int
+     * @throws InvalidArgumentException
+     */
+    public function actionMalwareDetector(): int
+    {
+        (new \Ollyxar\AntiMalware\Scanner(\Yii::getAlias('@root')))->run();
 
         return ExitCode::OK;
     }
