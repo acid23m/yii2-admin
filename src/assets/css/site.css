@@ -58,3 +58,8 @@ h6 * {
     color: #fff;
     text-decoration: underline;
 }
+
+.form-group.required label::after {
+    content: ' *';
+    color: lightcoral;
+}
