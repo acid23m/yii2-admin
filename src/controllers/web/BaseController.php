@@ -37,7 +37,8 @@ class BaseController extends Controller
         return [
             'httpCache' => [
                 'class' => HttpCache::class,
-                'sessionCacheLimiter' => 'private_no_expire'
+                'sessionCacheLimiter' => 'nocache',
+                'cacheControlHeader' => null
             ],
 
             'access' => [
