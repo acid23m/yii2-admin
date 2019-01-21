@@ -22,7 +22,7 @@ $this->params['title'] = $this->title;
 <?= HomePanel::widget(['y_position' => 'top', 'x_position' => 'wide']) ?>
 
 <div class="row">
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12 col-lg-6">
         <?= HomePanel::widget(['y_position' => 'top', 'x_position' => 'left']) ?>
 
         <!-- User -->
@@ -38,7 +38,7 @@ $this->params['title'] = $this->title;
         <?= HomePanel::widget(['y_position' => 'bottom', 'x_position' => 'left']) ?>
     </div>
 
-    <div class="col-xs-12 col-md-6">
+    <div class="col-xs-12 col-lg-6">
         <?= HomePanel::widget(['y_position' => 'top', 'x_position' => 'right']) ?>
 
         <!-- Notes -->

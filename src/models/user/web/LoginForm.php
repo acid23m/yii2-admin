@@ -50,7 +50,7 @@ final class LoginForm extends Model
     public function attributeLabels(): array
     {
         return [
-            'username' => \Yii::t('dashboard', 'imya polzovatelya'),
+            'username' => \Yii::t('dashboard', 'polzovatel'),
             'password' => \Yii::t('dashboard', 'parol'),
             'rememberMe' => \Yii::t('dashboard', 'zapomnit menya')
         ];
