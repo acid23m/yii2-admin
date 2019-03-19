@@ -112,7 +112,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
                     [
                         'class' => ActionColumn::class,
                         'buttonOptions' => ['class' => 'js_show_progress'],
-                        'contentOptions' => ['style' => 'text-align: center; vertical-align: middle;']
+                        'contentOptions' => ['style' => 'width: 90px; text-align: center; vertical-align: middle;']
                     ]
                 ]
             ]) ?>
@@ -133,7 +133,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
 
 <!--<br>
 
-<div class="post-sort">
+<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-sort">
     <div class="row">
         <div class="col-xs-12">
 

@@ -91,7 +91,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
 //            $sortItems[$item->position] = $item;
 //        }
 
-        return $this->render('index', compact('searchModel', 'dataProvider', 'sortItems'));
+        return $this->render('index', \compact('searchModel', 'dataProvider', 'sortItems'));
 <?php else: ?>
         $dataProvider = new ActiveDataProvider([
             'query' => <?= $modelClass ?>::find()
