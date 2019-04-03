@@ -129,7 +129,7 @@ final class CleanController extends Controller
 
         if (\file_exists($log_dir)) {
             $log_files = FileHelper::findFiles($log_dir, [
-                'filter' => function ($path) {
+                'filter' => static function ($path) {
                     $file_name = StringHelper::basename($path);
                     if (\preg_match('/[\d]$/', $file_name)) {
                         return true;
@@ -179,7 +179,7 @@ final class CleanController extends Controller
 
         if (\file_exists($debug_dir)) {
             $data_files = FileHelper::findFiles($debug_dir, [
-                'filter' => function ($path) {
+                'filter' => static function ($path) {
                     $file_name = StringHelper::basename($path);
                     if (\preg_match('/^[0-9a-z]*.data$/', $file_name)) {
                         return true;

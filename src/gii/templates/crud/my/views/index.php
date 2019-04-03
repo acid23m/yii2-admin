@@ -120,7 +120,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
             <?= "<?= " ?>ListView::widget([
                 'dataProvider' => $dataProvider,
                 'itemOptions' => ['class' => 'item'],
-                'itemView' => function ($model, $key, $index, $widget) {
+                'itemView' => static function ($model, $key, $index, $widget) {
                     return Html::a(Html::encode($model-><?= $nameAttribute ?>), ['view', <?= $urlParams ?>]);
                 }
             ]) ?>

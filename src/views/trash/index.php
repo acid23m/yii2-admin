@@ -46,7 +46,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'group',
                         'label' => \Yii::t('dashboard', 'gruppa'),
-                        'value' => function ($model, $key, $index) {
+                        'value' => static function ($model, $key, $index) {
                             /** @var TrashableInterface $m */
                             $m = $model['model'];
 
@@ -56,7 +56,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'attribute' => 'label',
                         'label' => \Yii::t('dashboard', 'element'),
-                        'value' => function ($model, $key, $index) {
+                        'value' => static function ($model, $key, $index) {
                             /** @var TrashableInterface $m */
                             $m = $model['model'];
 
@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     [
                         'class' => ActionColumn::class,
                         'buttons' => [
-                            'view' => function ($url, $model, $key) {
+                            'view' => static function ($url, $model, $key) {
                                 /** @var TrashableInterface $m */
                                 $m = $model['model'];
 
@@ -82,7 +82,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ['title' => \Yii::t('yii', 'View')]
                                 );
                             },
-                            'restore' => function ($url, $model, $key) {
+                            'restore' => static function ($url, $model, $key) {
                                 /** @var TrashableInterface|ActiveRecord $m */
                                 $m = $model['model'];
 
@@ -96,7 +96,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                     ['title' => \Yii::t('dashboard', 'vosstanovit')]
                                 );
                             },
-                            'delete' => function ($url, $model, $key) {
+                            'delete' => static function ($url, $model, $key) {
                                 /** @var TrashableInterface|ActiveRecord $m */
                                 $m = $model['model'];
 

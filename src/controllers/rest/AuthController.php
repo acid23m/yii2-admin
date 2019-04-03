@@ -28,7 +28,7 @@ final class AuthController extends BaseRestController
         return [
             'basicAuth' => [
                 'class' => HttpBasicAuth::class,
-                'auth' => function ($username, $password) {
+                'auth' => static function ($username, $password) {
                     $user = UserIdentity::findByUsername($username);
                     if ($user !== null && $user->validatePassword($password)) {
                         return $user;

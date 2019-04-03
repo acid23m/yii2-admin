@@ -67,7 +67,7 @@ class BaseController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['update'],
-                        'matchCallback' => function ($rule, $action) {
+                        'matchCallback' => static function ($rule, $action) {
                             return (
                                     \Yii::$app->getUser()->can('addData')
                                     && \Yii::$app->getUser()->can('isOwner',
@@ -79,7 +79,7 @@ class BaseController extends Controller
                     [
                         'allow' => true,
                         'actions' => ['delete'],
-                        'matchCallback' => function ($rule, $action) {
+                        'matchCallback' => static function ($rule, $action) {
                             return (
                                     \Yii::$app->getUser()->can('delData')
                                     && \Yii::$app->getUser()->can('isOwner',

@@ -115,7 +115,7 @@ final class Module extends \yii\base\Module implements BootstrapInterface
                     'class' => Connection::class,
                     'dsn' => 'sqlite:@common/data/userdata.db',
                     'schemaCacheDuration' => 3600,
-                    'on afterOpen' => function (Event $event) {
+                    'on afterOpen' => static function (Event $event) {
                         /** @var Connection $connection */
                         $connection = $event->sender;
                         $connection->createCommand('PRAGMA foreign_keys = ON;')->execute();
@@ -129,7 +129,7 @@ final class Module extends \yii\base\Module implements BootstrapInterface
                     'class' => Connection::class,
                     'dsn' => 'sqlite:@common/data/taskdata.db',
                     'schemaCacheDuration' => 3600,
-                    'on afterOpen' => function (Event $event) {
+                    'on afterOpen' => static function (Event $event) {
                         /** @var Connection $connection */
                         $connection = $event->sender;
                         $connection->createCommand('PRAGMA foreign_keys = ON;')->execute();
@@ -392,7 +392,7 @@ SQL
                         'class' => User::class,
                         'identityClass' => UserIdentity::class,
                         'enableAutoLogin' => true,
-                        'on afterLogin' => function (UserEvent $event) {
+                        'on afterLogin' => static function (UserEvent $event) {
                             /** @var UserIdentity $user */
                             $user = $event->identity;
                             $user->last_access = $user::getNowUTC();

@@ -122,7 +122,7 @@ class UserRecord extends ActiveRecord
             [
                 ['password'],
                 'required',
-                'when' => function (UserRecord $model, $attribute) {
+                'when' => static function (UserRecord $model, $attribute) {
                     return $model->getIsNewRecord();
                 },
                 'enableClientValidation' => false
@@ -139,7 +139,7 @@ class UserRecord extends ActiveRecord
             [
                 ['note'],
                 'filter',
-                'filter' => function ($value) {
+                'filter' => static function ($value) {
                     return HtmlPurifier::process($value);
                 }
             ],

@@ -36,7 +36,7 @@ final class UserController extends BaseController
             [
                 'allow' => true,
                 'actions' => ['update', 'update-token', 'view'],
-                'matchCallback' => function ($rule, $action) {
+                'matchCallback' => static function ($rule, $action) {
                     return \Yii::$app->user->can('isOwner', ['id' => \Yii::$app->request->get('id')])
                         || \Yii::$app->user->can(User::ROLE_ADMIN);
                 }

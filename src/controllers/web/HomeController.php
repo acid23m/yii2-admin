@@ -26,6 +26,7 @@ use yii\helpers\FileHelper;
 use yii\helpers\Inflector;
 use yii\helpers\Json;
 use yii\helpers\StringHelper;
+use yii\queue\Queue;
 use yii\web\Response;
 
 /**
@@ -163,10 +164,10 @@ final class HomeController extends BaseController
         /**
          * @param string $app_part backend|frontend|remote
          */
-        $add_log_to_zip = function (string $app_part) use (&$zip): void {
+        $add_log_to_zip = static function (string $app_part) use (&$zip): void {
             $log_dir = \Yii::getAlias("@{$app_part}/runtime/logs");
             $log_files = FileHelper::findFiles($log_dir, [
-                'filter' => function ($path) {
+                'filter' => static function ($path) {
                     return \preg_match('/app\.log[\.]+[\d]*$/', $path);
                 }
             ]);
@@ -247,7 +248,7 @@ final class HomeController extends BaseController
          * Create .gitignore file.
          * @param string $path
          */
-        $create_gitignore = function (string $path): void {
+        $create_gitignore = static function (string $path): void {
             $content = '*' . PHP_EOL . '!.gitignore' . PHP_EOL;
             $file = \fopen($path . '/.gitignore', 'wb');
             \fwrite($file, $content);
@@ -278,9 +279,9 @@ final class HomeController extends BaseController
      */
     public function actionSitemap(): Response
     {
-        /** @var \yii\queue\Queue $queue */
+        /** @var Queue $queue */
         $queue = \Yii::$app->get('queue', false);
-        if ($queue instanceof \yii\queue\Queue) {
+        if ($queue instanceof Queue) {
             $queue->push(new SitemapJob);
         } else {
             SitemapGenerator::write();
@@ -302,9 +303,9 @@ final class HomeController extends BaseController
      */
     public function actionSearchIndex(): Response
     {
-        /** @var \yii\queue\Queue $queue */
+        /** @var Queue $queue */
         $queue = \Yii::$app->get('queue', false);
-        if ($queue instanceof \yii\queue\Queue) {
+        if ($queue instanceof Queue) {
             $queue->push(new SearchIndexJob);
         } else {
             /** @var SearchIndex $search_index */
