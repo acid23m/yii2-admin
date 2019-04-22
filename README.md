@@ -633,6 +633,18 @@ and `console/config/main.php`.
 Than run index manually from the "Service section" of the admin. panel
 or by cron task with command `php /app/yii dashboard/sitemap/index`.
 
+Finally 3 (minimum) XML files will be created:
+
+```
+https//yoursite.org/sitemap/sitemap.xml
+https//yoursite.org/sitemap/sitemap_static.xml
+https//yoursite.org/sitemap/sitemap_dynamic.xml
+```
+
+Wich are located at `frontend/web/sitemap/`. Don't forget to set
+writable permissions for this directory and create `.gitignore`
+file with `/sitemap*.xml` content.
+
 
 Search Index
 ------------
