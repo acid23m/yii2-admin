@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 06.08.18
- * Time: 0:14
- */
 
 namespace dashboard\models\log;
 
@@ -76,9 +70,10 @@ final class LogSearch extends LogRecord
         }
 
         if (!empty($this->log_time)) {
-            if (strpos($this->log_time, ',') !== false) {
+            if (\strpos($this->log_time, ',') !== false) {
                 [$log_time_start, $log_time_end] = \explode(',', $this->log_time);
-                $log_time_start = (new \DateTime($log_time_start, new \DateTimeZone(\Yii::$app->timeZone)))->format('U');
+                $log_time_start = (new \DateTime($log_time_start,
+                    new \DateTimeZone(\Yii::$app->timeZone)))->format('U');
                 $log_time_end = (new \DateTime($log_time_end, new \DateTimeZone(\Yii::$app->timeZone)))->format('U');
                 $query->andFilterWhere(['between', '{{%log}}.[[log_time]]', $log_time_start, $log_time_end]);
             } else {

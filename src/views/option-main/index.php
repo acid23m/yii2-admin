@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 23.12.15
- * Time: 13:51
- */
 
 use dashboard\models\user\web\User;
 use imagetool\helpers\File;
@@ -106,7 +100,8 @@ $enctype_list = $model->getList('mail_gate_encryptions');
                         </div>
 
                         <div class="col-xs-12 col-md-6">
-                            <?= $form->field($model, 'mail_gate_encryption')->dropDownList($enctype_list(), ['prompt' => '']) ?>
+                            <?= $form->field($model, 'mail_gate_encryption')
+                                ->dropDownList($enctype_list(), ['prompt' => '']) ?>
                         </div>
                     </div>
 

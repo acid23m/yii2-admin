@@ -1,17 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 17.08.18
- * Time: 2:45
- */
 
 namespace dashboard\widgets;
 
 use yii\base\Widget;
 
 /**
- * Render metrics.
+ * Renders metrics.
  *
  * @package dashboard\widgets
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
@@ -19,7 +13,7 @@ use yii\base\Widget;
 class Metrica extends Widget
 {
     /**
-     * Get content from file.
+     * Gets content from file.
      * @return string
      */
     public function run(): string
@@ -32,7 +26,7 @@ class Metrica extends Widget
         $model = new \dashboard\models\option\Metrica;
 
         // google analytics
-        $this->view->registerLinkTag([
+        $this->getView()->registerLinkTag([
             'rel' => 'dns-prefetch',
             'href' => '//www.googletagmanager.com'
         ]);
@@ -54,7 +48,7 @@ GA;
         }
 
         // yandex metrica
-        $this->view->registerLinkTag([
+        $this->getView()->registerLinkTag([
             'rel' => 'dns-prefetch',
             'href' => '//mc.yandex.ru'
         ]);

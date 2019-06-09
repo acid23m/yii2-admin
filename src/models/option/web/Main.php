@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 31.07.18
- * Time: 23:29
- */
 
 namespace dashboard\models\option\web;
 
@@ -93,7 +87,7 @@ class Main extends \dashboard\models\option\Main
             $str = \mb_strtoupper(\mb_substr(\Yii::$app->name, 0, 2));
             $_logo = $image_manager
                 ->canvas(self::LOGO_WIDTH, self::LOGO_HEIGHT, '#666666')
-                ->text($str, 70, 160, function (AbstractFont $font) {
+                ->text($str, 70, 160, static function (AbstractFont $font) {
                     $font->file(\Yii::getAlias(Image::FONT_FILE));
                     $font->size(112);
                     $font->color('#ffffff');

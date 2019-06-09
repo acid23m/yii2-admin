@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 10.08.18
- * Time: 3:42
- */
 
 use yii\helpers\Html;
 use yii\helpers\Url;

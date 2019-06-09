@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 23.07.18
- * Time: 1:31
- */
 
 use dashboard\assets\AppAsset;
 use dashboard\assets\BootboxAsset;
@@ -254,7 +248,7 @@ BootboxAsset::overrideSystemConfirm();
                                 <i class="fa fa-envelope-o"></i>
                                 <span class="badge bg-green">6</span>
                             </a>
-                            <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
+                            <ul class="dropdown-menu list-unstyled msg_list" role="menu">
                                 <li>
                                     <a>
                                         <span class="image">
@@ -367,7 +361,7 @@ BootboxAsset::overrideSystemConfirm();
             <div class="clearfix"></div>
 
             <?= Breadcrumbs::widget([
-                'links' => $this->params['breadcrumbs'] ?? [],
+                'links' => $this->params['breadcrumbs'] ?? []
             ]) ?>
 
             <?= Push::widget() ?>

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 15.08.18
- * Time: 1:16
- */
 
 namespace dashboard\models\sitemap;
 
@@ -14,7 +8,7 @@ use yii\helpers\FileHelper;
 use yii\web\UrlManager;
 
 /**
- * Generate sitemaps from configuration.
+ * Generates sitemaps from configuration.
  *
  * @package dashboard\models\sitemap
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
@@ -22,7 +16,7 @@ use yii\web\UrlManager;
 class SitemapGenerator
 {
     /**
-     * Create sitemap files.
+     * Creates sitemap files.
      * @throws \InvalidArgumentException
      * @throws \yii\base\Exception
      * @throws \yii\base\InvalidArgumentException

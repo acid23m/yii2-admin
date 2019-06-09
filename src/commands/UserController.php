@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 29.07.18
- * Time: 23:42
- */
 
 namespace dashboard\commands;
 
@@ -24,7 +18,7 @@ use yii\helpers\Console;
 use yii\rbac\ManagerInterface;
 
 /**
- * Manage with backend users.
+ * Manages with backend users.
  *
  * @package dashboard\commands
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
@@ -70,7 +64,7 @@ class UserController extends Controller
     }
 
     /**
-     * Create roles and permissions.
+     * Creates roles and permissions.
      * @return int
      * @throws \Exception
      * @throws Exception
@@ -152,7 +146,7 @@ class UserController extends Controller
             }
         }
 
-        // assign roles to all existing users
+        // assigns roles to all existing users
         /** @var array|User[] $users */
         $users = User::find()->all();
         foreach ($users as $user) {
@@ -168,7 +162,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show permissions and roles.
+     * Shows permissions and roles.
      * @return int
      * @throws \Exception
      * @throws InvalidConfigException
@@ -210,7 +204,7 @@ class UserController extends Controller
     }
 
     /**
-     * Create new user with username, email, password and role.
+     * Creates new user with username, email, password and role.
      * @param string $username
      * @param string $email
      * @param string $password
@@ -281,7 +275,7 @@ class UserController extends Controller
     }
 
     /**
-     * Delete user by ID or username.
+     * Deletes user by ID or username.
      * @param string|null $search_criteria ID or username
      * @return int
      * @throws \Exception
@@ -332,7 +326,7 @@ class UserController extends Controller
     }
 
     /**
-     * Change user status by ID or username.
+     * Changes user status by ID or username.
      * @param string|null $search_criteria ID or username
      * @return int
      * @throws InvalidArgumentException
@@ -386,7 +380,7 @@ class UserController extends Controller
     }
 
     /**
-     * Show all existing users, one by ID or one by username.
+     * Shows all existing users, one by ID or one by username.
      * @param string|null $search_criteria ID or username
      * @return int
      * @throws \Exception

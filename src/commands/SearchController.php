@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 23.08.18
- * Time: 23:31
- */
 
 namespace dashboard\commands;
 
@@ -18,9 +12,10 @@ use yii\base\InvalidConfigException;
 use yii\console\Controller;
 use yii\console\ExitCode;
 use yii\helpers\Console;
+use yii\queue\Queue;
 
 /**
- * Manage search index.
+ * Manages search index.
  *
  * @package dashboard\commands
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
@@ -28,7 +23,7 @@ use yii\helpers\Console;
 final class SearchController extends Controller
 {
     /**
-     * Recreate index DB.
+     * Recreates index DB.
      * @return int
      * @throws InvalidConfigException
      * @throws InvalidEnvironmentException
@@ -49,7 +44,7 @@ final class SearchController extends Controller
     }
 
     /**
-     * Add items to search index.
+     * Adds items to search index.
      * @return int
      * @throws InvalidConfigException
      * @throws InvalidEnvironmentException
@@ -59,9 +54,9 @@ final class SearchController extends Controller
      */
     public function actionIndex(): int
     {
-        /** @var \yii\queue\Queue $queue */
+        /** @var Queue $queue */
         $queue = \Yii::$app->get('queue', false);
-        if ($queue instanceof \yii\queue\Queue) {
+        if ($queue instanceof Queue) {
             $queue->push(new SearchIndexJob);
         } else {
             /** @var SearchIndex $search_index */

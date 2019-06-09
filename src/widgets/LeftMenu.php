@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 23.07.18
- * Time: 23:16
- */
 
 namespace dashboard\widgets;
 
@@ -42,7 +36,7 @@ class LeftMenu extends Widget
     }
 
     /**
-     * Show menu in left sidebar.
+     * Shows menu in left sidebar.
      * @return string|View
      * @throws InvalidArgumentException
      */

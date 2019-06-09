@@ -27,16 +27,16 @@ $actionParamComments = $generator->generateActionParamComments();
 echo "<?php\n";
 ?>
 
-namespace <?= StringHelper::dirname(ltrim($generator->controllerClass, '\\')) ?>;
+namespace <?= StringHelper::dirname(\ltrim($generator->controllerClass, '\\')) ?>;
 
-use <?= ltrim($generator->modelClass, '\\') ?>;
+use <?= \ltrim($generator->modelClass, '\\') ?>;
 use dashboard\models\user\web\User;
 <?php if (!empty($generator->searchModelClass)): ?>
-use <?= ltrim($generator->searchModelClass, '\\') . (isset($searchModelAlias) ? " as $searchModelAlias" : "") ?>;
+use <?= \ltrim($generator->searchModelClass, '\\') . (isset($searchModelAlias) ? " as $searchModelAlias" : "") ?>;
 <?php else: ?>
 use yii\data\ActiveDataProvider;
 <?php endif; ?>
-use <?= ltrim($generator->baseControllerClass, '\\') ?>;
+use <?= \ltrim($generator->baseControllerClass, '\\') ?>;
 use yii\base\InvalidArgumentException;
 use yii\db\IntegrityException;
 use yii\helpers\Json;
@@ -46,7 +46,7 @@ use yii\web\Response;
 /**
  * <?= $controllerClass ?> implements the CRUD actions for <?= $modelClass ?> model.
  *
- * @package <?= StringHelper::dirname(ltrim($generator->controllerClass, '\\')) ?>
+ * @package <?= StringHelper::dirname(\ltrim($generator->controllerClass, '\\')) ?>
  */
 final class <?= $controllerClass ?> extends <?= StringHelper::basename($generator->baseControllerClass) . "\n" ?>
 {
@@ -110,7 +110,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
 
     /**
      * Displays a single <?= $modelClass ?> model.
-     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
+     * <?= \implode("\n     * ", $actionParamComments) . "\n" ?>
      * @return string
      * @throws InvalidArgumentException
      * @throws NotFoundHttpException if the model cannot be found
@@ -143,7 +143,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
     /**
      * Updates an existing <?= $modelClass ?> model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
+     * <?= \implode("\n     * ", $actionParamComments) . "\n" ?>
      * @return string|Response
      * @throws InvalidArgumentException
      * @throws NotFoundHttpException if the model cannot be found
@@ -163,7 +163,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
     /**
      * Deletes an existing <?= $modelClass ?> model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
+     * <?= \implode("\n     * ", $actionParamComments) . "\n" ?>
      * @return Response
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -225,8 +225,8 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
     }
 
     /**
-     * Restore <?= $modelClass ?> model.
-     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
+     * Restores <?= $modelClass ?> model.
+     * <?= \implode("\n     * ", $actionParamComments) . "\n" ?>
      * @return Response
      * @throws NotFoundHttpException
      */
@@ -241,7 +241,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
 //    }
 
     /**
-     * Change positions of an existing <?= $modelClass ?> models.
+     * Changes positions of an existing <?= $modelClass ?> models.
      * @param string $ids List of ID (array in json format)
      * @return Response
      * @throws NotFoundHttpException
@@ -264,7 +264,7 @@ final class <?= $controllerClass ?> extends <?= StringHelper::basename($generato
     /**
      * Finds the <?= $modelClass ?> model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * <?= implode("\n     * ", $actionParamComments) . "\n" ?>
+     * <?= \implode("\n     * ", $actionParamComments) . "\n" ?>
      * @return <?= $modelClass ?> The loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -278,7 +278,7 @@ if (count($pks) === 1) {
     foreach ($pks as $pk) {
         $condition[] = "'$pk' => \$$pk";
     }
-    $condition = '[' . implode(', ', $condition) . ']';
+    $condition = '[' . \implode(', ', $condition) . ']';
 }
 ?>
         if (($model = <?= $modelClass ?>::findOne(<?= $condition ?>)) !== null) {

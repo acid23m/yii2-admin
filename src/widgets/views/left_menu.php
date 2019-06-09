@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 23.07.18
- * Time: 23:22
- */
 
 use yii\helpers\Html;
 use yiister\gentelella\widgets\Menu;

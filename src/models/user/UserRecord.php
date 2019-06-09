@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 25.07.18
- * Time: 0:08
- */
 
 namespace dashboard\models\user;
 
@@ -94,7 +88,7 @@ class UserRecord extends ActiveRecord
         return [
             'timestamp' => [
                 'class' => TimestampBehavior::class,
-                'value' => \call_user_func([$this, 'getNowUTC'])
+                'value' => [$this, 'getNowUTC']
             ]
         ];
     }
@@ -193,7 +187,7 @@ class UserRecord extends ActiveRecord
     }
 
     /**
-     * Validate password.
+     * Validates password.
      * @param string $password Password to validate
      * @return bool If password provided is valid for current user
      * @throws InvalidArgumentException
@@ -204,7 +198,7 @@ class UserRecord extends ActiveRecord
     }
 
     /**
-     * Generate new password reset token.
+     * Generates new password reset token.
      * @throws Exception
      */
     public function generatePasswordResetToken(): void

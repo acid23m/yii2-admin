@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 14.08.18
- * Time: 2:34
- */
 
 namespace dashboard\controllers\web;
 
@@ -46,7 +40,7 @@ final class TrashController extends BaseController
     }
 
     /**
-     * Show items in the recycle bin.
+     * Shows items in the recycle bin.
      * @return string
      * @throws InvalidArgumentException
      * @throws InvalidConfigException
@@ -59,7 +53,7 @@ final class TrashController extends BaseController
     }
 
     /**
-     * Restore item.
+     * Restores item.
      * @param string $class Model classname
      * @param string $id Model id
      * @return Response
@@ -105,7 +99,7 @@ final class TrashController extends BaseController
     }
 
     /**
-     * Delete item.
+     * Deletes item.
      * @param string $class Model classname
      * @param string $id Model id
      * @return Response
@@ -147,7 +141,7 @@ final class TrashController extends BaseController
     }
 
     /**
-     * Delete items.
+     * Deletes items.
      * @return Response
      * @throws InvalidConfigException
      */

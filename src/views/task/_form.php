@@ -1,10 +1,5 @@
 <?php
 
-use imagetool\helpers\File;
-use kartik\date\DatePicker;
-use kartik\file\FileInput;
-use mihaildev\ckeditor\CKEditor;
-use mihaildev\elfinder\ElFinder;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 

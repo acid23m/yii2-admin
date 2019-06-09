@@ -61,32 +61,17 @@ $status_list = $model->getList('statuses');
             [
                 'attribute' => 'created_at',
                 'format' => 'datetime',
-                'value' => static function (User $model, $widget) {
-                    $dt = new \DateTime($model->created_at, new \DateTimeZone('UTC'));
-                    $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
-
-                    return $dt;
-                }
+                'value' => $model::toLocalTimezone($model->created_at)
             ],
             [
                 'attribute' => 'updated_at',
                 'format' => 'datetime',
-                'value' => static function (User $model, $widget) {
-                    $dt = new \DateTime($model->updated_at, new \DateTimeZone('UTC'));
-                    $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
-
-                    return $dt;
-                }
+                'value' => $model::toLocalTimezone($model->updated_at)
             ],
             [
                 'attribute' => 'last_access',
                 'format' => 'datetime',
-                'value' => static function (User $model, $widget) {
-                    $dt = new \DateTime($model->last_access, new \DateTimeZone('UTC'));
-                    $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
-
-                    return $dt;
-                }
+                'value' => $model::toLocalTimezone($model->last_access)
             ],
             'ip'
         ]

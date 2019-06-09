@@ -51,7 +51,7 @@ final class PasswordResetRequestForm extends Model
     }
 
     /**
-     * Send an email with a link, for resetting the password.
+     * Sends an email with a link, for resetting the password.
      * @return bool whether the email was send
      * @throws InvalidArgumentException
      * @throws Exception
@@ -92,7 +92,7 @@ final class PasswordResetRequestForm extends Model
             return $mailer
                 ->compose(
                     ['html' => 'passwordResetToken-html', 'text' => 'passwordResetToken-text'],
-                    compact('user', 'resetLink')
+                    \compact('user', 'resetLink')
                 )
                 ->setFrom([\Yii::$app->get('option')->get('mail_gate_login') => \Yii::$app->name])
                 ->setTo($this->email)

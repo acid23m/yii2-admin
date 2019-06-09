@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 29.07.18
- * Time: 21:01
- */
 
 namespace dashboard\models\user\web;
 
@@ -12,7 +6,6 @@ use dashboard\models\user\UserIdentity;
 use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\base\Model;
-use yii\helpers\Html;
 use yii\swiftmailer\Mailer;
 
 /**
@@ -114,7 +107,7 @@ final class LoginForm extends Model
     }
 
     /**
-     * Send code to user.
+     * Sends code to user.
      * @return string
      * @throws Exception
      */
@@ -124,7 +117,14 @@ final class LoginForm extends Model
         $code = \Yii::$app->getSecurity()->generateRandomString(8);
 
         $cache_id = \Yii::$app->getSecurity()->generateRandomString(10);
-        \Yii::$app->getCache()->set($cache_id, ['code' => hash('md4', $code), 'loginForm' => $this], self::CODE_CACHE_TIME);
+        \Yii::$app->getCache()->set(
+            $cache_id,
+            [
+                'code' => \hash('md4', $code),
+                'loginForm' => $this
+            ],
+            self::CODE_CACHE_TIME
+        );
 
         if ($user !== null) {
             /** @var Mailer $mailer */
@@ -137,7 +137,7 @@ final class LoginForm extends Model
                 $mailer
                     ->compose(
                         ['html' => 'tfaCode-html', 'text' => 'tfaCode-text'],
-                        compact('user', 'code')
+                        \compact('user', 'code')
                     )
                     ->setFrom([\Yii::$app->get('option')->get('mail_gate_login') => \Yii::$app->name])
                     ->setTo($user->email)

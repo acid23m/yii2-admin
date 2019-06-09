@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 31.07.18
- * Time: 23:45
- */
 
 namespace dashboard\controllers\web;
 
@@ -39,7 +33,7 @@ class OptionMainController extends BaseController
     }
 
     /**
-     * Set main options.
+     * Sets main options.
      * @return string
      * @throws InvalidArgumentException
      * @throws InvalidConfigException

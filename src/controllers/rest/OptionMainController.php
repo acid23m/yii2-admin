@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 05.08.18
- * Time: 16:45
- */
 
 namespace dashboard\controllers\rest;
 
@@ -58,7 +52,7 @@ final class OptionMainController extends BaseRestController
     }
 
     /**
-     * Show all options.
+     * Shows all options.
      * @return array|Response
      * @throws InvalidConfigException
      */
@@ -70,7 +64,7 @@ final class OptionMainController extends BaseRestController
     }
 
     /**
-     * Update options.
+     * Updates options.
      * @return array|Response
      * @throws InvalidConfigException
      * @throws InvalidArgumentException
@@ -93,7 +87,7 @@ final class OptionMainController extends BaseRestController
     }
 
     /**
-     * Get options model.
+     * Gets options model.
      * @return \dashboard\models\option\Main
      * @throws InvalidConfigException
      */

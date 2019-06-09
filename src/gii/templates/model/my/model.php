@@ -40,12 +40,12 @@ use yii\db\Connection;
  * This is the model class for table "<?= $generator->generateTableName($tableName) ?>".
  *
 <?php foreach ($properties as $property => $data): ?>
- * @property <?= "{$data['type']} \${$property}"  . ($data['comment'] ? ' ' . strtr($data['comment'], ["\n" => ' ']) : '') . "\n" ?>
+ * @property <?= "{$data['type']} \${$property}"  . ($data['comment'] ? ' ' . \strtr($data['comment'], ["\n" => ' ']) : '') . "\n" ?>
 <?php endforeach ?>
 <?php if (!empty($relations)): ?>
  *
 <?php foreach ($relations as $name => $relation): ?>
- * @property <?= $relation[1] . ($relation[2] ? '[]' : '') . ' $' . lcfirst($name) . "\n" ?>
+ * @property <?= $relation[1] . ($relation[2] ? '[]' : '') . ' $' . \lcfirst($name) . "\n" ?>
 <?php endforeach ?>
 <?php endif ?>
 <?php if (isset($properties['updated_at'])):  ?>
@@ -73,7 +73,7 @@ use yii\db\Connection;
  *
  * @package <?= $generator->ns . "\n" ?>
  */
-class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . "\n" ?>
+class <?= $className ?> extends <?= '\\' . \ltrim($generator->baseClass, '\\') . "\n" ?>
 {
 <?php if (isset($properties['updated_at'])):  ?>
     use DateTime;
@@ -140,7 +140,7 @@ class <?= $className ?> extends <?= '\\' . ltrim($generator->baseClass, '\\') . 
      */
     public function rules(): array
     {
-        return [<?= empty($rules) ? '' : ("\n            " . implode(",\n            ", $rules) . ",\n        ") ?>];
+        return [<?= empty($rules) ? '' : ("\n            " . \implode(",\n            ", $rules) . ",\n        ") ?>];
     }
 
     /**

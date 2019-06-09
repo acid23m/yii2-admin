@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 27.07.18
- * Time: 0:35
- */
 
 namespace dashboard\models\user;
 
@@ -28,7 +22,7 @@ final class UserIdentity extends UserRecord implements IdentityInterface
     }
 
     /**
-     * Find user by ID.
+     * Finds user by ID.
      * @static
      * @param int $id
      * @return null|UserIdentity
@@ -39,7 +33,7 @@ final class UserIdentity extends UserRecord implements IdentityInterface
     }
 
     /**
-     * Find user by username.
+     * Finds user by username.
      * @static
      * @param string $username
      * @return null|UserIdentity
@@ -50,7 +44,7 @@ final class UserIdentity extends UserRecord implements IdentityInterface
     }
 
     /**
-     * Find user by token.
+     * Finds user by token.
      * @static
      * @param string $token Access token
      * @param string $type
@@ -62,7 +56,7 @@ final class UserIdentity extends UserRecord implements IdentityInterface
     }
 
     /**
-     * Find user by password reset token.
+     * Finds user by password reset token.
      * @static
      * @param string $token Password reset token
      * @return null|UserIdentity

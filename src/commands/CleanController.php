@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 31.01.16
- * Time: 23:32
- */
 
 namespace dashboard\commands;
 
@@ -20,7 +14,7 @@ use yii\helpers\FileHelper;
 use yii\helpers\StringHelper;
 
 /**
- * Delete temporary files.
+ * Deletes temporary files.
  *
  * @package dashboard\commands
  * @author Poyarkov S. <webmaster.cipa at gmail dot com>
@@ -40,7 +34,7 @@ final class CleanController extends Controller
     ];
 
     /**
-     * Cleanup.
+     * Cleans up.
      * @return int
      * @throws ErrorException
      * @throws Exception
@@ -78,7 +72,7 @@ final class CleanController extends Controller
     }
 
     /**
-     * Cleanup logs.
+     * Cleans up logs.
      * @return int
      * @throws InvalidArgumentException
      */
@@ -104,7 +98,7 @@ final class CleanController extends Controller
     }
 
     /**
-     * Set app.log empty.
+     * Sets app.log empty.
      * @param string $app_type Application type (console|backend|frontend|remote)
      * @throws InvalidArgumentException
      */
@@ -119,7 +113,7 @@ final class CleanController extends Controller
     }
 
     /**
-     * Delete additional log files (app.log.1, app.log.2 ..).
+     * Deletes additional log files (app.log.1, app.log.2 ..).
      * @param string $app_type Application type (console|backend|frontend|remote)
      * @throws InvalidArgumentException
      */

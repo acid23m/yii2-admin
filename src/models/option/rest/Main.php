@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 05.08.18
- * Time: 16:48
- */
 
 namespace dashboard\models\option\rest;
 
@@ -27,7 +21,7 @@ use yii\helpers\StringHelper;
 class Main extends \dashboard\models\option\Main
 {
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function formName(): string
     {
@@ -35,7 +29,7 @@ class Main extends \dashboard\models\option\Main
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function rules(): array
     {
@@ -58,7 +52,7 @@ class Main extends \dashboard\models\option\Main
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function fields(): array
     {
@@ -76,7 +70,7 @@ class Main extends \dashboard\models\option\Main
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      * @throws \ImageOptimizer\Exception\Exception
      * @throws \Intervention\Image\Exception\NotWritableException
      * @throws \yii\base\Exception
@@ -110,7 +104,7 @@ class Main extends \dashboard\models\option\Main
             $str = \mb_strtoupper(\mb_substr(\Yii::$app->name, 0, 2));
             $_logo = $image_manager
                 ->canvas(self::LOGO_WIDTH, self::LOGO_HEIGHT, '#666666')
-                ->text($str, 70, 160, function (AbstractFont $font) {
+                ->text($str, 70, 160, static function (AbstractFont $font) {
                     $font->file(\Yii::getAlias(Image::FONT_FILE));
                     $font->size(112);
                     $font->color('#ffffff');

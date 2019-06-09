@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 17.08.18
- * Time: 2:22
- */
 
 namespace dashboard\widgets;
 
@@ -20,7 +14,7 @@ use yii\base\Widget;
 class HeadScript extends Widget
 {
     /**
-     * Get content from file.
+     * Gets content from file.
      * @return string
      */
     public function run(): string

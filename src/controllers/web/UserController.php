@@ -54,12 +54,9 @@ final class UserController extends BaseController
     public function actionIndex(): string
     {
         $searchModel = new UserSearch;
-        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
+        $dataProvider = $searchModel->search(\Yii::$app->getRequest()->getQueryParams());
 
-        return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider
-        ]);
+        return $this->render('index', \compact('searchModel', 'dataProvider'));
     }
 
     /**
@@ -84,7 +81,7 @@ final class UserController extends BaseController
      */
     public function actionCreate()
     {
-        $model = new User();
+        $model = new User;
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->save()) {
             \Yii::$app->getSession()->setFlash('success', \Yii::t('dashboard', 'polzovatel dobavlen'));

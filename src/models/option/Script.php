@@ -1,13 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 17.08.18
- * Time: 0:46
- */
 
 namespace dashboard\models\option;
 
+use yii\base\InvalidArgumentException;
 use yii\base\Model;
 
 /**
@@ -56,9 +51,9 @@ class Script extends Model
     }
 
     /**
-     * Save scripts.
+     * Saves scripts.
      * @return bool
-     * @throws \yii\base\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function save(): bool
     {
@@ -72,7 +67,7 @@ class Script extends Model
     }
 
     /**
-     * Read file.
+     * Reads file.
      * @param string $path Path to file
      * @return string
      */
@@ -99,7 +94,7 @@ class Script extends Model
     }
 
     /**
-     * Write to file.
+     * Writes to file.
      * @param string $path Path to file
      * @param string $content Scripts
      * @return bool

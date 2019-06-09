@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 19.08.18
- * Time: 0:39
- */
 
 namespace dashboard\controllers\web;
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 19.08.18
- * Time: 20:00
- */
 
 namespace dashboard\commands;
 
@@ -24,7 +18,7 @@ use yii2tech\crontab\CronTab;
 final class TaskController extends Controller
 {
     /**
-     * Update system crontab with saved tasks.
+     * Updates system crontab with saved tasks.
      * @return int
      */
     public function actionReload(): int
@@ -42,7 +36,7 @@ final class TaskController extends Controller
         $tab = new CronTab;
         $tab->setJobs($jobs)->remove();
 
-        // save new tasks
+        // saves new tasks
         $tasks = TaskRecord::find()->published()->all();
         $jobs = [];
         foreach ($tasks as $task) {

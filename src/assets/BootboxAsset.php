@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 21.12.15
- * Time: 18:08
- */
 
 namespace dashboard\assets;
 
@@ -31,7 +25,7 @@ final class BootboxAsset extends AssetBundle
     ];
 
     /**
-     * Override yii confirm.
+     * Overrides yii confirm.
      */
     public static function overrideSystemConfirm(): void
     {

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 29.07.18
- * Time: 20:53
- */
 
 namespace dashboard\controllers\web;
 
@@ -56,7 +50,7 @@ final class AuthController extends BaseController
     }
 
     /**
-     * Render authorization form.
+     * Renders authorization form.
      * @return string|Response
      * @throws InvalidArgumentException
      * @throws Exception
@@ -75,7 +69,7 @@ final class AuthController extends BaseController
                 return $this->render('login', \compact('model'));
             }
 
-            // use two-factor authentication
+            // uses two-factor authentication
             if ($user->tfa) {
                 return $this->redirect(['tfa-code', 'ci' => $model->send()]);
             }
@@ -89,7 +83,7 @@ final class AuthController extends BaseController
     }
 
     /**
-     * Check 2fa code and login user if the code is correct.
+     * Checks 2fa code and login user if the code is correct.
      * @param string $ci Cache ID
      * @return string|Response
      * @throws InvalidArgumentException
@@ -119,7 +113,7 @@ final class AuthController extends BaseController
     }
 
     /**
-     * Unauthorize current user.
+     * Unauthorizes current user.
      * @return Response
      */
     public function actionLogout(): Response
@@ -130,7 +124,7 @@ final class AuthController extends BaseController
     }
 
     /**
-     * Render request password reset form.
+     * Renders request password reset form.
      * @return string|Response
      * @throws Exception
      * @throws InvalidArgumentException
@@ -149,7 +143,7 @@ final class AuthController extends BaseController
                 return $this->redirect(['login']);
             }
 
-            \Yii::$app->session->setFlash(
+            \Yii::$app->getSession()->setFlash(
                 'error',
                 \Yii::t('dashboard', 'nevozmozhno otpravit soobshenie')
             );
@@ -159,7 +153,7 @@ final class AuthController extends BaseController
     }
 
     /**
-     * Render password reset form.
+     * Renders password reset form.
      * @param string $token Secret token
      * @return string|Response
      * @throws BadRequestHttpException
@@ -175,7 +169,10 @@ final class AuthController extends BaseController
         }
 
         if ($model->load(\Yii::$app->getRequest()->post()) && $model->validate() && $model->resetPassword()) {
-            \Yii::$app->session->setFlash('success', \Yii::t('dashboard', 'noviy parol sohranen'));
+            \Yii::$app->getSession()->setFlash(
+                'success',
+                \Yii::t('dashboard', 'noviy parol sohranen')
+            );
 
             return $this->redirect(['login']);
         }

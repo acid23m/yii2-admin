@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 07.08.18
- * Time: 1:09
- */
 
 use dashboard\models\user\web\User;
 use yii\helpers\Html;
@@ -37,12 +31,12 @@ use yii\helpers\Url;
                     <ul class="list-unstyled">
                         <li>
                             <strong>IP</strong>:
-                            <?= \Yii::$app->getCache()->getOrSet('external_server_ip', function () {
+                            <?= \Yii::$app->getCache()->getOrSet('external_server_ip', static function () {
                                 $ch = \curl_init('https://api.ipify.org');
                                 \curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
                                 \curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
                                 \curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-                                $external_ip = curl_exec($ch);
+                                $external_ip = \curl_exec($ch);
                                 \curl_close($ch);
                                 unset($ch);
                                 if ($external_ip) {
@@ -77,7 +71,7 @@ use yii\helpers\Url;
                             <?php
                             \Yii::$app->getDb()->open();
                             $dbDriverName = \Yii::$app->getDb()->pdo->getAttribute(\PDO::ATTR_DRIVER_NAME);
-                            echo Html::tag('strong', strtoupper($dbDriverName) . ': ');
+                            echo Html::tag('strong', \strtoupper($dbDriverName) . ': ');
                             echo \Yii::$app->getDb()->pdo->getAttribute(\PDO::ATTR_SERVER_VERSION);
                             ?>
                         </li>
@@ -89,7 +83,7 @@ use yii\helpers\Url;
 
                         if ($dbDriverName !== $dbappDriverName) {
                             echo Html::beginTag('li');
-                            echo Html::tag('strong', strtoupper($dbappDriverName) . ': ');
+                            echo Html::tag('strong', \strtoupper($dbappDriverName) . ': ');
                             echo $sqlite->pdo->getAttribute(\PDO::ATTR_SERVER_VERSION);
                             echo Html::endTag('li');
                         }
@@ -99,7 +93,7 @@ use yii\helpers\Url;
                             <?php
                             /** @var \yii\redis\Connection $redis */
                             $redis = \Yii::$app->get('cache')->redis;
-                            $info = explode(
+                            $info = \explode(
                                 PHP_EOL,
                                 $redis->info('server')
                             );
@@ -180,7 +174,7 @@ use yii\helpers\Url;
                             }
 
                             $mem_total_percent = 100;
-                            $mem_free_percent = ceil($mem_total_percent * $mem_free / $mem_total);
+                            $mem_free_percent = \ceil($mem_total_percent * $mem_free / $mem_total);
                             $mem_used_percent = $mem_total_percent - $mem_free_percent;
                             ?>
 
@@ -229,7 +223,7 @@ use yii\helpers\Url;
                             $disk_used = $disk_total - $disk_free;
 
                             $disk_total_percent = 100;
-                            $disk_free_percent = ceil($disk_total_percent * $disk_free / $disk_total);
+                            $disk_free_percent = \ceil($disk_total_percent * $disk_free / $disk_total);
                             $disk_used_percent = $disk_total_percent - $disk_free_percent;
                             ?>
 

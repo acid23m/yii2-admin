@@ -1,9 +1,5 @@
 /**
- * Created by Poyarkov S. <webmaster.cipa at gmail dot com>.
- */
-
-/**
- * Show progress spinner.
+ * Shows progress spinner.
  */
 yii.spinner = (function ($) {
   let pub = {
@@ -14,7 +10,7 @@ yii.spinner = (function ($) {
   }
 
   /**
-   * Show loader
+   * Shows loader
    */
   function lBlock () {
     const $loadingBlock = $('#loading-block');

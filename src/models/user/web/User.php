@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 27.07.18
- * Time: 1:38
- */
 
 namespace dashboard\models\user\web;
 
@@ -102,7 +96,7 @@ class User extends UserRecord
     }
 
     /**
-     * Get list of available user roles.
+     * Gets list of available user roles.
      * @param bool $associative Is array associative
      * @param bool $all Show superadmin
      * @return array
@@ -152,7 +146,7 @@ class User extends UserRecord
                 $str = \mb_strtoupper(\mb_substr($this->username, 0, 2));
                 $this->avatar = (string) $image_manager
                     ->canvas(self::AVATAR_WIDTH, self::AVATAR_HEIGHT, '#666666')
-                    ->text($str, 35, 80, function (AbstractFont $font) {
+                    ->text($str, 35, 80, static function (AbstractFont $font) {
                         $font->file(\Yii::getAlias(Image::FONT_FILE));
                         $font->size(56);
                         $font->color('#ffffff');

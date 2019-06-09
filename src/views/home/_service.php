@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 08.08.18
- * Time: 14:39
- */
 
 use yii\bootstrap\Tabs;
 

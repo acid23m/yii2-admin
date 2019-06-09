@@ -1,15 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 17.08.18
- * Time: 1:09
- */
 
 namespace dashboard\controllers\web;
 
 use dashboard\models\option\web\Metrica;
 use dashboard\models\user\web\User;
+use yii\base\InvalidArgumentException;
+use yii\base\InvalidConfigException;
 
 /**
  * Class MetricaController.
@@ -37,10 +33,10 @@ final class MetricaController extends BaseController
     }
 
     /**
-     * Update settings.
+     * Updates settings.
      * @return string
-     * @throws \yii\base\InvalidArgumentException
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidArgumentException
+     * @throws InvalidConfigException
      */
     public function actionIndex(): string
     {

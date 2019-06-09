@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 23.12.15
- * Time: 16:18
- */
 
 namespace dashboard\models\option;
 
@@ -46,7 +40,7 @@ class IniConfig extends Model
     protected $old_array;
 
     /**
-     * Read ini file.
+     * Reads ini file.
      * @throws InvalidConfigException
      * @throws IniReadingException
      * @throws InvalidArgumentException
@@ -63,13 +57,13 @@ class IniConfig extends Model
             throw new InvalidRouteException("File $path not found.");
         }
 
-        $reader = new IniReader();
+        $reader = new IniReader;
         $this->array = $reader->readFile($path);
         $this->old_array = $this->array;
     }
 
     /**
-     * Get all options.
+     * Gets all options.
      * @return array
      */
     public function getAll(): array
@@ -78,7 +72,7 @@ class IniConfig extends Model
     }
 
     /**
-     * Get option.
+     * Gets option.
      * @param string $key
      * @param mixed $default
      * @param bool $current Actual or old data
@@ -101,7 +95,7 @@ class IniConfig extends Model
     }
 
     /**
-     * Set option.
+     * Sets option.
      * @param string $key
      * @param string|int|bool $value
      */
@@ -123,19 +117,19 @@ class IniConfig extends Model
     }
 
     /**
-     * Save options to ini file.
+     * Saves options to ini file.
      * @return bool
      * @throws InvalidArgumentException
      */
     public function save(): bool
     {
-        // invalidate global cache
+        // invalidates global cache
         $cache = \Yii::$app->getCache();
         if ($cache !== null) {
             $cache->flush();
         }
 
-        $writer = new IniWriter();
+        $writer = new IniWriter;
         try {
             $writer->writeToFile(\Yii::getAlias($this->path), $this->array);
         } catch (IniWritingException $e) {

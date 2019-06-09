@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 14.08.18
- * Time: 3:02
- */
 
 namespace dashboard\models\trash;
 

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 29.07.18
- * Time: 21:33
- */
 
 use dashboard\assets\AppAsset;
 use dashboard\assets\BootboxAsset;

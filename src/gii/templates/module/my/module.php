@@ -7,9 +7,9 @@
 /** @var yii\gii\generators\module\Generator $generator */
 
 $className = $generator->moduleClass;
-$pos = strrpos($className, '\\');
-$ns = ltrim(substr($className, 0, $pos), '\\');
-$className = substr($className, $pos + 1);
+$pos = \strrpos($className, '\\');
+$ns = \ltrim(substr($className, 0, $pos), '\\');
+$className = \substr($className, $pos + 1);
 
 echo "<?php\n";
 ?>

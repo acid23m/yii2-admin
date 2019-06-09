@@ -1,28 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 07.08.18
- * Time: 0:08
- */
 
 use yii\helpers\Html;
 use yii\helpers\Inflector;
 
 /** @var \yii\web\View $this */
 /** @var \dashboard\models\user\UserIdentity $user */
-
-/**
- * Convert date from utc to current timezone.
- * @param string $value
- * @return DateTime
- */
-$dt_from_utc = function (string $value): \DateTime {
-    $dt = new \DateTime($value, new \DateTimeZone('UTC'));
-    $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
-
-    return $dt;
-}
 ?>
 
 <div class="row">
@@ -61,15 +43,15 @@ $dt_from_utc = function (string $value): \DateTime {
                     </li>
                     <li>
                         <strong><?= \Yii::t('dashboard', 'vremya sozdaniya') ?></strong>:
-                        <?= \Yii::$app->getFormatter()->asDatetime($dt_from_utc($user->created_at)) ?>
+                        <?= \Yii::$app->getFormatter()->asDatetime($user::toLocalTimezone($user->created_at)) ?>
                     </li>
                     <li>
                         <strong><?= \Yii::t('dashboard', 'vremya obnovleniya') ?></strong>:
-                        <?= \Yii::$app->getFormatter()->asDatetime($dt_from_utc($user->updated_at)) ?>
+                        <?= \Yii::$app->getFormatter()->asDatetime($user::toLocalTimezone($user->updated_at)) ?>
                     </li>
                     <li>
                         <strong><?= \Yii::t('dashboard', 'posledniy vhod') ?></strong>:
-                        <?= \Yii::$app->getFormatter()->asDatetime($dt_from_utc($user->last_access)) ?>
+                        <?= \Yii::$app->getFormatter()->asDatetime($user::toLocalTimezone($user->last_access)) ?>
                     </li>
                     <li>
                         <strong>IP</strong>:

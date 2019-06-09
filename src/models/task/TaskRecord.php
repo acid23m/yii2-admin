@@ -1,17 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 18.08.18
- * Time: 23:49
- */
 
 namespace dashboard\models\task;
 
 use dashboard\traits\Model;
-use yii\db\ActiveRecord;
 use yii\base\InvalidConfigException;
-use yii\behaviors\AttributeTypecastBehavior;
+use yii\db\ActiveRecord;
 use yii\db\Connection;
 use yii2tech\crontab\CronJob;
 use yii2tech\crontab\CronTab;
@@ -139,13 +132,13 @@ class TaskRecord extends ActiveRecord
     public function beforeDelete(): bool
     {
         if (parent::beforeDelete()) {
-            // set cron job
+            // sets cron job
             $job = new CronJob;
             $job->setAttributes(
                 $this->getAttributes()
             );
 
-            // delete cron job
+            // deletes cron job
             $tab = new CronTab;
             $tab->setJobs([$job])->remove();
 

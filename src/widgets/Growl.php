@@ -54,7 +54,7 @@ final class Growl extends Widget
 
         foreach ($flashes as $type => $message) {
             if (isset($this->alertTypes[$type])) {
-                // initialize css class for each alert box
+                // initializes css class for each alert box
                 $this->options['class'] = "{$this->alertTypes[$type][0]} $appendCss";
 
                 // assign unique id to each alert box

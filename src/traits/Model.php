@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 28.01.16
- * Time: 11:50
- */
 
 namespace dashboard\traits;
 
@@ -40,13 +34,13 @@ trait Model
          * @param bool $associative
          * @return iterable
          */
-        return function (bool $associative = true) use ($list): iterable {
+        return static function (bool $associative = true) use ($list): iterable {
             return $associative ? $list : \array_keys($list);
         };
     }
 
     /**
-     * Show some properties in one string.
+     * Shows some properties in one string.
      * @param string $template {property} will be replaced
      * @return string
      */

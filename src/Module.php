@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 20.07.18
- * Time: 17:35
- */
 
 namespace dashboard;
 
@@ -174,6 +168,8 @@ final class Module extends \yii\base\Module implements BootstrapInterface
      * @throws Exception
      * @throws InvalidArgumentException
      * @throws InvalidConfigException
+     * @throws \Dotenv\Exception\InvalidFileException
+     * @throws \Dotenv\Exception\InvalidPathException
      */
     public function bootstrap($app): void
     {
@@ -331,7 +327,7 @@ SQL
             \chmod($task_db_file, PERM_FILE);
         }
 
-        // check adminer
+        // checks adminer
         $adminer_dir = \Yii::getAlias('@backend/web/adminer');
         if (!\file_exists($adminer_dir)) {
             FileHelper::createDirectory($adminer_dir);

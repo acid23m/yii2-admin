@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 23.08.18
- * Time: 17:53
- */
 
 namespace dashboard\controllers\web;
 
 use dashboard\models\index\SearchIndex;
+use yii\base\InvalidArgumentException;
+use yii\base\InvalidConfigException;
 use yii\helpers\Html;
 
 /**
@@ -20,12 +16,12 @@ use yii\helpers\Html;
 final class SearchController extends BaseController
 {
     /**
-     * Find content by query.
+     * Finds content by query.
      * @param string $q Search query
      * @return string
      * @throws \S2\Rose\Exception\ImmutableException
-     * @throws \yii\base\InvalidArgumentException
-     * @throws \yii\base\InvalidConfigException
+     * @throws InvalidArgumentException
+     * @throws InvalidConfigException
      */
     public function actionResult($q): string
     {

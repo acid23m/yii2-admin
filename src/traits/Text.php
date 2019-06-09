@@ -16,7 +16,7 @@ use yii\validators\UrlValidator;
 trait Text
 {
     /**
-     * Transliterate filename.
+     * Transliterates filename.
      * @static
      * @param string $name Filename
      * @return string
@@ -84,7 +84,7 @@ trait Text
     }
 
     /**
-     * Convert html to plain text.
+     * Converts html to plain text.
      * @static
      * @param string $html Input HTML
      * @return string
@@ -122,11 +122,13 @@ trait Text
             \chr(169)
         ];
 
-        return \trim(\preg_replace($search, $replace, $html));
+        return \trim(
+            \preg_replace($search, $replace, $html)
+        );
     }
 
     /**
-     * Clear string from alphabetic chars.
+     * Clears string from alphabetic chars.
      * Helpful for price field.
      * @static
      * @param string $str Input string
@@ -146,7 +148,7 @@ trait Text
     }
 
     /**
-     * Clear phone number from formatting symbols except digits and plus.
+     * Clears phone number from formatting symbols except digits and plus.
      * @static
      * @param string $phone_number Phone number
      * @return string Only plus and digits
@@ -157,7 +159,7 @@ trait Text
     }
 
     /**
-     * Convert text to array.
+     * Converts text to array.
      * @static
      * @param string $str Input string
      * @param bool $no_empty_str Remove or not empty values
@@ -171,7 +173,7 @@ trait Text
     }
 
     /**
-     * Check if IP complies to mask.
+     * Checks if IP complies to mask.
      * @static
      * @param string $ip
      * @param string $mask
@@ -197,7 +199,7 @@ trait Text
     }
 
     /**
-     * Generate link for iframe source to embed to sites.
+     * Generates link for iframe source to embed to sites.
      * Supports Youtube, Vimeo.
      * @static
      * @param string $url Direct or share link
@@ -214,7 +216,7 @@ trait Text
             return null;
         }
 
-        if (stripos($url, 'youtube.com') !== false) { // youtube direct site link
+        if (\stripos($url, 'youtube.com') !== false) { // youtube direct site link
             $params = \parse_url($url);
 
             try {
@@ -222,7 +224,7 @@ trait Text
                     return $url;
                 }
 
-                // find parameter
+                // finds parameter
                 $query = \explode('&', $params['query']);
                 foreach ($query as &$item) {
                     if (StringHelper::startsWith($item, 'v=')) {

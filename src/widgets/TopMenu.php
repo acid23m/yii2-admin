@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 24.07.18
- * Time: 1:31
- */
 
 namespace dashboard\widgets;
 
@@ -44,7 +38,7 @@ class TopMenu extends Widget
     }
 
     /**
-     * Show menu in top panel.
+     * Shows menu in top panel.
      * @return string|View
      * @throws InvalidArgumentException
      */
@@ -54,7 +48,7 @@ class TopMenu extends Widget
     }
 
     /**
-     * Get menu markup.
+     * Gets menu markup.
      * @return string HTML
      * @throws InvalidArgumentException
      */

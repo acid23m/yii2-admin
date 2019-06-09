@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 31.07.18
- * Time: 21:21
- */
 
 namespace dashboard\models\option;
 
@@ -131,7 +125,7 @@ class Main extends IniConfig implements BootstrapInterface
     }
 
     /**
-     * Enable or disable maintenance mode.
+     * Enables or disable maintenance mode.
      * @throws InvalidConfigException
      */
     public function triggerMaintenanceMode(): void

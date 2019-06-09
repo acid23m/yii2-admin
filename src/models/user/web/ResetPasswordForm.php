@@ -26,9 +26,9 @@ final class ResetPasswordForm extends Model
     private $user;
 
     /**
-     * Create a form model given a token.
-     * @param  string $token
-     * @param  array $config name-value pairs that will be used to initialize the object properties
+     * Creates a form model given a token.
+     * @param string $token
+     * @param array $config name-value pairs that will be used to initialize the object properties
      * @throws InvalidArgumentException if token is empty or not valid
      */
     public function __construct($token, $config = [])

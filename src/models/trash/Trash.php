@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 14.08.18
- * Time: 3:15
- */
 
 namespace dashboard\models\trash;
 
@@ -21,7 +15,7 @@ use yii\db\ActiveRecord;
 final class Trash
 {
     /**
-     * Get all trash items.
+     * Gets all trash items.
      * @return ArrayDataProvider
      * @throws InvalidConfigException
      */
@@ -62,7 +56,7 @@ final class Trash
     }
 
     /**
-     * Get number of items in the trash.
+     * Gets number of items in the trash.
      * @return int
      * @throws InvalidConfigException
      */

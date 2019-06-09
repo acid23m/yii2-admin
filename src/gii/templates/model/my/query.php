@@ -29,10 +29,10 @@ namespace <?= $generator->queryNs ?>;
  *
  * @see <?= $modelFullClassName . "\n" ?>
  */
-final class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClass, '\\') . "\n" ?>
+final class <?= $className ?> extends <?= '\\' . \ltrim($generator->queryBaseClass, '\\') . "\n" ?>
 {
     /**
-     * Get published items.
+     * Gets published items.
      * @return $this
      */
     /*public function published(): self
@@ -43,7 +43,7 @@ final class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClas
     }*/
 
     /**
-     * Get not deleted items.
+     * Gets not deleted items.
      * @return $this
      */
     /*public function actual(): self
@@ -54,7 +54,7 @@ final class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClas
     }*/
 
     /**
-     * Get deleted items.
+     * Gets deleted items.
      * @return $this
      */
     /*public function deleted(): self
@@ -65,7 +65,7 @@ final class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClas
     }*/
 
     /**
-     * Sort items by position.
+     * Sorts items by position.
      * @return $this
      */
     /*public function ordered(): self
@@ -76,7 +76,7 @@ final class <?= $className ?> extends <?= '\\' . ltrim($generator->queryBaseClas
     }*/
 
     /**
-     * Show item by its slug parameter.
+     * Shows item by its slug parameter.
      * @param string $slug
      * @return $this
      */

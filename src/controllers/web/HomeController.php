@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 23.07.18
- * Time: 1:46
- */
 
 namespace dashboard\controllers\web;
 
@@ -78,7 +72,7 @@ final class HomeController extends BaseController
     }
 
     /**
-     * Show home page.
+     * Shows home page.
      * @return string
      * @throws InvalidArgumentException
      * @throws \Throwable
@@ -115,7 +109,7 @@ final class HomeController extends BaseController
     }
 
     /**
-     * Clear all logs.
+     * Clears all logs.
      * @return Response
      */
     public function actionClearLog(): Response
@@ -127,7 +121,7 @@ final class HomeController extends BaseController
     }
 
     /**
-     * Delete log records.
+     * Deletes log records.
      * @param string $ids List of ID
      * @return Response
      * @throws InvalidArgumentException
@@ -143,7 +137,7 @@ final class HomeController extends BaseController
     }
 
     /**
-     * Download zip log file.
+     * Downloads zip log file.
      * @throws ErrorException
      * @throws Exception
      */
@@ -207,7 +201,7 @@ final class HomeController extends BaseController
     }
 
     /**
-     * Clear application cache.
+     * Clears application cache.
      * @return Response
      */
     public function actionClearCache(): Response
@@ -233,7 +227,7 @@ final class HomeController extends BaseController
     }
 
     /**
-     * Clear assets folders.
+     * Clears assets folders.
      * @return Response
      * @throws ErrorException
      * @throws Exception
@@ -271,11 +265,12 @@ final class HomeController extends BaseController
     }
 
     /**
-     * Create sitemap files.
+     * Creates sitemap files.
      * @return Response
+     * @throws Exception
      * @throws InvalidArgumentException
-     * @throws \InvalidArgumentException
      * @throws InvalidConfigException
+     * @throws \InvalidArgumentException
      */
     public function actionSitemap(): Response
     {
@@ -293,7 +288,7 @@ final class HomeController extends BaseController
     }
 
     /**
-     * Update search index.
+     * Updates search index.
      * @return Response
      * @throws InvalidArgumentException
      * @throws InvalidConfigException

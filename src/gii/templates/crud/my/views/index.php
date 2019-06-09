@@ -18,11 +18,12 @@ use yii\grid\ActionColumn;
 use yii\grid\CheckboxColumn;
 use yii\grid\SerialColumn;
 use kartik\sortable\Sortable;
+use <?= $generator->modelClass ?>;
 use <?= $generator->indexWidgetType === 'grid' ? "yiister\\gentelella\\widgets\\grid\\GridView" : "yii\\widgets\\ListView" ?>;
 <?= $generator->enablePjax ? 'use yii\widgets\Pjax;' : '' ?>
 
 /** @var \yii\web\View $this */
-<?= !empty($generator->searchModelClass) ? "/** @var \\" . ltrim($generator->searchModelClass, '\\') . " \$searchModel */\n" : '' ?>
+<?= !empty($generator->searchModelClass) ? "/** @var \\" . \ltrim($generator->searchModelClass, '\\') . " \$searchModel */\n" : '' ?>
 /** @var \yii\data\ActiveDataProvider $dataProvider */
 /** @var array $sortItems */
 
@@ -58,7 +59,7 @@ $this->registerJs('
         <div class="col-xs-12">
 <?php if(!empty($generator->searchModelClass)): ?>
 
-<?= "    <?php " . ($generator->indexWidgetType === 'grid' ? "// " : "") ?>echo $this->render('_search', ['model' => $searchModel]) ?>
+<?= "    <?php " . ($generator->indexWidgetType === 'grid' ? '// ' : '') ?>echo $this->render('_search', ['model' => $searchModel]) ?>
 <?php endif ?>
 
             <p>
@@ -81,7 +82,7 @@ $this->registerJs('
             <?= "<?= " ?>GridView::widget([
                 'id' => '<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-grid',
                 'dataProvider' => $dataProvider,
-                <?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n" : "" ?>
+                <?= !empty($generator->searchModelClass) ? "'filterModel' => \$searchModel,\n" : '' ?>
                 'condensed' => true,
                 'columns' => [
                     ['class' => CheckboxColumn::class],
@@ -101,9 +102,9 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
     foreach ($tableSchema->columns as $column) {
         $format = $generator->generateColumnFormat($column);
         if (++$count < 6) {
-            echo "            '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+            echo "            '" . $column->name . ($format === 'text' ? '' : ':' . $format) . "',\n";
         } else {
-            echo "            // '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+            echo "            // '" . $column->name . ($format === 'text' ? '' : ':' . $format) . "',\n";
         }
     }
 }
@@ -165,13 +166,15 @@ CSS
                     <?= "<?php\n" ?>
                     $items = [];
 
+                    /** @var int $pos */
+                    /** @var <?= StringHelper::basename($generator->modelClass) ?> $item */
                     foreach ($sortItems as $pos => $item) {
                         $content = '<figure class="model-item" data-id="' . $item->id . '">';
                         $content .= \imagetool\helpers\Html::img($item->image, ['class' => 'img-responsive']);
                         $content .= '<figcaption>' . $item->title . '</figcaption>';
                         $content .= '</figure>';
 
-                        $items[] = compact('content');
+                        $items[] = \compact('content');
                     }
                     ?>
 

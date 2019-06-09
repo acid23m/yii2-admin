@@ -1,20 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 15.08.18
- * Time: 2:24
- */
 
 namespace dashboard\commands;
 
 use dashboard\models\sitemap\SitemapGenerator;
 use dashboard\models\sitemap\SitemapJob;
+use yii\base\Exception;
 use yii\base\InvalidArgumentException;
 use yii\base\InvalidConfigException;
 use yii\console\Controller;
 use yii\console\ExitCode;
 use yii\helpers\Console;
+use yii\queue\Queue;
 
 /**
  * Sitemap files.
@@ -25,17 +21,18 @@ use yii\helpers\Console;
 final class SitemapController extends Controller
 {
     /**
-     * Create sitemap files.
+     * Creates sitemap files.
      * @return int
-     * @throws \InvalidArgumentException
      * @throws InvalidArgumentException
      * @throws InvalidConfigException
+     * @throws \InvalidArgumentException
+     * @throws Exception
      */
     public function actionIndex(): int
     {
-        /** @var \yii\queue\Queue $queue */
+        /** @var Queue $queue */
         $queue = \Yii::$app->get('queue', false);
-        if ($queue instanceof \yii\queue\Queue) {
+        if ($queue instanceof Queue) {
             $queue->push(new SitemapJob);
         } else {
             SitemapGenerator::write();

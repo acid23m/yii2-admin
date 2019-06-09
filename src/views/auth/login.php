@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 29.07.18
- * Time: 21:57
- */
 
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;

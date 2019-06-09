@@ -13,7 +13,7 @@ final class UserQuery extends ActiveQuery
 {
     /**
      * Scope.<br/>
-     * Add condition that show only active users
+     * Adds condition that show only active users
      * @return $this
      */
     public function active(): self
@@ -25,7 +25,7 @@ final class UserQuery extends ActiveQuery
 
     /**
      * Scope.<br/>
-     * Add condition that except superuser
+     * Adds condition that except superuser
      * @return $this
      */
     public function limited(): self

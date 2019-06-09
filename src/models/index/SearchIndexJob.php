@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 31.10.18
- * Time: 11:28
- */
 
 namespace dashboard\models\index;
 

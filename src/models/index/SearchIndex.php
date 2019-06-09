@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 23.08.18
- * Time: 14:08
- */
 
 namespace dashboard\models\index;
 
@@ -121,7 +115,7 @@ class SearchIndex extends Component
     }
 
     /**
-     * Add items to index.
+     * Adds items to index.
      */
     public function index(): void
     {
@@ -135,7 +129,7 @@ class SearchIndex extends Component
             return;
         }
 
-        // check configuration
+        // checks configuration
         $collection_config = $module->search_items;
         if (!isset($collection_config['class'])) {
             return;
@@ -148,7 +142,7 @@ class SearchIndex extends Component
             return;
         }
 
-        // check collection type
+        // checks collection type
         if (!($collection instanceof SearchCollectionInterface)) {
             return;
         }
@@ -157,7 +151,7 @@ class SearchIndex extends Component
     }
 
     /**
-     * Find content.
+     * Finds content.
      * @param string $query
      * @param int|null $limit
      * @param int $offset

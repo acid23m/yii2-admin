@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 06.08.18
- * Time: 0:01
- */
 
 namespace dashboard\models\log;
 
@@ -48,6 +42,9 @@ class LogRecord extends ActiveRecord
         return '{{%log}}';
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function init(): void
     {
         parent::init();

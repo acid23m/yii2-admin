@@ -12,7 +12,7 @@ echo "<?php\n";
 ?>
 
 /** @var \yii\web\View $this */
-/** @var \<?= ltrim($generator->modelClass, '\\') ?> $model */
+/** @var \<?= \ltrim($generator->modelClass, '\\') ?> $model */
 
 $this->title = \Yii::t('dashboard', 'obnovit zapis') . ': ' . $model-><?= $generator->getNameAttribute() ?>;
 $this->params['title'] = $this->title;

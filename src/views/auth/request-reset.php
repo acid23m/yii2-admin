@@ -33,7 +33,7 @@ $controller = $this->context;
                 'autocomplete' => 'off'
             ]
         ])->input('email') ?>
-        
+
 
         <div class="form-group pull-right">
             <?= Html::submitButton(\Yii::t('dashboard', 'otpravit'), ['class' => 'btn btn-primary']) ?>

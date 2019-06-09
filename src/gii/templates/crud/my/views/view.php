@@ -15,7 +15,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /** @var yii\web\View $this */
-/** @var <?= ltrim($generator->modelClass, '\\') ?> $model */
+/** @var <?= \ltrim($generator->modelClass, '\\') ?> $model */
 
 $this->title = $model-><?= $generator->getNameAttribute() ?>;
 $this->params['title'] = $this->title;
@@ -51,7 +51,7 @@ if (($tableSchema = $generator->getTableSchema()) === false) {
 } else {
     foreach ($generator->getTableSchema()->columns as $column) {
         $format = $generator->generateColumnFormat($column);
-        echo "                '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+        echo "                '" . $column->name . ($format === 'text' ? '' : ':' . $format) . "',\n";
     }
 }
 ?>

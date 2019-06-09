@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 22.09.17
- * Time: 14:03
- */
 
 namespace dashboard\controllers\rest;
 
@@ -52,7 +46,7 @@ class BaseRestActiveController extends ActiveController
     {
         $behaviors = parent::behaviors();
 
-        // remove authentication filter
+        // removes authentication filter
         $auth = [
             'class' => CompositeAuth::class,
             'authMethods' => $this->authMethods(),
@@ -61,15 +55,15 @@ class BaseRestActiveController extends ActiveController
         ];
         unset($behaviors['authenticator']);
 
-        // add CORS filter
+        // adds CORS filter
         $behaviors['corsFilter'] = [
             'class' => Cors::class,
             'cors' => $this->cors()
         ];
 
-        // re-add authentication filter
+        // re-adds authentication filter
         $behaviors['authenticator'] = $auth;
-        // avoid authentication on CORS-pre-flight requests (HTTP OPTIONS method)
+        // avoids authentication on CORS-pre-flight requests (HTTP OPTIONS method)
         $behaviors['authenticator']['except'] = ArrayHelper::merge(['options'], $this->authExcept());
 
         return $behaviors;

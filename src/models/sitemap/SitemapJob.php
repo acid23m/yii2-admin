@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 31.10.18
- * Time: 11:47
- */
 
 namespace dashboard\models\sitemap;
 
@@ -22,6 +16,7 @@ class SitemapJob implements JobInterface
     /**
      * @param Queue $queue
      * @throws \InvalidArgumentException
+     * @throws \yii\base\Exception
      * @throws \yii\base\InvalidArgumentException
      * @throws \yii\base\InvalidConfigException
      */

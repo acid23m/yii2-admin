@@ -12,7 +12,7 @@ use yii\db\ActiveQuery;
 final class TaskQuery extends ActiveQuery
 {
     /**
-     * Show only published items.
+     * Shows only published items.
      * @return $this
      */
     public function published(): self
@@ -23,7 +23,7 @@ final class TaskQuery extends ActiveQuery
     }
 
     /**
-     * Show only draft items.
+     * Shows only draft items.
      * @return $this
      */
     public function draft(): self

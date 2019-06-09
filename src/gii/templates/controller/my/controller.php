@@ -14,7 +14,7 @@ echo "<?php\n";
 
 namespace <?= $generator->getControllerNamespace() ?>;
 
-final class <?= StringHelper::basename($generator->controllerClass) ?> extends <?= '\\' . trim($generator->baseClass, '\\') . "\n" ?>
+final class <?= StringHelper::basename($generator->controllerClass) ?> extends <?= '\\' . \trim($generator->baseClass, '\\') . "\n" ?>
 {
 <?php foreach ($generator->getActionIDs() as $action): ?>
     public function action<?= Inflector::id2camel($action) ?>(): string
