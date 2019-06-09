@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Poyarkov S. <webmaster.cipa at gmail dot com>
- * Date: 11.09.17
- * Time: 15:27
- */
 
 namespace dashboard\traits;
 
@@ -41,6 +35,22 @@ trait DateTime
         $now->setTimezone(new \DateTimeZone('UTC'));
 
         return $now->format(STANDARD_DATETIME_FORMAT);
+    }
+
+    /**
+     * Converts time to local timezone.
+     * @static
+     * @param string $t Time
+     * @param string $from_tz Timezone
+     * @return \DateTime
+     * @throws \Exception
+     */
+    public static function toLocalTimezone(string $t, string $from_tz = 'UTC'): \DateTime
+    {
+        $dt = new \DateTime($t, new \DateTimeZone($from_tz));
+        $dt->setTimezone(new \DateTimeZone(\Yii::$app->getTimeZone()));
+
+        return $dt;
     }
 
 }
