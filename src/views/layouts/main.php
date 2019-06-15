@@ -2,6 +2,7 @@
 
 use dashboard\assets\AppAsset;
 use dashboard\assets\BootboxAsset;
+use dashboard\assets\MailgoAsset;
 use dashboard\models\trash\Trash;
 use dashboard\widgets\Growl;
 use dashboard\widgets\LeftMenu;
@@ -24,6 +25,7 @@ $dashboard_module_id = \dashboard\Module::getInstance()->id;
 
 AppAsset::register($this);
 BootboxAsset::overrideSystemConfirm();
+MailgoAsset::register($this);
 ?>
 
 <?php $this->beginPage() ?>

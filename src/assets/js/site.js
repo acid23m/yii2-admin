@@ -25,3 +25,19 @@ yii.spinner = (function ($) {
 
   return pub;
 })(jQuery);
+
+/**
+ * Fixes issue with MAILGO anchors.
+ */
+yii.mailgoAnchors = (function ($) {
+  let pub = {
+    isActive: true,
+    init () {
+      $('body').on('click', 'a[href^="#mailgo"]', e => {
+        e.preventDefault();
+      });
+    }
+  }
+
+  return pub;
+})(jQuery);

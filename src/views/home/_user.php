@@ -39,7 +39,7 @@ use yii\helpers\Inflector;
                     </li>
                     <li>
                         <strong>Email</strong>:
-                        <?= $user->email ?>
+                        <?= Html::mailto($user->email) ?>
                     </li>
                     <li>
                         <strong><?= \Yii::t('dashboard', 'vremya sozdaniya') ?></strong>:
