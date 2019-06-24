@@ -6,9 +6,7 @@ use dashboard\models\user\web\User;
 use yii\filters\AccessControl;
 use yii\filters\HttpCache;
 use yii\filters\VerbFilter;
-use yii\helpers\ArrayHelper;
 use yii\web\Controller;
-use yii\web\ErrorAction;
 
 /**
  * Class BaseController.
@@ -101,18 +99,6 @@ class BaseController extends Controller
                 ]
             ]
         ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function actions(): array
-    {
-        $actions = [
-            'error' => ErrorAction::class
-        ];
-
-        return ArrayHelper::merge(parent::actions(), $actions);
     }
 
 }

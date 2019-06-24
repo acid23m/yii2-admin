@@ -21,6 +21,7 @@ use yii\helpers\Inflector;
 use yii\helpers\Json;
 use yii\helpers\StringHelper;
 use yii\queue\Queue;
+use yii\web\ErrorAction;
 use yii\web\Response;
 
 /**
@@ -69,6 +70,18 @@ final class HomeController extends BaseController
                 ]
             ]
         ]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function actions(): array
+    {
+        $actions = [
+            'error' => ErrorAction::class
+        ];
+
+        return ArrayHelper::merge(parent::actions(), $actions);
     }
 
     /**

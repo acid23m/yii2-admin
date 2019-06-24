@@ -14,6 +14,7 @@ use yii\helpers\FileHelper;
 use yii\i18n\PhpMessageSource;
 use yii\rbac\DbManager;
 use yii\rest\UrlRule;
+use yii\web\ErrorHandler;
 use yii\web\User;
 use yii\web\UserEvent;
 
@@ -369,7 +370,7 @@ SQL
             \Yii::$app->modules = ArrayHelper::merge(\Yii::$app->modules, [
                 \imagetool\Module::DEFAULT_ID => [
                     'class' => \imagetool\Module::class,
-                    'controllerNamespace' => 'imagetool\controllers\web'
+                    'controllerNamespace' => \imagetool\Module::DEFAULT_ID . '\controllers\web'
                 ]
             ]);
         }
@@ -404,6 +405,19 @@ SQL
                     ]
                 ]
             ]);
+
+            \Yii::configure($this, [
+                'components' => [
+                    'errorHandler' => [
+                        'class' => ErrorHandler::class,
+                        'errorAction' => "/{$this->id}/home/error"
+                    ]
+                ]
+            ]);
+            /** @var ErrorHandler $handler */
+            $handler = $this->get('errorHandler');
+            \Yii::$app->set('errorHandler', $handler);
+            $handler->register();
         }
     }
 
