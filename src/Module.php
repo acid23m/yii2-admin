@@ -156,7 +156,7 @@ final class Module extends \yii\base\Module implements BootstrapInterface
         $this->initConsole();
 
         // parameters
-        $this->params['user.passwordResetTokenExpire'] = 3600; // 1 hour
+        $this->params['user.passwordResetTokenExpire'] = 600; // 10 min
         $this->params['user.accessTokenExpire'] = 86400; // 1 day
 
         $this->params['author.name'] = 'Cipa';

@@ -68,12 +68,15 @@ final class PasswordResetRequestForm extends Model
             return false;
         }
 
-        if (!User::validatePasswordResetToken($user->password_reset_token)) {
-            $user->generatePasswordResetToken();
+        // do not create new token if current present and still valid
+        if (User::validatePasswordResetToken($user->password_reset_token)) {
+            return false;
+        }
 
-            if (!$user->save(false, ['password_reset_token'])) {
-                return false;
-            }
+        $user->generatePasswordResetToken();
+
+        if (!$user->save(false, ['password_reset_token'])) {
+            return false;
         }
 
         $module = \dashboard\Module::getInstance();

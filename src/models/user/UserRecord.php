@@ -203,7 +203,7 @@ class UserRecord extends ActiveRecord
      */
     public function generatePasswordResetToken(): void
     {
-        $this->password_reset_token = \Yii::$app->getSecurity()->generateRandomString() . '_' . time();
+        $this->password_reset_token = \Yii::$app->getSecurity()->generateRandomString() . '_' . \time();
     }
 
     /**
@@ -221,7 +221,7 @@ class UserRecord extends ActiveRecord
         $timestamp = (int) \substr($token, \strrpos($token, '_') + 1);
         $expire = \dashboard\Module::getInstance()->params['user.passwordResetTokenExpire'];
 
-        return $timestamp + $expire >= time();
+        return $timestamp + $expire >= \time();
     }
 
     /**
