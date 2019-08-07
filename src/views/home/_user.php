@@ -51,7 +51,9 @@ use yii\helpers\Inflector;
                     </li>
                     <li>
                         <strong><?= \Yii::t('dashboard', 'posledniy vhod') ?></strong>:
-                        <?= \Yii::$app->getFormatter()->asDatetime($user::toLocalTimezone($user->last_access)) ?>
+                        <?php if (!empty($user->last_access) && $user->last_access !== null): ?>
+                            <?= \Yii::$app->getFormatter()->asDatetime($user::toLocalTimezone($user->last_access)) ?>
+                        <?php endif ?>
                     </li>
                     <li>
                         <strong>IP</strong>:

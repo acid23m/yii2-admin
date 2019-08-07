@@ -65,7 +65,8 @@ class User extends UserRecord
     public function rules(): array
     {
         $rules = [
-            [['avatar_file'], 'image', 'skipOnEmpty' => !$this->isNewRecord, 'mimeTypes' => ['image/*']]
+//            [['avatar_file'], 'image', 'skipOnEmpty' => !$this->isNewRecord, 'mimeTypes' => ['image/*']] // required
+            [['avatar_file'], 'image', 'skipOnEmpty' => true, 'mimeTypes' => ['image/*']] // not required
         ];
 
         return ArrayHelper::merge(parent::rules(), $rules);

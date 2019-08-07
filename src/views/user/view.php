@@ -71,7 +71,13 @@ $status_list = $model->getList('statuses');
             [
                 'attribute' => 'last_access',
                 'format' => 'datetime',
-                'value' => $model::toLocalTimezone($model->last_access)
+                'value' => static function (User $model, $widget) {
+                    if (empty($model->last_access) || $model->last_access === null) {
+                        return null;
+                    }
+
+                    return $model::toLocalTimezone($model->last_access);
+                }
             ],
             'ip'
         ]
