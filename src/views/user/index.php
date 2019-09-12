@@ -31,7 +31,7 @@ $status_list = $searchModel->getList('statuses');
         'filterModel' => $searchModel,
         'condensed' => true,
         'columns' => [
-            'id',
+//            'id',
             [
                 'attribute' => 'username',
                 'value' => static function (User $model, $key, $index) {

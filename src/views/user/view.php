@@ -36,7 +36,7 @@ $status_list = $model->getList('statuses');
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+//            'id',
             'avatar:image',
             [
                 'attribute' => 'username',
