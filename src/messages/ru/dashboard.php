@@ -189,7 +189,6 @@ return [
     'nazvanie' => 'Название',
     'slag' => 'Url id страницы',
     'data' => 'Дата',
-    'vremya' => 'Время',
     'dobavit' => 'Добавить',
     'obnovit' => 'Обновить',
     'otpravit' => 'Отправить',
