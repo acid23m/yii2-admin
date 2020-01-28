@@ -214,10 +214,10 @@ final class Module extends \yii\base\Module implements BootstrapInterface
         } elseif ($app instanceof \yii\console\Application) {
             // default host info for console commands
             $domain = \getenv('SITE_DOMAIN');
-            \Yii::$app->get('urlManager')->setHostInfo('http://' . $domain);
-            \Yii::$app->get('urlManagerFrontend')->setHostInfo('http://' . $domain);
-            \Yii::$app->get('urlManagerBackend')->setHostInfo('http://' . $domain);
-            \Yii::$app->get('urlManagerRemote')->setHostInfo('http://' . $domain);
+            \Yii::$app->get('urlManager')->setHostInfo('https://' . $domain);
+            \Yii::$app->get('urlManagerFrontend')->setHostInfo('https://' . $domain);
+            \Yii::$app->get('urlManagerBackend')->setHostInfo('https://' . $domain);
+            \Yii::$app->get('urlManagerRemote')->setHostInfo('https://' . $domain);
         }
 
         $app->getI18n()->translations['dashboard'] = [
